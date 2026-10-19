@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AI Failure Modes – ML103: AI-Assisted Coding with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../instructors/authoring-guide.html" rel="next">
+<link href="../instructors/demo-script.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0c67f1ee1b641a58951cb1febbcb5024.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d97b44ee18e220fd3faad9857ae9890e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0c67f1ee1b641a58951cb1febbcb5024.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ML103: AI-Assisted Coding with R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Workshop</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../r/04-explore.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../python/README.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../instructors/README.md"> 
+<span class="menu-text">Instructors</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MattBixley/ml103_dev"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../instructors/README.md">Instructors</a></li><li class="breadcrumb-item"><a href="../instructors/ai-failure-modes.html">AI Failure Modes</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Workshop (R)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/00-welcome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00. Welcome and Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/01-ai-and-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. AI and Ethics in Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/02-rules-of-the-road.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Rules of the Road: REANNZ Policies for AI Use</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/03-prompt-anatomy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. Anatomy of a Good Prompt</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/04-explore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. Load and Explore the Penguins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/05-wrangle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Wrangle with dplyr</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/06-visualise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Visualise with ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/07-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Statistics: Code You Can Run but Do Not Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/08-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Assemble the Quarto Report</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/09-slurm-scripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. AI for Slurm Scripts: Review and Write</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/10-verify-wrap-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Verify and Wrap-Up</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python version</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/README.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ML103 Python Notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/04-explore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. Load and Explore the Penguins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/05-wrangle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Wrangle with pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/06-visualise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Visualise with seaborn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/07-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Statistics: Code You Can Run but Do Not Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/08-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Assemble the Quarto Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Prompt library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/shared-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Shared Prompts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/r-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Prompt Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/python-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Prompt Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/slurm-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slurm Prompts (Episode 09)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slurm/README.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slurm Scripts for Episode 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/agent-track.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agent Track: Going Further with Claude Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Instructors</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/README.md" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor Notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/timing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timing Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/demo-script.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demo Script</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/ai-failure-modes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">AI Failure Modes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/authoring-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Authoring guide (contract for all ML103 content)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licence</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#two-penguins-datasets" id="toc-two-penguins-datasets" class="nav-link" data-scroll-target="#two-penguins-datasets">Two Penguins Datasets</a></li>
+  <li><a href="#pipe-style" id="toc-pipe-style" class="nav-link" data-scroll-target="#pipe-style">Pipe Style</a></li>
+  <li><a href="#superseded-arguments" id="toc-superseded-arguments" class="nav-link" data-scroll-target="#superseded-arguments">Superseded Arguments</a></li>
+  <li><a href="#invented-functions-and-arguments" id="toc-invented-functions-and-arguments" class="nav-link" data-scroll-target="#invented-functions-and-arguments">Invented Functions and Arguments</a></li>
+  <li><a href="#silently-dropped-na-values" id="toc-silently-dropped-na-values" class="nav-link" data-scroll-target="#silently-dropped-na-values">Silently Dropped NA Values</a></li>
+  <li><a href="#wrong-statistical-interpretation" id="toc-wrong-statistical-interpretation" class="nav-link" data-scroll-target="#wrong-statistical-interpretation">Wrong Statistical Interpretation</a></li>
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a></li>
+  <li><a href="#invented-slurm-modules-and-partitions" id="toc-invented-slurm-modules-and-partitions" class="nav-link" data-scroll-target="#invented-slurm-modules-and-partitions">Invented Slurm Modules and Partitions</a></li>
+  <li><a href="#smart-quotes-from-copy-and-paste" id="toc-smart-quotes-from-copy-and-paste" class="nav-link" data-scroll-target="#smart-quotes-from-copy-and-paste">Smart Quotes From Copy and Paste</a></li>
+  <li><a href="#truncated-code-in-ai-mode" id="toc-truncated-code-in-ai-mode" class="nav-link" data-scroll-target="#truncated-code-in-ai-mode">Truncated Code in AI Mode</a></li>
+  <li><a href="#confidently-wrong-explanations" id="toc-confidently-wrong-explanations" class="nav-link" data-scroll-target="#confidently-wrong-explanations">Confidently Wrong Explanations</a></li>
+  <li><a href="#outdated-quarto-and-r-markdown-yaml" id="toc-outdated-quarto-and-r-markdown-yaml" class="nav-link" data-scroll-target="#outdated-quarto-and-r-markdown-yaml">Outdated Quarto and R Markdown YAML</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MattBixley/ml103_dev/blob/main/instructors/ai-failure-modes.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MattBixley/ml103_dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../instructors/README.md">Instructors</a></li><li class="breadcrumb-item"><a href="../instructors/ai-failure-modes.html">AI Failure Modes</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">AI Failure Modes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>These are the mistakes an AI assistant makes most often in this workshop. Use them as teaching moments. Learners remember a failure they found themselves far longer than a warning you gave them.</p>
+<p>AI output varies from run to run and between tools. Treat each entry as a pattern to look for, not a response you can predict. Before you teach a failure, reproduce it yourself on the day, and note the wording and tool that produced it.</p>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Failure mode</th>
+<th>Typical sign</th>
+<th>Where it appears</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#two-penguins-datasets">Two penguins datasets</a></td>
+<td>Code uses <code>bill_len</code> where the learner expects <code>bill_length_mm</code></td>
+<td>Episode 04</td>
+</tr>
+<tr class="even">
+<td><a href="#pipe-style">Pipe style</a></td>
+<td><code>%&gt;%</code> appears in code that asks for the native pipe</td>
+<td>Episodes 05, 06</td>
+</tr>
+<tr class="odd">
+<td><a href="#superseded-arguments">Superseded arguments</a></td>
+<td><code>size =</code> on a line geom, or <code>gather()</code> and <code>spread()</code></td>
+<td>Episodes 05, 06</td>
+</tr>
+<tr class="even">
+<td><a href="#invented-functions-and-arguments">Invented functions and arguments</a></td>
+<td>A function or argument name that does not exist</td>
+<td>Episodes 05, 06, 08</td>
+</tr>
+<tr class="odd">
+<td><a href="#silently-dropped-na-values">Silently dropped NA values</a></td>
+<td>Row counts fall without a warning or a mention</td>
+<td>Episodes 04, 05</td>
+</tr>
+<tr class="even">
+<td><a href="#wrong-statistical-interpretation">Wrong statistical interpretation</a></td>
+<td>A confident claim that a p-value is the probability the null is true</td>
+<td>Episode 07</td>
+</tr>
+<tr class="odd">
+<td><a href="#simpsons-paradox">Simpson’s paradox</a></td>
+<td>A correlation sign that flips when you group the data</td>
+<td>Episode 07</td>
+</tr>
+<tr class="even">
+<td><a href="#invented-slurm-modules-and-partitions">Invented Slurm modules and partitions</a></td>
+<td>A module name or partition that <code>module spider</code> does not list</td>
+<td>Episode 09</td>
+</tr>
+<tr class="odd">
+<td><a href="#smart-quotes-from-copy-and-paste">Smart quotes from copy and paste</a></td>
+<td><code>Error: unexpected input</code> on a line that looks correct</td>
+<td>Episodes 04 to 08</td>
+</tr>
+<tr class="even">
+<td><a href="#truncated-code-in-ai-mode">Truncated code in AI Mode</a></td>
+<td>The answer ends mid-function, or shows <code># ... rest of code</code></td>
+<td>Episodes 04 to 08</td>
+</tr>
+<tr class="odd">
+<td><a href="#confidently-wrong-explanations">Confidently wrong explanations</a></td>
+<td>Plausible prose that contradicts the output</td>
+<td>Episodes 07, 08</td>
+</tr>
+<tr class="even">
+<td><a href="#outdated-quarto-and-r-markdown-yaml">Outdated Quarto and R Markdown YAML</a></td>
+<td>YAML that renders in an old format or fails to render</td>
+<td>Episode 08</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="two-penguins-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="two-penguins-datasets">Two Penguins Datasets</h2>
+<p><strong>What happens.</strong> R 4.5 and later ship <code>datasets::penguins</code>, with short column names such as <code>bill_len</code>, <code>bill_dep</code>, <code>flipper_len</code> and <code>body_mass</code>. The <code>palmerpenguins</code> package uses <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code> and <code>body_mass_g</code>. An AI assistant may write code for either version, without saying which one it chose.</p>
+<p><strong>Teaching moment.</strong> Ask learners to run the code the AI gives them. If it fails with “object not found” or “column doesn’t exist”, ask them which dataset the code uses. This failure makes a useful <strong>Check it</strong> exercise: the learner sees the mismatch, names the cause, and asks the AI to fix its own code with the dataset named in the prompt.</p>
+</section>
+<section id="pipe-style" class="level2">
+<h2 class="anchored" data-anchor-id="pipe-style">Pipe Style</h2>
+<p><strong>What happens.</strong> The native pipe <code>|&gt;</code> arrived in R 4.1. Many AI answers still use the magrittr pipe <code>%&gt;%</code>, which <code>library(tidyverse)</code> also makes available. Both pipes run in a <code>tidyverse</code> session, but mixed styles make a report harder to read.</p>
+<p><strong>Teaching moment.</strong> Put <code>|&gt;</code> in the prompt. Then ask learners to find any <code>%&gt;%</code> in the output and decide whether to change it. The workshop style is native pipe throughout.</p>
+</section>
+<section id="superseded-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="superseded-arguments">Superseded Arguments</h2>
+<p><strong>What happens.</strong> ggplot2 3.4.0 replaced <code>size =</code> with <code>linewidth =</code> for lines. The old argument still runs with a deprecation warning, so learners may not notice. Likewise, <code>tidyr::gather()</code> and <code>tidyr::spread()</code> are superseded by <code>pivot_longer()</code> and <code>pivot_wider()</code>. Code with the old names still runs, but it signals an out-of-date source.</p>
+<p><strong>Teaching moment.</strong> Point out the deprecation warning when it appears. Ask learners to read the warning and check the function’s help page for the current argument name. Put the style rule in the prompt so the AI does not use the old name.</p>
+</section>
+<section id="invented-functions-and-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="invented-functions-and-arguments">Invented Functions and Arguments</h2>
+<p><strong>What happens.</strong> An AI assistant may call a function that does not exist, or pass an argument that a real function does not accept. Its explanation of the invented call often sounds sure of itself. Learners who cannot read R code well may not notice until the code fails.</p>
+<p><strong>Teaching moment.</strong> Ask learners to run <code>?function_name</code> for any function they do not recognise. If the help page does not list the argument, the AI made it up. Ask the AI to cite the help page, then check the citation yourself.</p>
+</section>
+<section id="silently-dropped-na-values" class="level2">
+<h2 class="anchored" data-anchor-id="silently-dropped-na-values">Silently Dropped NA Values</h2>
+<p><strong>What happens.</strong> Some functions drop missing values without a warning, and others return <code>NA</code> as the result. Filtering with <code>filter()</code> removes rows where the condition is <code>NA</code>. A summary that quietly excludes rows can change the numbers in the report. The <code>penguins_clean</code> object in episode 05 removes the 11 incomplete rows on purpose, so an unexplained change in row count is a warning sign.</p>
+<p><strong>Teaching moment.</strong> Ask learners to count rows before and after each step with <code>nrow()</code>. Then ask the AI what it did with the missing values. A good answer names the rows it removed. A poor answer does not mention them.</p>
+</section>
+<section id="wrong-statistical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="wrong-statistical-interpretation">Wrong Statistical Interpretation</h2>
+<p><strong>What happens.</strong> An AI assistant often explains a p-value as the probability that the null hypothesis is true, or treats a non-significant result as proof of no effect. Its interpretation can also ignore the assumptions of a test. The wording sounds confident, so learners tend to copy it into the report.</p>
+<p><strong>Teaching moment.</strong> Use episode 07. Ask the AI to explain each line of the <code>summary()</code> output, then compare its explanation with a reference you trust. Ask it to name the assumptions and the conditions that would make the result wrong. Learners check one claim themselves before they accept any of them.</p>
+</section>
+<section id="simpsons-paradox" class="level2">
+<h2 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s Paradox</h2>
+<p><strong>What happens.</strong> In the penguins data, bill depth and bill length have a negative slope across all species combined, but a positive slope within each species. An AI answer that uses the pooled data gives a confident and wrong conclusion.</p>
+<p><strong>Teaching moment.</strong> Ask learners to plot the data twice, once pooled and once coloured by species. Then ask the AI what the two plots show. The better prompt in episode 07 asks about grouping and confounders. Use it to show why prompt wording changes the answer.</p>
+</section>
+<section id="invented-slurm-modules-and-partitions" class="level2">
+<h2 class="anchored" data-anchor-id="invented-slurm-modules-and-partitions">Invented Slurm Modules and Partitions</h2>
+<p><strong>What happens.</strong> An AI assistant may invent a module name, such as an R or conda module with a version that the cluster does not install. It may also name a partition, account or resource limit that the cluster does not use. The script looks reasonable, and fails only when the scheduler rejects it.</p>
+<p><strong>Teaching moment.</strong> Ask learners to run <code>module spider</code> on the cluster, or to check the documentation, before they accept any module name. Show how the AI’s invented name differs from the real one. Do not criticise the learner who accepted it. Ask them to explain how they would check the name next time.</p>
+</section>
+<section id="smart-quotes-from-copy-and-paste" class="level2">
+<h2 class="anchored" data-anchor-id="smart-quotes-from-copy-and-paste">Smart Quotes From Copy and Paste</h2>
+<p><strong>What happens.</strong> Web pages and word processors replace straight quotes (<code>"</code> and <code>'</code>) with curly quotes (<code>"</code> and <code>'</code>). R rejects curly quotes, and the error message does not explain why. The same code can look correct on screen.</p>
+<p><strong>Teaching moment.</strong> Ask learners to paste a line with a string into the R console, then read the error. Show them how to replace the curly quotes with straight quotes in the editor, using Find and Replace. Suggest that learners check the code in the editor before they run it.</p>
+</section>
+<section id="truncated-code-in-ai-mode" class="level2">
+<h2 class="anchored" data-anchor-id="truncated-code-in-ai-mode">Truncated Code in AI Mode</h2>
+<p><strong>What happens.</strong> Google Search AI Mode answers are short and grounded in search results. For long code, it may cut the answer short or replace part of it with a comment such as <code># ... rest of code</code>.</p>
+<p><strong>Teaching moment.</strong> Add “give the complete code in one block” to the prompt. If the code is still cut short, ask the AI to continue from the last line. Show learners that the prompt is the fix, not a fault in their own code.</p>
+<p><strong>Fallback.</strong> If AI Mode is unavailable or truncates too often, switch to Duck.ai or logged-out ChatGPT, as the Track A backups. Use the same prompts. Note the tool change in the session notes.</p>
+</section>
+<section id="confidently-wrong-explanations" class="level2">
+<h2 class="anchored" data-anchor-id="confidently-wrong-explanations">Confidently Wrong Explanations</h2>
+<p><strong>What happens.</strong> An AI assistant may explain the output with fluent prose that contradicts the output. It can describe a plot that does not match the code, or claim a result the output does not show. Learners often trust the prose more than the numbers.</p>
+<p><strong>Teaching moment.</strong> Ask learners to find one claim in the explanation and check it against the output. The habit matters more than any single error. Use episode 10 to close the session with the human checklist.</p>
+</section>
+<section id="outdated-quarto-and-r-markdown-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="outdated-quarto-and-r-markdown-yaml">Outdated Quarto and R Markdown YAML</h2>
+<p><strong>What happens.</strong> Older R Markdown templates use <code>output: html_document</code> in the YAML header. A Quarto document uses a <code>format:</code> key, and its YAML options differ from R Markdown. An AI assistant may mix the two, which produces a report that fails to render or renders without the options learners expect.</p>
+<p><strong>Teaching moment.</strong> In episode 08, ask learners to check the YAML header against the Quarto documentation before they render. Point out that <code>quarto render penguins_report.qmd</code> reads the header, so one wrong key can change the whole report.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mattbixley\.github\.io\/ml103_dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../instructors/demo-script.html" class="pagination-link" aria-label="Demo Script">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Demo Script</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../instructors/authoring-guide.html" class="pagination-link" aria-label="Authoring guide (contract for all ML103 content)">
+        <span class="nav-page-text">Authoring guide (contract for all ML103 content)</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Matt Bixley · Text CC BY 4.0 · Code MIT</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MattBixley/ml103_dev/blob/main/instructors/ai-failure-modes.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MattBixley/ml103_dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

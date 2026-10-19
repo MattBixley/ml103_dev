@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>09. AI for Slurm Scripts: Review and Write – ML103: AI-Assisted Coding with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../episodes/10-verify-wrap-up.html" rel="next">
+<link href="../r/08-report.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0c67f1ee1b641a58951cb1febbcb5024.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d97b44ee18e220fd3faad9857ae9890e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0c67f1ee1b641a58951cb1febbcb5024.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ML103: AI-Assisted Coding with R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Workshop</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../r/04-explore.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../python/README.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../instructors/README.md"> 
+<span class="menu-text">Instructors</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MattBixley/ml103_dev"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../episodes/00-welcome.html">Workshop (R)</a></li><li class="breadcrumb-item"><a href="../episodes/09-slurm-scripts.html">09. AI for Slurm Scripts: Review and Write</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Workshop (R)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/00-welcome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00. Welcome and Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/01-ai-and-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. AI and Ethics in Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/02-rules-of-the-road.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Rules of the Road: REANNZ Policies for AI Use</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/03-prompt-anatomy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. Anatomy of a Good Prompt</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/04-explore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. Load and Explore the Penguins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/05-wrangle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Wrangle with dplyr</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/06-visualise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Visualise with ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/07-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Statistics: Code You Can Run but Do Not Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/08-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Assemble the Quarto Report</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/09-slurm-scripts.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">09. AI for Slurm Scripts: Review and Write</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../episodes/10-verify-wrap-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Verify and Wrap-Up</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python version</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/README.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ML103 Python Notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/04-explore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. Load and Explore the Penguins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/05-wrangle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Wrangle with pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/06-visualise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Visualise with seaborn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/07-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Statistics: Code You Can Run but Do Not Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/08-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Assemble the Quarto Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Prompt library</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/shared-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Shared Prompts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/r-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Prompt Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/python-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Prompt Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prompts/slurm-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slurm Prompts (Episode 09)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slurm/README.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slurm Scripts for Episode 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/agent-track.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agent Track: Going Further with Claude Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Instructors</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/README.md" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor Notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/timing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timing Plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/demo-script.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demo Script</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/ai-failure-modes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Failure Modes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../instructors/authoring-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Authoring guide (contract for all ML103 content)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licence</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mahuika-facts-used-in-this-episode" id="toc-mahuika-facts-used-in-this-episode" class="nav-link active" data-scroll-target="#mahuika-facts-used-in-this-episode">Mahuika Facts Used in This Episode</a></li>
+  <li><a href="#task-a-review-a-flawed-script" id="toc-task-a-review-a-flawed-script" class="nav-link" data-scroll-target="#task-a-review-a-flawed-script">Task A: Review a Flawed Script</a>
+  <ul class="collapse">
+  <li><a href="#prompt-1-the-quick-version" id="toc-prompt-1-the-quick-version" class="nav-link" data-scroll-target="#prompt-1-the-quick-version">Prompt 1: the quick version</a></li>
+  <li><a href="#what-typically-goes-wrong" id="toc-what-typically-goes-wrong" class="nav-link" data-scroll-target="#what-typically-goes-wrong">What typically goes wrong</a></li>
+  <li><a href="#prompt-2-a-better-version" id="toc-prompt-2-a-better-version" class="nav-link" data-scroll-target="#prompt-2-a-better-version">Prompt 2: a better version</a></li>
+  <li><a href="#check-it" id="toc-check-it" class="nav-link" data-scroll-target="#check-it">Check it</a></li>
+  </ul></li>
+  <li><a href="#task-b-write-two-job-scripts" id="toc-task-b-write-two-job-scripts" class="nav-link" data-scroll-target="#task-b-write-two-job-scripts">Task B: Write Two Job Scripts</a>
+  <ul class="collapse">
+  <li><a href="#prompt-1-the-quick-version-1" id="toc-prompt-1-the-quick-version-1" class="nav-link" data-scroll-target="#prompt-1-the-quick-version-1">Prompt 1: the quick version</a></li>
+  <li><a href="#what-typically-goes-wrong-1" id="toc-what-typically-goes-wrong-1" class="nav-link" data-scroll-target="#what-typically-goes-wrong-1">What typically goes wrong</a></li>
+  <li><a href="#prompt-2-a-better-version-1" id="toc-prompt-2-a-better-version-1" class="nav-link" data-scroll-target="#prompt-2-a-better-version-1">Prompt 2: a better version</a></li>
+  <li><a href="#check-it-1" id="toc-check-it-1" class="nav-link" data-scroll-target="#check-it-1">Check it</a></li>
+  <li><a href="#python-learners" id="toc-python-learners" class="nav-link" data-scroll-target="#python-learners">Python learners</a></li>
+  </ul></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MattBixley/ml103_dev/blob/main/episodes/09-slurm-scripts.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MattBixley/ml103_dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../episodes/00-welcome.html">Workshop (R)</a></li><li class="breadcrumb-item"><a href="../episodes/09-slurm-scripts.html">09. AI for Slurm Scripts: Review and Write</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">09. AI for Slurm Scripts: Review and Write</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Time:</strong> 15 min · <strong>Track A</strong> (web AI) and <strong>Track B</strong> (agents)</p>
+<p><strong>Questions</strong> - Can I trust an AI-written Slurm script for my cluster? - What does my AI assistant need to know about the cluster before it can help?</p>
+<p><strong>Objectives</strong> - Review a flawed job script with an AI assistant and check its claims against the cluster docs. - Write prompts that give the AI the scheduler facts it cannot guess. - Check module names with <code>module spider</code> and check scripts with <code>bash -n</code> and <code>sbatch --test-only</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You do not need a cluster account for this episode. Reviewing and writing are paper exercises. Running the checks on a cluster is optional.</p>
+<p>The examples use REANNZ’s Mahuika cluster. Every Slurm cluster differs in the same places: account, partitions, module names, file system paths and limits. Swap in your own site’s facts and the prompts still work.</p>
+</div>
+</div>
+<section id="mahuika-facts-used-in-this-episode" class="level2">
+<h2 class="anchored" data-anchor-id="mahuika-facts-used-in-this-episode">Mahuika Facts Used in This Episode</h2>
+<p>An AI assistant has no way to know these facts about your cluster unless you tell it. Each one below comes from the REANNZ docs (checked October 2026).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Fact</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Charge jobs to a project with <code>--account</code>. The docs use <code>nesi99999</code> as the example code. You can leave it out only if you belong to a single project.</td>
+<td><a href="https://docs.nesi.org.nz/Batch_Computing/Batch_Computing_Guide/">Batch Computing Guide</a>, <a href="https://docs.nesi.org.nz/Getting_Started/Cheat_Sheets/Slurm-Reference_Sheet/">Slurm reference sheet</a></td>
+</tr>
+<tr class="even">
+<td>No <code>--partition</code> needed. Mahuika chooses one automatically. Only <code>hugemem</code> must be requested by name.</td>
+<td><a href="https://docs.nesi.org.nz/Getting_Started/FAQs/Mahuika_HPC3_Differences/">Mahuika HPC3 differences</a></td>
+</tr>
+<tr class="odd">
+<td>GPUs are requested with <code>--gpus-per-node=&lt;type&gt;:&lt;n&gt;</code> (types <code>a100</code>, <code>h100</code>, <code>l4</code>, <code>pro_6000</code>).</td>
+<td><a href="https://docs.nesi.org.nz/Batch_Computing/Using_GPUs/">Using GPUs</a></td>
+</tr>
+<tr class="even">
+<td>R modules are named like <code>R/4.6.0-foss-2026</code>. Find them with <code>module spider R</code> (ignores case) or <code>module avail</code> (case-sensitive).</td>
+<td><a href="https://docs.nesi.org.nz/Tutorials/Introduction_To_HPC/Environment_And_Modules/">Environment and modules</a>, <a href="https://docs.nesi.org.nz/Software/Available_Applications/R/">R</a></td>
+</tr>
+<tr class="odd">
+<td>The R examples run scripts with <code>srun Rscript script.R</code>.</td>
+<td><a href="https://docs.nesi.org.nz/Software/Available_Applications/R/">R</a></td>
+</tr>
+<tr class="even">
+<td>Python modules are named like <code>Python/3.14.4-foss-2026</code>. The docs recommend a virtual environment for your packages, activated in the job script.</td>
+<td><a href="https://docs.nesi.org.nz/Software/Available_Applications/Python/">Python</a></td>
+</tr>
+<tr class="odd">
+<td>File systems: <code>/home/&lt;username&gt;</code>, <code>/nesi/project/&lt;code&gt;</code>, <code>/nesi/nobackup/&lt;code&gt;</code>.</td>
+<td><a href="https://docs.nesi.org.nz/Storage/Filesystems_and_Quotas/">Filesystems and quotas</a></td>
+</tr>
+<tr class="even">
+<td>Check your own jobs with <code>squeue --me</code>. Plain <code>squeue</code> lists every user’s jobs.</td>
+<td><a href="https://docs.nesi.org.nz/Batch_Computing/Batch_Computing_Guide/">Batch Computing Guide</a></td>
+</tr>
+<tr class="odd">
+<td>The REANNZ docs do not list a Quarto module. Check with <code>module spider quarto</code> before you rely on one.</td>
+<td><a href="https://docs.nesi.org.nz/llms.txt">docs.nesi.org.nz/llms.txt</a> (no Quarto page)</td>
+</tr>
+</tbody>
+</table>
+<p>One fact is general Slurm behaviour: Slurm does not create the folder named in <code>--output</code> or <code>--error</code>. If <code>logs/</code> does not exist, the job fails and you get no log file to tell you why. Run <code>mkdir -p logs</code> before you submit.</p>
+</section>
+<section id="task-a-review-a-flawed-script" class="level2">
+<h2 class="anchored" data-anchor-id="task-a-review-a-flawed-script">Task A: Review a Flawed Script</h2>
+<p>Open <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/review-me.sl"><code>slurm/review-me.sl</code></a>. Someone adapted it from an old GPU training script to run <code>analysis.R</code>. The job takes about two minutes on one CPU.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span>  <span class="co">#!/bin/bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2</span>  <span class="co">#SBATCH --job-name=penguins</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3</span>  <span class="co">#SBATCH --partition=gpu_p100</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4</span>  <span class="co">#SBATCH --gres=gpu:1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5</span>  <span class="co">#SBATCH --cpus-per-task=8</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6</span>  <span class="co">#SBATCH --mem=32G</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7</span>  <span class="co">#SBATCH --time=24:00:00</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8</span>  <span class="co">#SBATCH --output=logs/penguins_%j.log</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10</span>  <span class="co"># Load required modules</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11</span>  module load r/4.3</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">13</span>  <span class="co"># Activate environment</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">14</span>  source activate r-env</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">15</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">16</span>  <span class="co"># Set cache directories</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span>  export TRANSFORMERS_CACHE=<span class="va">$HOME</span>/.cache/huggingface</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">18</span>  export HF_HOME=<span class="va">$HOME</span>/.cache/huggingface</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">19</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">20</span>  <span class="co"># Run the analysis</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">21</span>  cd /home/jsmith/ml103-penguins</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ex">22</span>  Rscript analysis.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="prompt-1-the-quick-version" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
+<pre class="text"><code>is this slurm script ok?
+&lt;paste the script&gt;</code></pre>
+<p>Try it in your AI assistant before reading on.</p>
+</section>
+<section id="what-typically-goes-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="what-typically-goes-wrong">What typically goes wrong</h3>
+<ul>
+<li>The AI often says the script “looks good” and suggests small style changes. It checks the script against generic Slurm, not against your cluster.</li>
+<li>It may keep <code>--partition=gpu_p100</code> because the partition name looks plausible. It has no way to know that Mahuika has no such partition.</li>
+<li>It rarely notices that the job asks for a GPU, 8 CPUs, 32 GB and 24 hours for a two-minute, single-threaded R script.</li>
+<li>It may “fix” the module line by inventing another plausible name, such as <code>module load R/4.3.1</code>, which may not exist on the cluster.</li>
+<li>It seldom mentions that Slurm will not create the <code>logs/</code> folder.</li>
+<li>The answer comes as prose, so you cannot easily tick off each problem.</li>
+</ul>
+</section>
+<section id="prompt-2-a-better-version" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
+<pre class="text"><code>Review this Slurm job script for the REANNZ Mahuika cluster. It runs a small
+R script (analysis.R) that takes about 2 minutes on 1 CPU, needs under 1 GB of
+memory and uses no GPU.
+
+Scheduler facts for this cluster:
+- Jobs must be charged to a project with --account (mine is nesi99999).
+- No --partition is needed; the scheduler picks one. Only hugemem is requested by name.
+- GPUs are requested with --gpus-per-node=&lt;type&gt;:&lt;n&gt;, but this job needs none.
+- R is loaded with an environment module named like R/&lt;version&gt;-foss-&lt;year&gt;.
+  Do not guess a version; write R/&lt;version&gt; and tell me to check `module spider R`.
+- There is no conda environment for this job; R packages are in my user library.
+- Slurm does not create output directories.
+
+Return a table with columns: line number, problem, fix. Include missing lines
+(use "missing" as the line number). Then give the corrected script.
+Do not invent module versions, partitions or paths. List any assumptions you made.</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part of the prompt</th>
+<th>What it fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“REANNZ Mahuika”, plus the job’s real size</td>
+<td>The AI can judge whether 8 CPUs, 32 GB, a GPU and 24 hours make sense</td>
+</tr>
+<tr class="even">
+<td>Scheduler facts list</td>
+<td>Replaces generic Slurm advice with your cluster’s rules: account, partitions, GPUs</td>
+</tr>
+<tr class="odd">
+<td>“Do not guess a version… check <code>module spider R</code>”</td>
+<td>Stops the AI from inventing a module name and hands the check back to you</td>
+</tr>
+<tr class="even">
+<td>“No conda environment”</td>
+<td>Flags <code>source activate</code> as left over from the Python script</td>
+</tr>
+<tr class="odd">
+<td>“Slurm does not create output directories”</td>
+<td>Points the AI at a failure that leaves no log behind</td>
+</tr>
+<tr class="even">
+<td>Table of line, problem, fix</td>
+<td>Gives you a checklist you can verify one row at a time</td>
+</tr>
+<tr class="odd">
+<td>“List any assumptions”</td>
+<td>Shows you which parts of the answer the AI guessed</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-it" class="level3">
+<h3 class="anchored" data-anchor-id="check-it">Check it</h3>
+<p>Compare the AI’s table with the answer key below. For each row the AI got wrong or missed, find the fact in the <a href="#mahuika-facts-used-in-this-episode">Mahuika facts table</a> or the linked docs page. If you have a Mahuika account, run <code>module spider R</code> and compare the real module names with what the AI suggested.</p>
+<details>
+<summary>
+Reference solution: answer key
+</summary>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Without <code>-e</code>, the script carries on after a failed command, such as a failed <code>module load</code>.</td>
+<td><code>#!/bin/bash -e</code></td>
+</tr>
+<tr class="even">
+<td>missing</td>
+<td>No <code>--account</code>. If you belong to more than one project, Slurm cannot tell which one to charge.</td>
+<td><code>#SBATCH --account=nesi99999</code> (your project code)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>gpu_p100</code> is not a Mahuika partition. Mahuika picks partitions automatically.</td>
+<td>Delete the line</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Requests a GPU that R never uses. The job waits longer in the queue and wastes a scarce GPU. <code>--gres</code> is also not the syntax the Mahuika docs use.</td>
+<td>Delete the line</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>8 CPUs for a single-threaded script; 7 sit idle and count against your allocation.</td>
+<td><code>--cpus-per-task=1</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>32 GB for a job that needs under 1 GB.</td>
+<td><code>--mem=2G</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>24 hours for a 2-minute job. Long requests queue longer and hide runaway jobs.</td>
+<td><code>--time=00:15:00</code></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>logs/</code> may not exist, and Slurm will not create it. The job then fails with no log. No separate error file.</td>
+<td>Run <code>mkdir -p logs</code> before submitting; add <code>--error=logs/%x_%j.err</code></td>
+</tr>
+<tr class="odd">
+<td>missing</td>
+<td>No <code>module purge</code>, so modules loaded in your login session leak into the job.</td>
+<td><code>module purge</code> before <code>module load</code></td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td><code>r/4.3</code> does not match Mahuika’s naming (<code>R/&lt;version&gt;-foss-&lt;year&gt;</code>). The load fails.</td>
+<td><code>module load R/&lt;version&gt;</code>, with the version from <code>module spider R</code> (the docs show <code>R/4.6.0-foss-2026</code>)</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td><code>source activate</code> is old conda syntax copied from the Python script. No conda environment exists, and R does not need one.</td>
+<td>Delete the line</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td><code>TRANSFORMERS_CACHE</code> is a Hugging Face (Python) setting, deprecated even there. R ignores it.</td>
+<td>Delete the line</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td><code>HF_HOME</code> is also irrelevant to R.</td>
+<td>Delete the line</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>Hard-coded home path for another user (<code>jsmith</code>). It breaks for anyone else.</td>
+<td><code>cd "$SLURM_SUBMIT_DIR"</code></td>
+</tr>
+<tr class="odd">
+<td>22</td>
+<td>Works, but the <a href="https://docs.nesi.org.nz/Software/Available_Applications/R/">REANNZ R docs</a> show R run with <code>srun Rscript</code>.</td>
+<td><code>srun Rscript analysis.R</code></td>
+</tr>
+</tbody>
+</table>
+<p>The corrected script is <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/run_analysis.sl"><code>slurm/run_analysis.sl</code></a>.</p>
+</details>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Agent extension (Track B)</strong> Ask the agent to review <code>slurm/review-me.sl</code> with the same scheduler facts and to write its table to the chat, not to a file. Acceptance criteria: every row cites a line number; it does not edit <code>review-me.sl</code>; it marks any module version it could not confirm as <code>&lt;version&gt;</code>. If you are on Mahuika, let it run <code>module spider R</code> (approve the command) and update its answer with what it finds.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="task-b-write-two-job-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="task-b-write-two-job-scripts">Task B: Write Two Job Scripts</h2>
+<p>Now write two jobs from scratch: one runs <code>Rscript analysis.R</code>, the other runs <code>quarto render penguins_report.qmd</code>. Both run from your <code>ml103-penguins/</code> folder.</p>
+<section id="prompt-1-the-quick-version-1" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
+<pre class="text"><code>write a slurm script for my R code</code></pre>
+<p>Try it in your AI assistant before reading on.</p>
+</section>
+<section id="what-typically-goes-wrong-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-typically-goes-wrong-1">What typically goes wrong</h3>
+<ul>
+<li>The AI invents a partition (<code>compute</code>, <code>normal</code>, <code>standard</code>) and module names (<code>module load R</code>, <code>module load r/4.2.0</code>, <code>module load quarto</code>) that look right but may not exist on your cluster.</li>
+<li>It leaves out <code>--account</code>, or uses a made-up placeholder you might not notice.</li>
+<li>Resources are generic guesses: often 4 or more CPUs, 8 to 16 GB and several hours, whatever the job really needs.</li>
+<li>It writes output to a folder that may not exist, or to the default <code>slurm-&lt;jobid&gt;.out</code> with errors mixed in.</li>
+<li>It may install packages inside the job (<code>install.packages(...)</code>), which repeats a slow download every run and can fail on compute nodes.</li>
+<li>For Quarto, it often forgets that rendering R chunks needs the <code>knitr</code> and <code>rmarkdown</code> packages as well as the Quarto tool.</li>
+</ul>
+</section>
+<section id="prompt-2-a-better-version-1" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
+<pre class="text"><code>Write two Slurm batch scripts for the REANNZ Mahuika cluster.
+
+Job 1 runs `Rscript analysis.R`. Job 2 runs `quarto render penguins_report.qmd`
+to HTML. Both run from my project folder ml103-penguins/ (the folder I submit from).
+
+Cluster facts:
+- Account: --account=nesi99999 (placeholder, I will replace it).
+- No --partition (the scheduler chooses). No GPU.
+- Size: 1 CPU, 2 GB memory, 15 minutes for job 1; 1 CPU, 4 GB, 20 minutes for job 2.
+- Load R with `module purge` then `module load R/&lt;version&gt;`; do not guess the version.
+  Tell me to check it with `module spider R`.
+- I do not know if Quarto is a module. Write a commented line for it and tell me
+  how to check (`module spider quarto`). Make the job stop with a clear error if
+  the quarto command is missing.
+- Run R with `srun Rscript`.
+- cd to $SLURM_SUBMIT_DIR. Write stdout to logs/%x_%j.out and stderr to
+  logs/%x_%j.err, and remind me that Slurm does not create logs/.
+- R packages are already installed; do not install anything in the job.
+
+Use `#!/bin/bash -e`. Comment each #SBATCH line. List anything you assumed.</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part of the prompt</th>
+<th>What it fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cluster name and “account placeholder”</td>
+<td>The account line is present and obviously yours to replace</td>
+</tr>
+<tr class="even">
+<td>“No <code>--partition</code>. No GPU.”</td>
+<td>Stops invented partitions and wasted GPU requests</td>
+</tr>
+<tr class="odd">
+<td>Explicit CPUs, memory and time</td>
+<td>Sizes the job for what it does, so it queues quickly</td>
+</tr>
+<tr class="even">
+<td>“Do not guess the version… <code>module spider R</code>”</td>
+<td>Turns a likely hallucination into a check you run</td>
+</tr>
+<tr class="odd">
+<td>Quarto check and fail-fast line</td>
+<td>Handles a tool you have not confirmed exists</td>
+</tr>
+<tr class="even">
+<td><code>$SLURM_SUBMIT_DIR</code>, log paths, <code>logs/</code> reminder</td>
+<td>Fixes the working directory and makes failures visible</td>
+</tr>
+<tr class="odd">
+<td>“Do not install anything in the job”</td>
+<td>Keeps package installs in your interactive session</td>
+</tr>
+<tr class="even">
+<td>“List anything you assumed”</td>
+<td>Shows what to check before you submit</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-it-1" class="level3">
+<h3 class="anchored" data-anchor-id="check-it-1">Check it</h3>
+<p>AIs invent module names. Check every <code>module load</code> line before you trust it:</p>
+<ol type="1">
+<li><strong>Read the docs.</strong> Look up the software page, for example <a href="https://docs.nesi.org.nz/Software/Available_Applications/R/">R on Mahuika</a>.</li>
+<li><strong>Ask the cluster.</strong> On a login node, run <code>module spider R</code> and <code>module spider quarto</code>. <code>module spider</code> ignores case; <code>module avail</code> does not. Copy the exact name it prints.</li>
+<li><strong>Check the shell syntax.</strong> <code>bash -n run_analysis.sl</code> prints nothing if the syntax is valid.</li>
+<li><strong>Ask the scheduler.</strong> <code>sbatch --test-only run_analysis.sl</code> checks the <code>#SBATCH</code> options against the cluster (account, partition, limits) and estimates a start time. It does not submit the job.</li>
+<li><strong>Make the log folder.</strong> <code>mkdir -p logs</code>.</li>
+</ol>
+<p>Then compare your script with the reference answers.</p>
+<details>
+<summary>
+Reference solution
+</summary>
+<p>Full commented versions: <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/run_analysis.sl"><code>slurm/run_analysis.sl</code></a> and <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/render_report.sl"><code>slurm/render_report.sl</code></a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash -e</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=penguins-analysis</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=nesi99999            # replace with your project code</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=00:15:00</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=2G</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=logs/%x_%j.out</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=logs/%x_%j.err</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load R/4.6.0-foss-2026          <span class="co"># check with: module spider R</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$SLURM_SUBMIT_DIR</span><span class="st">"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> Rscript analysis.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash -e</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=penguins-report</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=nesi99999            # replace with your project code</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=00:20:00</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=4G</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=logs/%x_%j.out</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=logs/%x_%j.err</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load R/4.6.0-foss-2026          <span class="co"># check with: module spider R</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># module load Quarto/&lt;version&gt;         # only if `module spider quarto` finds one</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">command</span> <span class="at">-v</span> quarto <span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="kw">{</span> <span class="bu">echo</span> <span class="st">"quarto not found on PATH"</span> <span class="op">&gt;&amp;</span><span class="dv">2</span><span class="kw">;</span> <span class="bu">exit</span> 1<span class="kw">;</span> <span class="kw">}</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">"</span><span class="va">$SLURM_SUBMIT_DIR</span><span class="st">"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> quarto render penguins_report.qmd <span class="at">--to</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="python-learners" class="level3">
+<h3 class="anchored" data-anchor-id="python-learners">Python learners</h3>
+<p>Task A is the same for everyone: <code>review-me.sl</code> runs an R script, and the answer key does not change. For Task B, write the jobs for <code>python analysis.py</code> and the Jupyter engine render of <code>penguins_report.qmd</code>. Adapt Prompt 2 with the differences below. The reference answers are <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/run_analysis_py.sl"><code>slurm/run_analysis_py.sl</code></a> and <a href="https://github.com/MattBixley/ml103_dev/blob/main/slurm/render_report_py.sl"><code>slurm/render_report_py.sl</code></a>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>R job</th>
+<th>Python job</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Module</td>
+<td><code>module load R/&lt;version&gt;</code>, from <code>module spider R</code></td>
+<td><code>module load Python/&lt;version&gt;</code>, from <code>module spider Python</code> (the docs show <code>Python/3.14.4-foss-2026</code>)</td>
+</tr>
+<tr class="even">
+<td>Packages</td>
+<td>Already in your R user library</td>
+<td>In a virtual environment, <code>.venv/</code> in the project folder. Create it once on a login node with the same module loaded, then <code>source .venv/bin/activate</code> in the job.</td>
+</tr>
+<tr class="odd">
+<td>Run line</td>
+<td><code>srun Rscript analysis.R</code></td>
+<td><code>srun python analysis.py</code></td>
+</tr>
+<tr class="even">
+<td>Report render</td>
+<td>Quarto plus <code>knitr</code> and <code>rmarkdown</code></td>
+<td>Quarto plus <code>jupyter</code> in the venv. Check with <code>quarto check jupyter</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The AI often adds <code>pip install</code> lines inside the job, or uses <code>conda activate</code> when you have a venv. Both are the same mistake as <code>install.packages()</code> in an R job: install once, interactively, and only activate in the job.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Agent extension (Track B)</strong> Give the agent the same cluster facts and ask it to write <code>slurm/run_analysis.sl</code> and <code>slurm/render_report.sl</code> (Python: <code>run_analysis_py.sl</code> and <code>render_report_py.sl</code>), then check them. Acceptance criteria:</p>
+<ul>
+<li>It asks you which project code to charge. It does not guess one.</li>
+<li>It runs <code>module spider R</code> (or <code>module spider Python</code>) and uses the exact name it finds.</li>
+<li>It runs <code>bash -n</code> and <code>sbatch --test-only</code> on both scripts and shows you the output.</li>
+<li>It asks before running <code>sbatch</code>. You approve each submission yourself.</li>
+</ul>
+<p>REANNZ agent rules apply on Mahuika. Stay at the keyboard while the agent works. Do not let it poll the queue in a loop (<code>watch squeue</code>, <code>while sleep …</code>). If it needs to check a job, it runs <code>squeue --me</code> once, with minutes between checks, or chains the jobs with <code>sbatch --dependency=afterok:&lt;jobid&gt;</code> so Slurm does the waiting. Running <code>/opt/nesi/share/mahuika-agents/install.sh --skills</code> adds the REANNZ rules and a <code>/mahuika-slurm</code> skill (<a href="https://docs.nesi.org.nz/Software/AI_Agents/Claude_Code_on_Mahuika/">Claude Code on Mahuika</a>).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="key-points" class="level2">
+<h2 class="anchored" data-anchor-id="key-points">Key points</h2>
+<ul>
+<li>An AI writes generic Slurm. Your cluster’s account, partitions, modules and paths have to come from you or from the docs.</li>
+<li>AIs invent module names. Check each one with <code>module spider</code> and the docs.</li>
+<li>Size jobs to what they do: a two-minute R script needs 1 CPU, a few GB and minutes, not a GPU and a day.</li>
+<li>Check before you submit: <code>bash -n</code>, <code>sbatch --test-only</code>, <code>mkdir -p logs</code>.</li>
+<li>Ask for a table of line, problem and fix when you want a review you can verify.</li>
+<li>An agent may write and test a script, but you choose the project and approve every <code>sbatch</code>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mattbixley\.github\.io\/ml103_dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../r/08-report.html" class="pagination-link" aria-label="08. Assemble the Quarto Report">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">08. Assemble the Quarto Report</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../episodes/10-verify-wrap-up.html" class="pagination-link" aria-label="10. Verify and Wrap-Up">
+        <span class="nav-page-text">10. Verify and Wrap-Up</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Matt Bixley · Text CC BY 4.0 · Code MIT</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MattBixley/ml103_dev/blob/main/episodes/09-slurm-scripts.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MattBixley/ml103_dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
