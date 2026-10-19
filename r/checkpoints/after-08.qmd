@@ -1,0 +1,196 @@
+---
+title: "Body size of Palmer penguins"
+author: "Your Name"
+date: today
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(palmerpenguins) # load AFTER tidyverse; masks datasets::penguins on R >= 4.5
+```
+
+## Introduction and data source
+
+This report compares bill size and body mass of three penguin species
+(Adelie, Chinstrap and Gentoo) on three islands in the Palmer Archipelago,
+Antarctica. Dr Kristen Gorman and the Palmer Station Long Term Ecological
+Research programme collected the data from 2007 to 2009. We use the copy in
+the `palmerpenguins` R package (Horst, Hill and Gorman, 2020), which has
+`r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+## Data cleaning
+
+```{r}
+#| label: clean
+
+penguins_clean <- penguins |>
+  filter(!is.na(sex)) |>
+  mutate(body_mass_kg = body_mass_g / 1000)
+```
+
+We removed the `r nrow(penguins) - nrow(penguins_clean)` rows with missing
+`sex`. These include the 2 rows with no body measurements at all. The cleaned
+data have `r nrow(penguins_clean)` rows. We added body mass in kilograms
+(`body_mass_kg`).
+
+## Summary tables
+
+```{r}
+#| label: tbl-species
+#| tbl-cap: "Number of penguins, mean and standard deviation of bill length (mm), flipper length (mm) and body mass (g) by species."
+
+species_summary <- penguins_clean |>
+  group_by(species) |>
+  summarise(
+    n = n(),
+    bill_length_mean = mean(bill_length_mm),
+    bill_length_sd = sd(bill_length_mm),
+    flipper_length_mean = mean(flipper_length_mm),
+    flipper_length_sd = sd(flipper_length_mm),
+    body_mass_mean = mean(body_mass_g),
+    body_mass_sd = sd(body_mass_g),
+    .groups = "drop"
+  )
+
+knitr::kable(species_summary, digits = 1)
+```
+
+```{r}
+#| label: tbl-island-sex
+#| tbl-cap: "Number of penguins of each species by island and by sex."
+
+island_counts <- penguins_clean |>
+  count(species, island) |>
+  pivot_wider(names_from = island, values_from = n, values_fill = 0)
+
+sex_counts <- penguins_clean |>
+  count(species, sex) |>
+  pivot_wider(names_from = sex, values_from = n)
+
+knitr::kable(left_join(island_counts, sex_counts, by = "species"))
+```
+
+Adelie penguins live on all three islands. Chinstrap penguins appear only
+on Dream and Gentoo penguins only on Biscoe, so island and species are
+partly confounded.
+
+## Figures
+
+```{r}
+#| label: fig-bill
+#| fig-cap: "Bill depth against bill length, with a straight-line fit for each species."
+#| fig-width: 7
+#| fig-height: 5
+
+p_bill <- ggplot(
+  penguins_clean,
+  aes(x = bill_length_mm, y = bill_depth_mm, colour = species)
+) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, linewidth = 1) +
+  scale_colour_viridis_d(end = 0.85) +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", colour = "Species") +
+  theme_minimal()
+
+p_bill
+```
+
+```{r}
+#| label: fig-mass
+#| fig-cap: "Body mass by species, split by sex. Boxes show the median and quartiles; points show individual penguins."
+#| fig-width: 7
+#| fig-height: 5
+
+p_mass <- ggplot(penguins_clean, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.5) +
+  geom_jitter(width = 0.2, height = 0, alpha = 0.5, size = 1) +
+  facet_wrap(~sex) +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(x = NULL, y = "Body mass (g)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p_mass
+```
+
+## Simple comparison
+
+```{r}
+#| label: slopes
+
+overall_slope <- coef(lm(bill_depth_mm ~ bill_length_mm, data = penguins_clean))[[2]]
+
+species_slopes <- penguins_clean |>
+  group_by(species) |>
+  summarise(slope = coef(lm(bill_depth_mm ~ bill_length_mm))[2])
+
+knitr::kable(species_slopes, digits = 3)
+```
+
+Across all penguins, the fitted slope is `r round(overall_slope, 3)` mm of
+bill depth per millimetre of bill length: longer bills look *shallower*.
+Within every species the slope is *positive* (table above and
+@fig-bill). The overall trend is an example of Simpson's paradox: Gentoo
+penguins have long but shallow bills, and pooling the species hides the
+relationship inside each one. Species must be part of any model of bill shape.
+
+```{r}
+#| label: mass-model
+
+mass_model <- lm(body_mass_g ~ species, data = penguins_clean)
+summary(mass_model)
+```
+
+Adelie is the reference species, so the intercept
+(`r round(coef(mass_model)[[1]])` g) is the mean Adelie body mass.
+Gentoo penguins are on average `r round(coef(mass_model)[["speciesGentoo"]])` g
+heavier than Adelie penguins. The Chinstrap difference
+(`r round(coef(mass_model)[["speciesChinstrap"]])` g) is small compared with
+its standard error. Species explains
+`r round(100 * summary(mass_model)$r.squared)`% of the variation in body mass.
+
+## Limitations
+
+- The data are observational, so the comparisons describe differences and do
+  not show causes.
+- Species and island are partly confounded (Chinstrap only on Dream, Gentoo
+  only on Biscoe), so we cannot separate species effects from island effects.
+- The model of body mass ignores sex, although males are heavier in every
+  species (@fig-mass). We did not formally check the model's assumptions
+  (normality of residuals, equal variance); we only inspected plots of the
+  raw data.
+- We removed 11 rows with missing values and did not investigate why they
+  were missing.
+- We include only methods we can explain. We did not use any analysis an AI
+  assistant suggested that we could not interpret ourselves.
+
+## AI-use statement
+
+Generative AI tools were used in this analysis. [Tool name and version, and
+date accessed] was used to draft R code for data cleaning, summary tables,
+figures and the linear model. All AI-generated code was run, read and checked
+against base R results (row counts, `table()` and `tapply()`) by the author,
+who takes responsibility for the final content. Prompts used are recorded in
+[file or appendix]. No sensitive or identifiable data was entered into any AI
+tool.
+
+<!-- If you used an agent (Track B), add: An AI agent ([tool name and version])
+read files, edited code and ran commands in the project folder; the author
+approved each action. -->
+
+## Session information
+
+```{r}
+#| label: session-info
+#| code-fold: false
+
+sessionInfo()
+```
