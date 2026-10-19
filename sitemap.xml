@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/LICENSE.html</loc>
-    <lastmod>2026-10-19T20:52:44.998Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.397Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/instructors/demo-script.html</loc>
-    <lastmod>2026-10-19T21:12:44.733Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/instructors/ai-failure-modes.html</loc>
-    <lastmod>2026-10-19T20:53:27.020Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/slurm/README.html</loc>
-    <lastmod>2026-10-19T21:10:24.875Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.403Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/prompts/shared-prompts.html</loc>
-    <lastmod>2026-10-19T20:55:36.848Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/prompts/python-prompts.html</loc>
-    <lastmod>2026-10-19T21:25:10.858Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/07-statistics.html</loc>
-    <lastmod>2026-10-19T21:22:57.067Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/05-wrangle.html</loc>
-    <lastmod>2026-10-19T21:21:31.958Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/README.html</loc>
-    <lastmod>2026-10-19T21:24:59.396Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/r/07-statistics.html</loc>
-    <lastmod>2026-10-19T21:05:53.506Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.402Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/r/05-wrangle.html</loc>
-    <lastmod>2026-10-19T20:59:32.354Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.402Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/10-verify-wrap-up.html</loc>
-    <lastmod>2026-10-19T21:26:07.421Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/03-prompt-anatomy.html</loc>
-    <lastmod>2026-10-19T21:25:57.772Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/01-ai-and-ethics.html</loc>
-    <lastmod>2026-10-19T21:11:17.056Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/setup.html</loc>
-    <lastmod>2026-10-19T21:10:59.360Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.403Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/index.html</loc>
-    <lastmod>2026-10-19T22:03:55.092Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/00-welcome.html</loc>
-    <lastmod>2026-10-19T21:10:59.375Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/02-rules-of-the-road.html</loc>
-    <lastmod>2026-10-19T21:00:49.334Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/episodes/09-slurm-scripts.html</loc>
-    <lastmod>2026-10-19T21:12:03.647Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/r/04-explore.html</loc>
-    <lastmod>2026-10-19T20:59:32.344Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.402Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/r/06-visualise.html</loc>
-    <lastmod>2026-10-19T21:05:53.444Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.402Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/r/08-report.html</loc>
-    <lastmod>2026-10-19T22:06:20.983Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.403Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/04-explore.html</loc>
-    <lastmod>2026-10-19T21:20:51.809Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/06-visualise.html</loc>
-    <lastmod>2026-10-19T21:22:18.916Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/python/08-report.html</loc>
-    <lastmod>2026-10-19T22:06:20.991Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.402Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/prompts/r-prompts.html</loc>
-    <lastmod>2026-10-19T20:59:52.164Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/prompts/slurm-prompts.html</loc>
-    <lastmod>2026-10-19T20:55:06.538Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.401Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/extras/agent-track.html</loc>
-    <lastmod>2026-10-19T21:12:30.088Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/instructors/authoring-guide.html</loc>
-    <lastmod>2026-10-19T20:50:26.145Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
   <url>
     <loc>https://mattbixley.github.io/ml103_dev/instructors/timing.html</loc>
-    <lastmod>2026-10-19T21:05:40.315Z</lastmod>
+    <lastmod>2026-10-19T22:25:14.400Z</lastmod>
   </url>
 </urlset>
