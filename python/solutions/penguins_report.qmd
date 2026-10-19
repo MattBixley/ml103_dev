@@ -1,0 +1,222 @@
+---
+title: "Body size of Palmer penguins"
+author: "Your Name"
+date: today
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+jupyter: python3
+---
+
+```{python}
+#| label: setup
+
+import sys
+from importlib.metadata import version
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from palmerpenguins import load_penguins
+
+sns.set_theme(style="whitegrid")
+species_order = ["Adelie", "Chinstrap", "Gentoo"]
+colours = dict(zip(species_order, sns.color_palette("viridis", 3)))
+
+penguins = load_penguins()
+```
+
+## Introduction and data source
+
+This report compares bill size and body mass of three penguin species
+(Adelie, Chinstrap and Gentoo) on three islands in the Palmer Archipelago,
+Antarctica. Dr Kristen Gorman and the Palmer Station Long Term Ecological
+Research programme collected the data from 2007 to 2009. We use the copy in
+the `palmerpenguins` Python package (Horst, Hill and Gorman, 2020), which has
+`{python} len(penguins)` rows and `{python} penguins.shape[1]` columns.
+
+## Data cleaning
+
+```{python}
+#| label: clean
+
+penguins_clean = (
+    penguins
+    .dropna(subset=["sex"])
+    .assign(body_mass_kg=lambda df: df["body_mass_g"] / 1000)
+)
+```
+
+We removed the `{python} len(penguins) - len(penguins_clean)` rows with missing
+`sex`. These include the 2 rows with no body measurements at all. The cleaned
+data have `{python} len(penguins_clean)` rows. We added body mass in kilograms
+(`body_mass_kg`).
+
+## Summary tables
+
+```{python}
+#| label: tbl-species
+#| tbl-cap: "Number of penguins, mean and standard deviation of bill length (mm), flipper length (mm) and body mass (g) by species."
+
+species_summary = (
+    penguins_clean
+    .groupby("species", as_index=False)
+    .agg(
+        n=("species", "size"),
+        bill_length_mean=("bill_length_mm", "mean"),
+        bill_length_sd=("bill_length_mm", "std"),
+        flipper_length_mean=("flipper_length_mm", "mean"),
+        flipper_length_sd=("flipper_length_mm", "std"),
+        body_mass_mean=("body_mass_g", "mean"),
+        body_mass_sd=("body_mass_g", "std"),
+    )
+)
+
+species_summary.set_index("species").round(1)
+```
+
+```{python}
+#| label: tbl-island-sex
+#| tbl-cap: "Number of penguins of each species by island and by sex."
+
+island_counts = pd.crosstab(penguins_clean["species"], penguins_clean["island"])
+sex_counts = pd.crosstab(penguins_clean["species"], penguins_clean["sex"])
+
+pd.concat([island_counts, sex_counts], axis=1)
+```
+
+Adelie penguins live on all three islands. Chinstrap penguins appear only
+on Dream and Gentoo penguins only on Biscoe, so island and species are
+partly confounded.
+
+## Figures
+
+```{python}
+#| label: fig-bill
+#| fig-cap: "Bill depth against bill length, with a straight-line fit for each species."
+
+p_bill, ax = plt.subplots(figsize=(7, 5))
+sns.scatterplot(
+    data=penguins_clean, x="bill_length_mm", y="bill_depth_mm",
+    hue="species", hue_order=species_order, palette=colours, alpha=0.7, ax=ax,
+)
+for species, colour in colours.items():
+    sns.regplot(
+        data=penguins_clean[penguins_clean["species"] == species],
+        x="bill_length_mm", y="bill_depth_mm",
+        scatter=False, ci=None, color=colour, ax=ax,
+    )
+ax.set(xlabel="Bill length (mm)", ylabel="Bill depth (mm)")
+ax.legend(title="Species")
+plt.show()
+```
+
+```{python}
+#| label: fig-mass
+#| fig-cap: "Body mass by species, split by sex. Boxes show the median and quartiles; points show individual penguins."
+
+p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True)
+for ax, sex in zip(axes, ["female", "male"]):
+    subset = penguins_clean[penguins_clean["sex"] == sex]
+    sns.boxplot(
+        data=subset, x="species", y="body_mass_g", order=species_order,
+        hue="species", palette=colours, legend=False,
+        showfliers=False, boxprops={"alpha": 0.5}, ax=ax,
+    )
+    sns.stripplot(
+        data=subset, x="species", y="body_mass_g", order=species_order,
+        color="black", jitter=0.2, alpha=0.5, size=3, ax=ax,
+    )
+    ax.set(title=sex, xlabel="", ylabel="Body mass (g)")
+plt.show()
+```
+
+## Simple comparison
+
+```{python}
+#| label: slopes
+
+overall_slope = (
+    smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean)
+    .fit()
+    .params["bill_length_mm"]
+)
+
+species_slopes = pd.Series(
+    {
+        species: smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit().params["bill_length_mm"]
+        for species, group in penguins_clean.groupby("species")
+    },
+    name="slope",
+)
+
+species_slopes.round(3).to_frame()
+```
+
+Across all penguins, the fitted slope is `{python} round(float(overall_slope), 3)` mm
+of bill depth per millimetre of bill length: longer bills look *shallower*.
+Within every species the slope is *positive* (table above and
+@fig-bill). The overall trend is an example of Simpson's paradox: Gentoo
+penguins have long but shallow bills, and pooling the species hides the
+relationship inside each one. Species must be part of any model of bill shape.
+
+```{python}
+#| label: mass-model
+
+mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit()
+print(mass_model.summary())
+```
+
+Adelie is the reference species, so the intercept
+(`{python} round(mass_model.params["Intercept"])` g) is the mean Adelie body
+mass. Gentoo penguins are on average
+`{python} round(mass_model.params["species[T.Gentoo]"])` g heavier than Adelie
+penguins. The Chinstrap difference
+(`{python} round(mass_model.params["species[T.Chinstrap]"])` g) is small
+compared with its standard error. Species explains
+`{python} round(100 * mass_model.rsquared)`% of the variation in body mass.
+
+## Limitations
+
+- The data are observational, so the comparisons describe differences and do
+  not show causes.
+- Species and island are partly confounded (Chinstrap only on Dream, Gentoo
+  only on Biscoe), so we cannot separate species effects from island effects.
+- The model of body mass ignores sex, although males are heavier in every
+  species (@fig-mass). We did not formally check the model's assumptions
+  (normality of residuals, equal variance); we only inspected plots of the
+  raw data.
+- We removed 11 rows with missing values and did not investigate why they
+  were missing.
+- We include only methods we can explain. We did not use any analysis an AI
+  assistant suggested that we could not interpret ourselves.
+
+## AI-use statement
+
+Generative AI tools were used in this analysis. [Tool name and version, and
+date accessed] was used to draft Python code for data cleaning, summary
+tables, figures and the linear model. All AI-generated code was run, read and
+checked against plain pandas results (row counts, `value_counts()` and means
+of `.loc` subsets) by the author, who takes responsibility for the final
+content. Prompts used are recorded in [file or appendix]. No sensitive or
+identifiable data was entered into any AI tool.
+
+<!-- If you used an agent (Track B), add: An AI agent ([tool name and version])
+read files, edited code and ran commands in the project folder; the author
+approved each action. -->
+
+## Session information
+
+```{python}
+#| label: session-info
+#| code-fold: false
+
+print(f"Python {sys.version}")
+for package in ["pandas", "numpy", "seaborn", "matplotlib", "statsmodels",
+                "scipy", "palmerpenguins"]:
+    print(f"{package} {version(package)}")
+```

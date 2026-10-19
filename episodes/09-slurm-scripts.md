@@ -31,6 +31,7 @@ Each one below comes from the REANNZ docs (checked October 2026).
 | GPUs are requested with `--gpus-per-node=<type>:<n>` (types `a100`, `h100`, `l4`, `pro_6000`). | [Using GPUs](https://docs.nesi.org.nz/Batch_Computing/Using_GPUs/) |
 | R modules are named like `R/4.6.0-foss-2026`. Find them with `module spider R` (ignores case) or `module avail` (case-sensitive). | [Environment and modules](https://docs.nesi.org.nz/Tutorials/Introduction_To_HPC/Environment_And_Modules/), [R](https://docs.nesi.org.nz/Software/Available_Applications/R/) |
 | The R examples run scripts with `srun Rscript script.R`. | [R](https://docs.nesi.org.nz/Software/Available_Applications/R/) |
+| Python modules are named like `Python/3.14.4-foss-2026`. The docs recommend a virtual environment for your packages, activated in the job script. | [Python](https://docs.nesi.org.nz/Software/Available_Applications/Python/) |
 | File systems: `/home/<username>`, `/nesi/project/<code>`, `/nesi/nobackup/<code>`. | [Filesystems and quotas](https://docs.nesi.org.nz/Storage/Filesystems_and_Quotas/) |
 | Check your own jobs with `squeue --me`. Plain `squeue` lists every user's jobs. | [Batch Computing Guide](https://docs.nesi.org.nz/Batch_Computing/Batch_Computing_Guide/) |
 | The REANNZ docs do not list a Quarto module. Check with `module spider quarto` before you rely on one. | [docs.nesi.org.nz/llms.txt](https://docs.nesi.org.nz/llms.txt) (no Quarto page) |
@@ -286,14 +287,34 @@ srun quarto render penguins_report.qmd --to html
 
 </details>
 
+### Python learners
+
+Task A is the same for everyone: `review-me.sl` runs an R script, and the answer key
+does not change. For Task B, write the jobs for `python analysis.py` and the Jupyter
+engine render of `penguins_report.qmd`. Adapt Prompt 2 with the differences below. The
+reference answers are [`slurm/run_analysis_py.sl`](../slurm/run_analysis_py.sl) and
+[`slurm/render_report_py.sl`](../slurm/render_report_py.sl).
+
+| | R job | Python job |
+|---|---|---|
+| Module | `module load R/<version>`, from `module spider R` | `module load Python/<version>`, from `module spider Python` (the docs show `Python/3.14.4-foss-2026`) |
+| Packages | Already in your R user library | In a virtual environment, `.venv/` in the project folder. Create it once on a login node with the same module loaded, then `source .venv/bin/activate` in the job. |
+| Run line | `srun Rscript analysis.R` | `srun python analysis.py` |
+| Report render | Quarto plus `knitr` and `rmarkdown` | Quarto plus `jupyter` in the venv. Check with `quarto check jupyter`. |
+
+The AI often adds `pip install` lines inside the job, or uses `conda activate` when
+you have a venv. Both are the same mistake as `install.packages()` in an R job: install
+once, interactively, and only activate in the job.
+
 > [!TIP]
 > **Agent extension (Track B)**
 > Give the agent the same cluster facts and ask it to write
-> `slurm/run_analysis.sl` and `slurm/render_report.sl`, then check them.
+> `slurm/run_analysis.sl` and `slurm/render_report.sl` (Python: `run_analysis_py.sl`
+> and `render_report_py.sl`), then check them.
 > Acceptance criteria:
 >
 > - It asks you which project code to charge. It does not guess one.
-> - It runs `module spider R` and uses the exact name it finds.
+> - It runs `module spider R` (or `module spider Python`) and uses the exact name it finds.
 > - It runs `bash -n` and `sbatch --test-only` on both scripts and shows you the output.
 > - It asks before running `sbatch`. You approve each submission yourself.
 >

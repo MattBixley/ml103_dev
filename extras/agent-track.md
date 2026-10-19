@@ -1,7 +1,7 @@
 # Agent Track: Going Further with Claude Code
 
 This page is for after the workshop. It assumes you worked through the Track B
-**Agent extension** callouts and want to use a coding agent on your own R projects.
+**Agent extension** callouts and want to use a coding agent on your own R or Python projects.
 The examples use Claude Code and the `ml103-penguins/` project, but the habits apply
 to any coding agent.
 
@@ -29,6 +29,11 @@ from your RStudio Project keeps its view of files the same as yours.
 You now have RStudio's editor, console and Viewer on one side and the agent in the
 Terminal tab. When the agent edits a file, RStudio reloads it, so you can read every
 change in the editor you already know.
+
+**Python learners:** open the `ml103-penguins/` folder in VS Code (or a terminal next
+to Jupyter), activate the venv with `source .venv/bin/activate`, then run `claude`
+from that folder. Starting the agent with `.venv` active means `python` and `pip`
+point at the project's environment, not your system Python.
 
 > [!WARNING]
 > The agent reads files in this folder and sends their contents to an offshore
@@ -63,9 +68,11 @@ By default Claude Code asks before it edits a file or runs a command. Read each
 request before you approve it:
 
 - **File edits:** read the diff. Does it change only what you asked for?
-- **Commands:** do you know what the command does? `Rscript analysis.R` is
-  harmless; `rm -rf figures/` is not.
-- **Package installs:** would you install this package yourself?
+- **Commands:** do you know what the command does? `Rscript analysis.R` (or
+  `python analysis.py`) is harmless; `rm -rf figures/` is not.
+- **Package installs:** would you install this package yourself? In Python, check
+  that `pip install` runs inside `.venv`, and that the package is also added to
+  `requirements.txt`.
 
 You can pre-approve safe commands and block risky ones in `.claude/settings.json`
 (see the permissions section of the official docs, or run `/permissions`). The
@@ -91,8 +98,9 @@ figures/ as PNG files. List the files you would change, the code you would add,
 and how you will check it worked.
 ```
 
-Read the plan. Correct it if it is wrong ("use `ggsave()`, not `png()`") and only
-then let it make the edits. Fixing a plan costs far less than unpicking a wrong edit.
+For Python, swap in `analysis.py`. Read the plan. Correct it if it is wrong ("use
+`ggsave()`, not `png()`", or "use `fig.savefig()`, not `plt.show()`") and only then
+let it make the edits. Fixing a plan costs far less than unpicking a wrong edit.
 
 ## 5. Give Acceptance Criteria
 
@@ -109,6 +117,9 @@ Done means:
 - you show me the rendered table's first rows from the HTML or the R output
 ```
 
+For the Python report, the same criteria apply with "the R output" replaced by "the
+Python output"; also require that `quarto check jupyter` finds `.venv`.
+
 Each criterion is something you can confirm yourself in under a minute.
 
 ## 6. Make the Agent Run and Check Its Own Work
@@ -120,6 +131,8 @@ it in `AGENTS.md`, and ask for evidence:
 - "Run `Rscript analysis.R` and show me the last 20 lines of output."
 - "Render the report and tell me the size of the HTML file and any warnings."
 - "Check that `nrow(penguins_clean)` is 333 and show me the output."
+- Python: "Run `python analysis.py`, check that `len(penguins_clean)` is 333 and
+  show me the output."
 
 Evidence from a command is not the same as correctness. A plot can render and still
 show the wrong variable. You still open the HTML and look.
@@ -131,7 +144,7 @@ shows a diff for each file. In the terminal, `git diff` does the same. Look for:
 
 - changes to files you did not ask about
 - deleted code or comments
-- new packages in `library()` calls
+- new packages in `library()` calls (Python: `import` lines and `requirements.txt`)
 - hard-coded paths, especially to someone else's home folder
 
 ## 8. Use Git Commits as Checkpoints

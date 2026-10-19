@@ -1,6 +1,6 @@
 # Instructor Notes
 
-These notes support the instructor running ML103 in a room, with learners on both tracks. Learner content lives in [episodes/](../episodes/) and [r/](../r/). Read [timing.md](timing.md) and [ai-failure-modes.md](ai-failure-modes.md) before the session, and keep [demo-script.md](demo-script.md) open while you teach.
+These notes support the instructor running ML103 in a room, with learners on both tracks. Learner content lives in [episodes/](../episodes/), [r/](../r/) and its full Python parallel, [python/](../python/README.md). Learners choose one language; the shared episodes and Slurm scripts cover both. Read [timing.md](timing.md) and [ai-failure-modes.md](ai-failure-modes.md) before the session, and keep [demo-script.md](demo-script.md) open while you teach.
 
 | File | Use it for |
 |---|---|
@@ -24,7 +24,19 @@ Complete these steps the day before, and again on the morning if the room or net
 
   R must report 4.3.0 or later. Install any missing package with `install.packages(c("tidyverse", "palmerpenguins"))`. In a terminal, run `quarto --version` to confirm that Quarto is on the path.
 
+- [ ] **Check Python, the venv and Quarto's Jupyter engine on a clean machine.** In a terminal:
+
+  ```bash
+  python3 --version
+  python3 -m venv .venv && source .venv/bin/activate
+  pip install -r python/requirements.txt
+  quarto check jupyter
+  ```
+
+  Python must report 3.10 or later, and `quarto check jupyter` must find the `.venv` Python.
+
 - [ ] **Confirm Track B access.** Each Track B learner has Claude access, and has read [episodes/02-rules-of-the-road.md](../episodes/02-rules-of-the-road.md) before the session.
 - [ ] **Install the REANNZ agent rules on Mahuika.** If learners work on Mahuika, install the rules with `/opt/nesi/share/mahuika-agents/install.sh` and the `--project DIR` option for each project folder. Add `--skills` if you want the skills as well. Source: [github.com/nesi/mahuika-agents](https://github.com/nesi/mahuika-agents).
-- [ ] **Check the catch-up checkpoints.** In a fresh R session for each file, run `r/checkpoints/after-04.R`, `after-05.R`, `after-06.R`, `after-07.R` and `after-08.qmd`. Each file must run without help. Learners rely on them to catch up.
+- [ ] **Check the catch-up checkpoints.** In a fresh R session for each file, run `r/checkpoints/after-04.R`, `after-05.R`, `after-06.R`, `after-07.R` and `after-08.qmd`. Do the same for the files in `python/checkpoints/`, each in a fresh Python session with `.venv` active. Each file must run without help. Learners rely on them to catch up.
+- [ ] **Check the Python Slurm scripts.** If learners use Mahuika, run `module spider Python` and confirm that the version in `slurm/run_analysis_py.sl` and `slurm/render_report_py.sl` still exists.
 - [ ] **Print or share the references.** Make the schedule in [timing.md](timing.md) and the failure list in [ai-failure-modes.md](ai-failure-modes.md) available to you on paper or on a second screen.

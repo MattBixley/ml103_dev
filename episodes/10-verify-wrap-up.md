@@ -14,9 +14,9 @@
 
 Before you submit or share your analysis, tick each item. If you cannot tick an item, go back and fix it.
 
-- [ ] The code runs from a clean session. Use **Session** > **Restart R**, then run the script from the top.
+- [ ] The code runs from a clean session. Use **Session** > **Restart R**, then run the script from the top. Python: restart the kernel and run all cells, or run `python analysis.py` in a fresh terminal with `.venv` active.
 - [ ] The row counts are what you expect. The raw data has 344 penguins, and every count after a filter or join matches what you can explain.
-- [ ] Every column name exists in the data. Check with `names(penguins)`.
+- [ ] Every column name exists in the data. Check with `names(penguins)` (Python: `penguins.columns`).
 - [ ] You can explain what each line of code does, without reading the AI's explanation again.
 - [ ] You can explain each part of the statistical output, including the assumptions it makes.
 - [ ] Your report includes the AI-use statement from [episode 01](01-ai-and-ethics.md).
@@ -28,7 +28,8 @@ Before you submit or share your analysis, tick each item. If you cannot tick an 
 - [Quarto](https://quarto.org/) documentation, for building reports and websites from R, Python and other languages.
 - [Introduction to R](https://genomicsaotearoa.github.io/Introduction-to-R/) from Genomics Aotearoa, for base R and ggplot2 if you need the foundations first.
 - [NeSI documentation](https://docs.nesi.org.nz/), for the REANNZ and NeSI systems, policies and agent rules.
-- The Python notes in `python/`, if you want the same workflow with pandas and seaborn.
+- The Python notes in [python/](../python/README.md), if you want the same workflow with pandas, seaborn and statsmodels.
+- [Python for Data Analysis, 3rd edition](https://wesmckinney.com/book/) by Wes McKinney, for pandas in depth.
 
 ## Give feedback
 
@@ -44,4 +45,4 @@ Tell your instructor what worked and what did not. If you are working through th
 
 - Verify every analysis from a clean session, check the row counts and column names, and explain each line.
 - Include the AI-use statement, and confirm that no sensitive data went into an AI tool.
-- You are ready to explain, check and report AI-assisted R code, and to show a reader how you verified it.
+- You are ready to explain, check and report AI-assisted R or Python code, and to show a reader how you verified it.

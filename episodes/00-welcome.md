@@ -17,7 +17,7 @@ In this workshop, you use a generative AI assistant to write a complete, reprodu
 
 The goal is not to let the AI do the work for you. The goal is to judge what it produces, check it, and say how you used it.
 
-Python learners: the Python notes live in `python/`. The welcome (00) and the shared episodes (01, 02, 03, 09 and 10) apply to both languages.
+Python learners: episodes 04 to 08 have a full Python version in [python/](../python/README.md), with pandas, seaborn and statsmodels. The welcome (00) and the shared episodes (01, 02, 03, 09 and 10) apply to both languages. Where this page says RStudio, use Jupyter or VS Code, and follow the Python steps under [Set up your project](#set-up-your-project).
 
 ## Two tracks, one room
 
@@ -25,8 +25,8 @@ You work in one of two tracks. Both tracks run the same episodes at the same tim
 
 | | Track A: web AI | Track B: agents |
 |---|---|---|
-| Tool | Google Search AI Mode, signed out | Claude Code, in the RStudio Terminal |
-| What you do | Copy code from the AI, paste it into RStudio, run it, check it | Approve each action while the agent reads your project and runs R |
+| Tool | Google Search AI Mode, signed out | Claude Code, in the RStudio Terminal (Python: any terminal in the project folder) |
+| What you do | Copy code from the AI, paste it into RStudio (or Jupyter or VS Code), run it, check it | Approve each action while the agent reads your project and runs R or Python |
 | What the AI sees | Only what you paste | Every file in the project folder |
 
 Every episode from 04 onwards has an **Agent extension** callout for Track B.
@@ -83,6 +83,21 @@ You see a table of six rows and eight columns. The first row has the species `Ad
 
 If you see `there is no package called 'palmerpenguins'`, run the `install.packages()` line again and read any red errors in the Console. If your R version is older than 4.3, follow [setup.md](../setup.md) to update R.
 
+### Python learners
+
+Follow [Set up Python](../setup.md#set-up-python) instead of steps 1 to 3. In short, in a terminal:
+
+```bash
+mkdir ml103-penguins
+cd ml103-penguins
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt    # a copy of python/requirements.txt
+python -c "from palmerpenguins import load_penguins; print(load_penguins().head())"
+```
+
+You see a table of five rows. The first row has the species `Adelie` and the island `Torgersen`. Then open the folder in Jupyter or VS Code, with `.venv` as the interpreter.
+
 ## Open your AI tool
 
 ### Track A: Google Search AI Mode
@@ -90,12 +105,13 @@ If you see `there is no package called 'palmerpenguins'`, run the `install.packa
 1. Open a private window and go to https://www.google.com.
 2. Search for `what is ggplot2 in R`.
 3. Select **AI Mode**, then ask: `Write R code that prints the first six rows of palmerpenguins::penguins.`
+   Python learners ask: `Write Python code that loads the penguins data with the palmerpenguins package and prints the first five rows.`
 
 If AI Mode returns code, you are ready for Track A.
 
 ### Track B: Claude Code
 
-1. In RStudio, open the **Terminal** tab next to the Console. The Terminal opens in your project folder.
+1. In RStudio, open the **Terminal** tab next to the Console. The Terminal opens in your project folder. Python learners open a terminal in the `ml103-penguins` folder (in VS Code, **Terminal** > **New Terminal**).
 2. Run `claude` and follow the sign-in prompts.
 3. Ask: `What files are in this project?` Approve any action the agent asks you to take.
 
@@ -106,11 +122,12 @@ If the Terminal reports `claude: command not found`, follow the Claude Code sect
 
 > [!TIP]
 > **Agent extension (Track B)**
-> Ask the agent to list the packages it can see in your project, then ask it to run `library(palmerpenguins)` and report the result. You approve each command before it runs.
+> Ask the agent to list the packages it can see in your project, then ask it to run `library(palmerpenguins)` (Python: `python -c "import palmerpenguins"` with `.venv` active) and report the result. You approve each command before it runs.
 
 ## Key points
 
 - You use the `ml103-penguins` project for every episode from 04 onwards.
 - Track A uses Google Search AI Mode in a private window, with Duck.ai and a logged-out ChatGPT as backups.
-- Track B uses Claude Code in the RStudio Terminal, and you approve each action.
+- Track B uses Claude Code in the RStudio Terminal (or any terminal, for Python), and you approve each action.
+- Python learners follow [python/](../python/README.md) for episodes 04 to 08.
 - The break falls at minute 95.

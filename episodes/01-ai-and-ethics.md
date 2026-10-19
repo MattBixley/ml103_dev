@@ -10,7 +10,7 @@
 **Objectives**
 - Recognise the three typical kinds of invented code: a function, an argument and a column name.
 - Name the kinds of data you must not paste into a web AI tool.
-- Draft an AI-use disclosure statement that you reuse in [episode 08](../r/08-report.md).
+- Draft an AI-use disclosure statement that you reuse in episode 08 (R: [r/08-report.md](../r/08-report.md) · Python: [python/08-report.md](../python/08-report.md)).
 
 ## How a language model writes text
 
@@ -20,7 +20,7 @@ This explains the most common failure. The model writes a plausible R function e
 
 - **An invented function.** For example, `penguin_sex_ratio()`, which no package exports.
 - **A real function with wrong arguments.** For example, a `geom_point()` call that passes an argument the function does not accept.
-- **A made-up column name.** For example, `bill_len`, when `palmerpenguins::penguins` uses `bill_length_mm`.
+- **A made-up column name.** For example, `bill_len`, when `palmerpenguins::penguins` (and Python's `load_penguins()`) uses `bill_length_mm`.
 
 ### Exercise 1: test a made-up function
 
@@ -40,6 +40,16 @@ exists("penguin_sex_ratio")
 ```
 
 R returns `FALSE`. Then run `help(package = "palmerpenguins")` to see every topic the package documents.
+
+Python learners, ask the same question with "Python" in place of "R", then run:
+
+```python
+import palmerpenguins
+print(hasattr(palmerpenguins, "penguin_sex_ratio"))
+print([name for name in dir(palmerpenguins) if not name.startswith("_")])
+```
+
+The first `print()` shows `False`. The second lists everything the package exports, such as `load_penguins`.
 
 Your AI assistant may still give you a confident example. Note which source you trust more: the AI's answer or the package's own index.
 
@@ -67,7 +77,7 @@ Research integrity covers three things:
 
 - **Authorship.** An AI tool cannot be an author. You are responsible for every claim in your work.
 - **Disclosure.** Say which tool you used and what it did. You write this statement in Exercise 2.
-- **Reproducibility.** Record the prompts you used and the package versions you ran. [Episode 08](../r/08-report.md) shows how to record versions with `sessionInfo()`.
+- **Reproducibility.** Record the prompts you used and the package versions you ran. Episode 08 shows how to record versions (R: [r/08-report.md](../r/08-report.md), with `sessionInfo()` · Python: [python/08-report.md](../python/08-report.md)).
 
 For national guidance, read Royal Society Te Apārangi, *Guidelines for the best practice use of GenAI in research* (June 2025): [PDF](https://www.royalsociety.org.nz/assets/Guidelines-for-the-best-practice-use-of-GenAI-in-research_Royal-Society-Te-Aparangi_June-2025_English-.pdf). Read its section on disclosure before you finalise your statement.
 
@@ -88,7 +98,7 @@ Large models use substantial computing power for each response. Use AI where it 
 Write a statement of two to four sentences that says what you used AI for in this workshop. Start from the template below, then edit it to match what you did. The square brackets mark the parts you fill in.
 
 ```text
-Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.
+Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R (or Python) code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R (or plain pandas) results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.
 ```
 
 If you used an agent (Track B), add one sentence:

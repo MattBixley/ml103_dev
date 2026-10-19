@@ -1,0 +1,16 @@
+# ML103 Python notes: packages for episodes 04 to 08.
+# Copy this file into ml103-penguins/ and run, with .venv active:
+#   python -m pip install -r requirements.txt
+#
+# Minimums are the oldest versions the notes were tested with (Python 3.10).
+# Also tested with the newest releases on Python 3.12 and 3.14 (October 2026):
+# pandas 3.0.6, numpy 2.5.4, matplotlib 3.11.2, seaborn 0.13.2,
+# statsmodels 0.15.0, scipy 1.18.1, palmerpenguins 0.1.6, jupyter 1.1.1.
+pandas>=2.2.3
+numpy>=1.26.4
+matplotlib>=3.9.4
+seaborn>=0.13.2
+statsmodels>=0.14.1
+scipy>=1.11.4          # confidence_interval() on t-test results
+palmerpenguins>=0.1.6  # 0.1.4 and older import pkg_resources (setuptools)
+jupyter>=1.1.1         # Jupyter engine for quarto render

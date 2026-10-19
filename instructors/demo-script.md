@@ -4,6 +4,8 @@ This script covers the live-coding demo for episodes 03 to 08. Use Google Search
 
 AI output varies. Read each "What to point out" item as a likely outcome, and rehearse each prompt before the session to see what your tool returns on the day. Do not promise learners a particular answer.
 
+The demo runs in R. Python learners in the room follow the same prompts from [python/](../python/README.md), which mirror each R episode. Mention once, at episode 04, that their Prompt 2 blocks name the Python version, pandas and seaborn and paste `df.info()` and `df.head()` instead of `glimpse()`, and that the **Check it** numbers are the same.
+
 ## Before You Start
 
 - Open a private window and sign out of Google. Load AI Mode, and check that it answers a simple question.
@@ -102,7 +104,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Running Track B Alongside the Demo
 
-Track B learners work in Claude Code, in a terminal or the RStudio terminal, at the same time. The demo is for Track A, so keep it brief and return to the room.
+Track B learners work in Claude Code, in a terminal or the RStudio terminal, at the same time. Python learners on Track B start Claude Code with `.venv` active. The demo is for Track A, so keep it brief and return to the room.
 
 - Set a helper to circulate. The helper checks that each Track B learner has approved actions one at a time, and has not turned on auto-approval.
 - Point Track B learners to the **Agent extension** callout at the end of each episode. Ask them to write the acceptance criteria before they start the agent.

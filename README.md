@@ -15,15 +15,17 @@ These notes suit researchers who already write basic R and want to use AI assist
 - Base R: vectors, data frames, indexing with `[ , ]`, and reading help pages.
 - Basic ggplot2: building a simple plot with `ggplot()` and `geom_*()` layers.
 
-If you need to build these skills first, work through the GA [Introduction to R](https://genomicsaotearoa.github.io/Introduction-to-R/) course. It ends before pipes, dplyr and Quarto, which this workshop teaches.
+If you follow the Python version, you need the equivalent skills instead: basic Python, a pandas DataFrame, and running code in Jupyter or VS Code.
+
+If you need to build the R skills first, work through the GA [Introduction to R](https://genomicsaotearoa.github.io/Introduction-to-R/) course. It ends before pipes, dplyr and Quarto, which this workshop teaches.
 
 You also need:
 
 - R 4.3 or later, with RStudio. Posit Cloud and RStudio Server also work.
 - Internet access and an AI assistant. Track A needs no sign-in (see [Two Tracks](#two-tracks)).
-- Python 3.10 or later, only if you follow the Python notes.
+- Or, for the Python version: Python 3.10 or later, with Jupyter or VS Code.
 
-[Setup](setup.md) explains how to install R, RStudio, Quarto and the packages.
+[Setup](setup.md) explains how to install R and RStudio, or Python, plus Quarto and the packages.
 
 ## Two Tracks
 
@@ -33,7 +35,7 @@ Both tracks run in the same room at the same time. Choose the one that matches t
 |---|---|---|
 | Who it is for | Everyone | Anyone with Claude access |
 | Tool | Google Search AI Mode, with Duck.ai or logged-out ChatGPT as backups | Claude Code, run in a terminal |
-| How you work | Write a prompt, copy the code, paste it into RStudio, run it, check it | The agent reads your project, edits files and runs R. You approve each action. |
+| How you work | Write a prompt, copy the code, paste it into RStudio (or Jupyter or VS Code), run it, check it | The agent reads your project, edits files and runs R or Python. You approve each action. |
 | Rules that apply | Ethics and your institution's AI policy | The same, plus agent rules (REANNZ `AGENTS.md` is the worked example) |
 
 Every episode has an **Agent extension** callout for Track B. It sets the same task as an agent task with acceptance criteria. Track B also asks the agent to render, review and fix its own output.
@@ -48,17 +50,17 @@ The workshop runs for 180 minutes, including a 10-minute break after episode 05.
 | 01 | [How LLMs work and AI ethics in research](episodes/01-ai-and-ethics.md) | 20 |
 | 02 | [Rules of the road: REANNZ policies and agent rules](episodes/02-rules-of-the-road.md) | 15 |
 | 03 | [Anatomy of a good prompt](episodes/03-prompt-anatomy.md) | 10 |
-| 04 | [Load and explore penguins](r/04-explore.md) | 15 |
-| 05 | [Wrangle with dplyr](r/05-wrangle.md) | 25 |
+| 04 | Load and explore penguins: [R](r/04-explore.md) · [Python](python/04-explore.md) | 15 |
+| 05 | Wrangle with dplyr or pandas: [R](r/05-wrangle.md) · [Python](python/05-wrangle.md) | 25 |
 | | Break | 10 |
-| 06 | [Visualise with ggplot2](r/06-visualise.md) | 20 |
-| 07 | [Statistics: code you can run but do not yet understand](r/07-statistics.md) | 15 |
-| 08 | [Assemble the Quarto report and AI-use statement](r/08-report.md) | 20 |
+| 06 | Visualise with ggplot2 or seaborn: [R](r/06-visualise.md) · [Python](python/06-visualise.md) | 20 |
+| 07 | Statistics, code you can run but do not yet understand: [R](r/07-statistics.md) · [Python](python/07-statistics.md) | 15 |
+| 08 | Assemble the Quarto report and AI-use statement: [R](r/08-report.md) · [Python](python/08-report.md) | 20 |
 | 09 | [AI for Slurm scripts: review and write](episodes/09-slurm-scripts.md) | 15 |
 | 10 | [Verify and wrap up](episodes/10-verify-wrap-up.md) | 5 |
 | | **Total** | **180** |
 
-Episodes 04 to 08 build one report. If you fall behind, copy the checkpoint file for the episode you missed from `r/checkpoints/` and carry on. Instructors can find a minute-by-minute plan in [instructors/timing.md](instructors/timing.md).
+Episodes 04 to 08 build one report. If you fall behind, copy the checkpoint file for the episode you missed from `r/checkpoints/` (or `python/checkpoints/`) and carry on. Instructors can find a minute-by-minute plan in [instructors/timing.md](instructors/timing.md).
 
 ## How to Use These Notes
 
@@ -76,7 +78,9 @@ Do the **Check it** step every time. Skipping it is the most common way to end u
 
 ## Python Version
 
-The notes also exist in a Python version, with pandas, seaborn and statsmodels in place of tidyverse and ggplot2. The shared episodes (01, 02, 03, 09 and 10) apply to both. The Python steps are in [python/](python/). They work with Python 3.10 or later, Jupyter or VS Code, and Quarto.
+The whole workshop also runs in Python. [python/](python/) is a full parallel version of episodes 04 to 08: the same penguins data, the same tasks and the same weak and better prompts, with pandas, seaborn and statsmodels in place of the tidyverse and ggplot2. It builds `analysis.py` and a Quarto report that renders with the Jupyter engine, and has its own checkpoints and reference solutions. Start at [python/README.md](python/README.md).
+
+The shared episodes (00 to 03, 09 and 10) apply to both languages. Where they show R code, they also give the Python equivalent, and episode 09 has Python job scripts in [slurm/](slurm/). You need Python 3.10 or later, Jupyter or VS Code, and Quarto. [Setup](setup.md#set-up-python) has the details, and [prompts/python-prompts.md](prompts/python-prompts.md) collects the Python prompts.
 
 ## Repository Layout
 
@@ -88,9 +92,12 @@ ml103_dev/
 ├── r/                        R steps for episodes 04 to 08
 │   ├── checkpoints/          Catch-up files for each episode
 │   └── solutions/            Reference Quarto report
-├── python/                   Python steps for episodes 04 to 08
-├── prompts/                  Copy-paste library of weak and better prompts
-├── slurm/                    Flawed script to review, and reference scripts
+├── python/                   Python steps for episodes 04 to 08 (full parallel version)
+│   ├── checkpoints/          Catch-up files for each episode
+│   ├── solutions/            Reference analysis.py and Quarto report
+│   └── requirements.txt      Python packages for pip
+├── prompts/                  Copy-paste library of weak and better prompts (R, Python, Slurm)
+├── slurm/                    Flawed script to review, and R and Python reference scripts
 ├── extras/                   Deeper Track B material, and example agent rules files
 ├── instructors/              Timing, AI failure modes and demo notes
 └── archive/python-llm/       Retired notebooks on running LLMs on HPC clusters
