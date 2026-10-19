@@ -1,0 +1,6 @@
+---
+output-file: 08-report.html
+engine: markdown
+---
+
+{{< include 08-report.md >}}

@@ -1,0 +1,133 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - setup.md
+    - episodes/*.md
+    - r/0[4-7]-*.md
+    - r/site-08-report.qmd
+    - python/README.md
+    - python/0[4-7]-*.md
+    - python/site-08-report.qmd
+    - prompts/*.md
+    - slurm/README.md
+    - extras/agent-track.md
+    - instructors/*.md
+    - LICENSE.md
+  resources:
+    - REANNZ_logo.png
+
+website:
+  title: "ML103: AI-Assisted Coding with R"
+  site-url: "https://mattbixley.github.io/ml103_dev/"
+  repo-url: "https://github.com/MattBixley/ml103_dev"
+  repo-actions: [source, issue]
+  page-navigation: true
+  search: true
+  navbar:
+    left:
+      - text: "Workshop"
+        href: index.qmd
+      - text: "Setup"
+        href: setup.md
+      - text: "R"
+        href: r/04-explore.md
+      - text: "Python"
+        href: python/README.md
+      - text: "Instructors"
+        href: instructors/README.md
+    right:
+      - icon: github
+        href: "https://github.com/MattBixley/ml103_dev"
+  sidebar:
+    style: docked
+    contents:
+      - href: index.qmd
+        text: "Home"
+      - href: setup.md
+        text: "Setup"
+      - section: "Workshop (R)"
+        contents:
+          - href: episodes/00-welcome.md
+            text: "00. Welcome and Setup"
+          - href: episodes/01-ai-and-ethics.md
+            text: "01. AI and Ethics in Research"
+          - href: episodes/02-rules-of-the-road.md
+            text: "02. Rules of the Road: REANNZ Policies for AI Use"
+          - href: episodes/03-prompt-anatomy.md
+            text: "03. Anatomy of a Good Prompt"
+          - href: r/04-explore.md
+            text: "04. Load and Explore the Penguins"
+          - href: r/05-wrangle.md
+            text: "05. Wrangle with dplyr"
+          - href: r/06-visualise.md
+            text: "06. Visualise with ggplot2"
+          - href: r/07-statistics.md
+            text: "07. Statistics: Code You Can Run but Do Not Understand"
+          - href: r/site-08-report.qmd
+            text: "08. Assemble the Quarto Report"
+          - href: episodes/09-slurm-scripts.md
+            text: "09. AI for Slurm Scripts: Review and Write"
+          - href: episodes/10-verify-wrap-up.md
+            text: "10. Verify and Wrap-Up"
+      - section: "Python version"
+        contents:
+          - href: python/README.md
+            text: "ML103 Python Notes"
+          - href: python/04-explore.md
+            text: "04. Load and Explore the Penguins"
+          - href: python/05-wrangle.md
+            text: "05. Wrangle with pandas"
+          - href: python/06-visualise.md
+            text: "06. Visualise with seaborn"
+          - href: python/07-statistics.md
+            text: "07. Statistics: Code You Can Run but Do Not Understand"
+          - href: python/site-08-report.qmd
+            text: "08. Assemble the Quarto Report"
+      - section: "Prompt library"
+        contents:
+          - href: prompts/shared-prompts.md
+            text: "Shared Prompts"
+          - href: prompts/r-prompts.md
+            text: "R Prompt Library"
+          - href: prompts/python-prompts.md
+            text: "Python Prompt Library"
+          - href: prompts/slurm-prompts.md
+            text: "Slurm Prompts (Episode 09)"
+      - section: "Extras"
+        contents:
+          - href: slurm/README.md
+            text: "Slurm Scripts for Episode 09"
+          - href: extras/agent-track.md
+            text: "Agent Track: Going Further with Claude Code"
+      - section: "Instructors"
+        contents:
+          - href: instructors/README.md
+            text: "Instructor Notes"
+          - href: instructors/timing.md
+            text: "Timing Plan"
+          - href: instructors/demo-script.md
+            text: "Demo Script"
+          - href: instructors/ai-failure-modes.md
+            text: "AI Failure Modes"
+          - href: instructors/authoring-guide.md
+            text: "Authoring guide (contract for all ML103 content)"
+      - href: LICENSE.md
+        text: "Licence"
+  page-footer:
+    left: "© 2026 Matt Bixley · Text CC BY 4.0 · Code MIT"
+    right: "Built with [Quarto](https://quarto.org/)"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    code-copy: true
+    filters:
+      - _extensions_local/site.lua
+
+
+engine: markdown
