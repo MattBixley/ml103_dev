@@ -20,6 +20,10 @@ Each prompt in this workshop has a weak version and a better version. Write your
 
 ## Describe your data without pasting it
 
+<!-- tabs -->
+
+#### R
+
 Paste the output of `glimpse()`, not the data. `glimpse()` shows the column names, their types and a few values. Those sample values are real data, so check them before you paste. For real research data, paste only the column names and types (see Card 7 in episode 02). Run this in RStudio:
 
 ```r
@@ -29,7 +33,9 @@ glimpse(penguins)
 
 The output starts with `Rows: 344` and `Columns: 8`. Each row after that shows one column, its type in angle brackets (such as `<fct>` for a factor or `<dbl>` for a decimal number), and the first few values.
 
-**Python learners:** paste the output of `penguins.info()` and `penguins.head()` instead. `penguins.info()` gives the row count, column names, types and non-null counts. `penguins.head()` shows the first five rows, and those are real data values, so the same caution applies: check them first, and for real research data paste only `penguins.info()` (or `penguins.dtypes`).
+#### Python
+
+Paste the output of `penguins.info()` and `penguins.head()`, not the data. `penguins.info()` gives the row count, column names, types and non-null counts. `penguins.head()` shows the first five rows, and those are real data values, so check them before you paste. For real research data, paste only `penguins.info()` (or `penguins.dtypes`) (see Card 7 in episode 02). Run this in Python:
 
 ```python
 from palmerpenguins import load_penguins
@@ -39,6 +45,8 @@ print(penguins.head())
 ```
 
 `penguins.info()` reports 344 entries and 8 columns. Types show as `object` for text columns and `float64` for decimal numbers.
+
+<!-- /tabs -->
 
 Do not paste the whole data set. The AI does not need every row, and the rest of the data may be sensitive in a real project. See [episode 01](01-ai-and-ethics.md) for what must stay out of a web AI tool.
 
@@ -59,6 +67,10 @@ Try it in your AI assistant before reading on.
 - It does not tell you how to check the plot.
 
 ## Prompt 2: a better version
+
+<!-- tabs -->
+
+#### R
 
 Before you use this prompt, run `R.version.string` and `packageVersion("tidyverse")` in the Console. Replace the bracketed text with the results and the `glimpse()` output from your own session.
 
@@ -81,9 +93,9 @@ Output: one complete, runnable code block that works in a fresh R session after 
 Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.
 ```
 
-### Python variant
+#### Python
 
-Run `python --version` in a terminal, and `import pandas, seaborn; print(pandas.__version__, seaborn.__version__)` in Python. Replace the bracketed text with the results and your own `penguins.info()` and `penguins.head()` output.
+Before you use this prompt, run `python --version` in a terminal, and `import pandas, seaborn; print(pandas.__version__, seaborn.__version__)` in Python. Replace the bracketed text with the results and your own `penguins.info()` and `penguins.head()` output.
 
 ```text
 I am using Python [paste the output of python --version] in [Jupyter / VS Code]. I have pandas [version], seaborn [version] and palmerpenguins installed. I am not using any other packages.
@@ -107,6 +119,8 @@ Output: one complete, runnable code block that works in a fresh Python session. 
 Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.
 ```
 
+<!-- /tabs -->
+
 | Part of the prompt | What it fixes |
 |---|---|
 | R (or Python) version and package versions | Stops the AI from using functions that your version does not have |
@@ -119,6 +133,10 @@ Before the code, list your assumptions. After the code, tell me how to check tha
 
 ### Check it
 
+<!-- tabs -->
+
+#### R
+
 Run the code in a fresh R session. Use **Session** > **Restart R**, then run the script from the top.
 
 Then check the numbers:
@@ -129,7 +147,9 @@ nrow(penguins_plot_data)
 sum(is.na(penguins$bill_length_mm) | is.na(penguins$flipper_length_mm))
 ```
 
-Python learners: restart the kernel (**Kernel** > **Restart**) and run every cell from the top, then check:
+#### Python
+
+Restart the kernel (**Kernel** > **Restart**) and run every cell from the top, then check:
 
 ```python
 print(len(penguins))
@@ -137,14 +157,20 @@ print(len(penguins_plot_data))
 print((penguins["bill_length_mm"].isna() | penguins["flipper_length_mm"].isna()).sum())
 ```
 
+<!-- /tabs -->
+
 Use the AI's name for the filtered data frame if it chose a different one.
 
 The first number is 344. The number of dropped rows that your code reports must equal the third number, the count of rows missing either measurement. If it does not, ask the AI which rows it dropped and why.
 
 Look at the plot itself. You should see three groups, one for each species.
 
+<!-- tabs -->
+
+#### R
+
 <details>
-<summary>Reference solution</summary>
+<summary>Reference solution (R)</summary>
 
 ```r
 # Load the packages
@@ -178,6 +204,8 @@ ggsave("figures/bill_vs_flipper.png", p, width = 7, height = 5, dpi = 300)
 ```
 
 </details>
+
+#### Python
 
 <details>
 <summary>Reference solution (Python)</summary>
@@ -218,6 +246,8 @@ fig.savefig("figures/bill_vs_flipper.png", dpi=300)
 ```
 
 </details>
+
+<!-- /tabs -->
 
 > [!NOTE]
 > The reference solution shows one good answer. Your AI assistant may give a different, equally valid version. Check it against the same test.

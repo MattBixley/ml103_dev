@@ -79,16 +79,47 @@ function Link(el)
   return el
 end
 
+-- Turn the blocks between <!-- tabs --> and <!-- /tabs --> into a
+-- Quarto tabset. Each heading inside starts a tab ("#### R", "#### Python").
+-- The "language" group keeps the chosen tab in sync across pages.
+local function is_marker(block, text)
+  return block.t == "RawBlock" and block.format:match("html")
+    and block.text:match("^%s*<!%-%-%s*" .. text .. "%s*%-%->%s*$")
+end
+
+local function build_tabsets(blocks)
+  local out = pandoc.List()
+  local i = 1
+  while i <= #blocks do
+    local block = blocks[i]
+    if is_marker(block, "tabs") then
+      local inner = pandoc.List()
+      i = i + 1
+      while i <= #blocks and not is_marker(blocks[i], "/tabs") do
+        inner:insert(blocks[i])
+        i = i + 1
+      end
+      out:insert(pandoc.Div(inner, pandoc.Attr("", { "panel-tabset" }, { group = "language" })))
+    else
+      out:insert(block)
+    end
+    i = i + 1
+  end
+  return out
+end
+
 -- Use the first level-1 heading as the page title, as GitHub does.
 function Pandoc(doc)
-  if doc.meta.title then return nil end
-  for i, block in ipairs(doc.blocks) do
-    if block.t == "Header" and block.level == 1 then
-      doc.meta.title = pandoc.MetaInlines(block.content)
-      doc.meta.pagetitle = pandoc.utils.stringify(block.content)
-      doc.blocks:remove(i)
-      return doc
+  doc.blocks = build_tabsets(doc.blocks)
+  if not doc.meta.title then
+    for i, block in ipairs(doc.blocks) do
+      if block.t == "Header" and block.level == 1 then
+        doc.meta.title = pandoc.MetaInlines(block.content)
+        doc.meta.pagetitle = pandoc.utils.stringify(block.content)
+        doc.blocks:remove(i)
+        break
+      end
     end
   end
-  return nil
+  return doc
 end
