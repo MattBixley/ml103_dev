@@ -53,7 +53,11 @@ Every episode from 04 onwards has an **Agent extension** callout for Track B.
 
 ## Set up your project
 
-### 1. Create the RStudio Project
+<!-- tabs -->
+
+#### R
+
+**1. Create the RStudio Project**
 
 1. Open RStudio.
 2. Choose **File** > **New Project** > **New Directory** > **New Project**.
@@ -62,7 +66,7 @@ Every episode from 04 onwards has an **Agent extension** callout for Track B.
 
 RStudio opens the project. The Files pane shows `ml103-penguins.Rproj`.
 
-### 2. Install the packages
+**2. Install the packages**
 
 In the Console, run:
 
@@ -72,7 +76,7 @@ install.packages(c("tidyverse", "palmerpenguins"))
 
 Installing the tidyverse can take several minutes. Wait for the `>` prompt to return before you continue.
 
-### 3. Run the quick check
+**3. Run the quick check**
 
 ```r
 library(palmerpenguins)
@@ -83,9 +87,9 @@ You see a table of six rows and eight columns. The first row has the species `Ad
 
 If you see `there is no package called 'palmerpenguins'`, run the `install.packages()` line again and read any red errors in the Console. If your R version is older than 4.3, follow [setup.md](../setup.md) to update R.
 
-### Python learners
+#### Python
 
-Follow [Set up Python](../setup.md#set-up-python) instead of steps 1 to 3. In short, in a terminal:
+Follow [Set up Python](../setup.md#set-up-python). In short, in a terminal:
 
 ```bash
 mkdir ml103-penguins
@@ -98,22 +102,47 @@ python -c "from palmerpenguins import load_penguins; print(load_penguins().head(
 
 You see a table of five rows. The first row has the species `Adelie` and the island `Torgersen`. Then open the folder in Jupyter or VS Code, with `.venv` as the interpreter.
 
+<!-- /tabs -->
+
 ## Open your AI tool
 
 ### Track A: Google Search AI Mode
 
+<!-- tabs -->
+
+#### R
+
 1. Open a private window and go to https://www.google.com.
 2. Search for `what is ggplot2 in R`.
 3. Select **AI Mode**, then ask: `Write R code that prints the first six rows of palmerpenguins::penguins.`
-   Python learners ask: `Write Python code that loads the penguins data with the palmerpenguins package and prints the first five rows.`
+
+#### Python
+
+1. Open a private window and go to https://www.google.com.
+2. Search for `what is ggplot2 in R`.
+3. Select **AI Mode**, then ask: `Write Python code that loads the penguins data with the palmerpenguins package and prints the first five rows.`
+
+<!-- /tabs -->
 
 If AI Mode returns code, you are ready for Track A.
 
 ### Track B: Claude Code
 
-1. In RStudio, open the **Terminal** tab next to the Console. The Terminal opens in your project folder. Python learners open a terminal in the `ml103-penguins` folder (in VS Code, **Terminal** > **New Terminal**).
+<!-- tabs -->
+
+#### R
+
+1. In RStudio, open the **Terminal** tab next to the Console. The Terminal opens in your project folder.
 2. Run `claude` and follow the sign-in prompts.
 3. Ask: `What files are in this project?` Approve any action the agent asks you to take.
+
+#### Python
+
+1. Open a terminal in the `ml103-penguins` folder (in VS Code, **Terminal** > **New Terminal**).
+2. Run `claude` and follow the sign-in prompts.
+3. Ask: `What files are in this project?` Approve any action the agent asks you to take.
+
+<!-- /tabs -->
 
 If the Terminal reports `claude: command not found`, follow the Claude Code section of [setup.md](../setup.md).
 

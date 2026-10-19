@@ -47,7 +47,7 @@ website:
         text: "Home"
       - href: setup.md
         text: "Setup"
-      - section: "Workshop (R)"
+      - section: "Getting started"
         contents:
           - href: episodes/00-welcome.md
             text: "00. Welcome and Setup"
@@ -57,6 +57,8 @@ website:
             text: "02. Rules of the Road: REANNZ Policies for AI Use"
           - href: episodes/03-prompt-anatomy.md
             text: "03. Anatomy of a Good Prompt"
+      - section: "R version"
+        contents:
           - href: r/04-explore.md
             text: "04. Load and Explore the Penguins"
           - href: r/05-wrangle.md
@@ -67,10 +69,6 @@ website:
             text: "07. Statistics: Code You Can Run but Do Not Understand"
           - href: r/site-08-report.qmd
             text: "08. Assemble the Quarto Report"
-          - href: episodes/09-slurm-scripts.md
-            text: "09. AI for Slurm Scripts: Review and Write"
-          - href: episodes/10-verify-wrap-up.md
-            text: "10. Verify and Wrap-Up"
       - section: "Python version"
         contents:
           - href: python/README.md
@@ -85,6 +83,12 @@ website:
             text: "07. Statistics: Code You Can Run but Do Not Understand"
           - href: python/site-08-report.qmd
             text: "08. Assemble the Quarto Report"
+      - section: "Finishing up"
+        contents:
+          - href: episodes/09-slurm-scripts.md
+            text: "09. AI for Slurm Scripts: Review and Write"
+          - href: episodes/10-verify-wrap-up.md
+            text: "10. Verify and Wrap-Up"
       - section: "Prompt library"
         contents:
           - href: prompts/shared-prompts.md
@@ -127,7 +131,8 @@ format:
     toc: true
     code-copy: true
     filters:
-      - _extensions_local/site.lua
+      - path: _extensions_local/site.lua
+        at: pre-ast
 
 
 engine: markdown

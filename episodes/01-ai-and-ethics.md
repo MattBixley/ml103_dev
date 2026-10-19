@@ -32,7 +32,13 @@ Show me how to use penguin_sex_ratio() from the palmerpenguins package to get th
 
 Try it in your AI assistant before reading on.
 
-Then check the function yourself. In RStudio, run:
+Then check the function yourself.
+
+<!-- tabs -->
+
+#### R
+
+In RStudio, run:
 
 ```r
 library(palmerpenguins)
@@ -41,7 +47,9 @@ exists("penguin_sex_ratio")
 
 R returns `FALSE`. Then run `help(package = "palmerpenguins")` to see every topic the package documents.
 
-Python learners, ask the same question with "Python" in place of "R", then run:
+#### Python
+
+Ask the same question with "Python" in place of "R", then run:
 
 ```python
 import palmerpenguins
@@ -50,6 +58,8 @@ print([name for name in dir(palmerpenguins) if not name.startswith("_")])
 ```
 
 The first `print()` shows `False`. The second lists everything the package exports, such as `load_penguins`.
+
+<!-- /tabs -->
 
 Your AI assistant may still give you a confident example. Note which source you trust more: the AI's answer or the package's own index.
 
