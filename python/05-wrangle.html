@@ -797,42 +797,93 @@ results.</code></pre>
 </tr>
 </tbody>
 </table>
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>
+Example AI output (instructor testing)
+</summary>
+<p><strong>Tool:</strong> [AI tool, e.g.&nbsp;Google Search AI Mode] · <strong>Date tested:</strong> [YYYY-MM-DD]</p>
+<p><strong>Code returned:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    penguins</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    .dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    .assign(body_mass_kg<span class="op">=</span><span class="kw">lambda</span> d: d[<span class="st">"body_mass_g"</span>] <span class="op">/</span> <span class="dv">1000</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>species_summary <span class="op">=</span> (</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    penguins_clean</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"species"</span>, as_index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span>(<span class="st">"species"</span>, <span class="st">"size"</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        bill_length_mean<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        bill_length_sd<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"std"</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        flipper_length_mean<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        flipper_length_sd<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"std"</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        body_mass_mean<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        body_mass_sd<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"std"</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary.<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(penguins_clean))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean[<span class="st">"species"</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Output when run:</strong></p>
+<pre class="text"><code>     species    n  bill_length_mean  bill_length_sd  flipper_length_mean  flipper_length_sd  body_mass_mean  \
+0     Adelie  146              38.8             2.7                190.1                6.5          3706.2   
+1  Chinstrap   68              48.8             3.3                195.8                7.1          3733.1   
+2     Gentoo  119              47.6             3.1                217.2                6.6          5092.4   
+
+   body_mass_sd  
+0         458.6  
+1         384.3  
+2         501.5  
+333
+0
+species
+Adelie       146
+Gentoo       119
+Chinstrap     68
+Name: count, dtype: int64</code></pre>
+<p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
+</details>
 </section>
 <section id="check-it" class="level3">
 <h3 class="anchored" data-anchor-id="check-it">Check it</h3>
 <p>Compare the method-chain results with plain pandas:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(penguins_clean))                       <span class="co"># expect 333 (344 minus 11 with missing sex)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean[<span class="st">"species"</span>].value_counts())  <span class="co"># Adelie 146, Gentoo 119, Chinstrap 68</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.isna().<span class="bu">sum</span>())               <span class="co"># all zero</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> species <span class="kw">in</span> [<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>]:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    mass <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> species, <span class="st">"body_mass_g"</span>]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(species, mass.mean(), mass.std())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(penguins_clean))                       <span class="co"># expect 333 (344 minus 11 with missing sex)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean[<span class="st">"species"</span>].value_counts())  <span class="co"># Adelie 146, Gentoo 119, Chinstrap 68</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.isna().<span class="bu">sum</span>())               <span class="co"># all zero</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> species <span class="kw">in</span> [<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>]:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    mass <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> species, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(species, mass.mean(), mass.std())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The means (Adelie 3706.164, Chinstrap 3733.088, Gentoo 5092.437) should equal <code>body_mass_mean</code> in <code>species_summary</code>. The standard deviations (Adelie 458.620, Chinstrap 384.335, Gentoo 501.476) should equal <code>body_mass_sd</code>.</p>
 <details>
 <summary>
 Reference solution
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> (</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    penguins</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>])</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .assign(body_mass_kg<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"body_mass_g"</span>] <span class="op">/</span> <span class="dv">1000</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>species_summary <span class="op">=</span> (</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    penguins_clean</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"species"</span>, as_index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span>(<span class="st">"species"</span>, <span class="st">"size"</span>),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        bill_length_mean<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        bill_length_sd<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"std"</span>),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        flipper_length_mean<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        flipper_length_sd<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"std"</span>),</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        body_mass_mean<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        body_mass_sd<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"std"</span>),</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    penguins</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    .assign(body_mass_kg<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"body_mass_g"</span>] <span class="op">/</span> <span class="dv">1000</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>species_summary <span class="op">=</span> (</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    penguins_clean</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"species"</span>, as_index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span>(<span class="st">"species"</span>, <span class="st">"size"</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        bill_length_mean<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        bill_length_sd<span class="op">=</span>(<span class="st">"bill_length_mm"</span>, <span class="st">"std"</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        flipper_length_mean<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        flipper_length_sd<span class="op">=</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"std"</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        body_mass_mean<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        body_mass_sd<span class="op">=</span>(<span class="st">"body_mass_g"</span>, <span class="st">"std"</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If <code>print()</code> hides some columns behind <code>...</code>, add <code>pd.set_option("display.max_columns", None)</code> near the top of the script.</p>
 <p>Catch-up file: <a href="https://github.com/MattBixley/ml103_dev/blob/main/python/checkpoints/after-05.py"><code>checkpoints/after-05.py</code></a>.</p>
 </details>
@@ -841,7 +892,7 @@ Reference solution
 <section id="debug-with-an-ai" class="level2">
 <h2 class="anchored" data-anchor-id="debug-with-an-ai">Debug with an AI</h2>
 <p>Sooner or later, AI code (or your edit of it) fails. Say you want the mean of every measurement for each species, and you run a line that appears in many older tutorials:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python stops with a long traceback that ends:</p>
 <pre class="text"><code>  File ".../pandas/core/arrays/base.py", line 2808, in _groupby_op
     raise TypeError(
@@ -918,16 +969,33 @@ Do not change anything else.</code></pre>
 </tr>
 </tbody>
 </table>
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>
+Example AI output (instructor testing)
+</summary>
+<p><strong>Tool:</strong> [AI tool, e.g.&nbsp;Google Search AI Mode] · <strong>Date tested:</strong> [YYYY-MM-DD]</p>
+<p><strong>Code returned:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Output when run:</strong></p>
+<pre class="text"><code>           bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g         year  body_mass_kg
+species                                                                                            
+Adelie          38.823973      18.347260         190.102740  3706.164384  2008.054795      3.706164
+Chinstrap       48.833824      18.420588         195.823529  3733.088235  2007.970588      3.733088
+Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.067227      5.092437</code></pre>
+<p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
+</details>
 <p>Run <code>python --version</code> in the terminal and <code>print(pd.__version__)</code> in Python and copy the results. Paste no data.</p>
 </section>
 <section id="check-it-1" class="level3">
 <h3 class="anchored" data-anchor-id="check-it-1">Check it</h3>
 <p>Run the corrected code and check it with plain pandas:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>adelie <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="st">"body_mass_g"</span>]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adelie.mean())  <span class="co"># 3706.164, same as the Adelie body_mass_g mean above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>adelie <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adelie.mean())  <span class="co"># 3706.164, same as the Adelie body_mass_g mean above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>numeric_only=True</code> also averages <code>year</code>, which gives a meaningless “mean year” of 2008.05 for Adelie. Selecting the columns you want first, as in <code>species_summary</code>, avoids that. The error was pandas protecting you from a silent choice.</p>
 <p>Other errors worth knowing on sight:</p>
 <ul>
@@ -940,10 +1008,10 @@ Do not change anything else.</code></pre>
 <summary>
 Reference solution
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Since pandas 2.0, mean() no longer drops text columns by itself</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)  <span class="co"># Adelie body_mass_g 3706.164</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Since pandas 2.0, mean() no longer drops text columns by itself</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)  <span class="co"># Adelie body_mass_g 3706.164</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
