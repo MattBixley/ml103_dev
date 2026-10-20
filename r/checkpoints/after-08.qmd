@@ -37,7 +37,8 @@ penguins_clean <- penguins |>
 ```
 
 We removed the `r nrow(penguins) - nrow(penguins_clean)` rows with missing
-`sex`. These include the 2 rows with no body measurements at all. The cleaned
+`sex`. These include the `r sum(is.na(penguins$body_mass_g))` rows with no body
+measurements at all. The cleaned
 data have `r nrow(penguins_clean)` rows. We added body mass in kilograms
 (`body_mass_kg`).
 
@@ -167,8 +168,8 @@ its standard error. Species explains
   species (@fig-mass). We did not formally check the model's assumptions
   (normality of residuals, equal variance); we only inspected plots of the
   raw data.
-- We removed 11 rows with missing values and did not investigate why they
-  were missing.
+- We removed `r nrow(penguins) - nrow(penguins_clean)` rows with missing `sex` and did not
+  investigate why they were missing.
 - We include only methods we can explain. We did not use any analysis an AI
   assistant suggested that we could not interpret ourselves.
 

@@ -27,8 +27,8 @@ several lines.
 |---|---|---|
 | Keep rows | `penguins[penguins["sex"].notna()]` | `penguins.dropna(subset=["sex"])` |
 | Keep columns | `penguins[["species", "sex"]]` | `penguins.loc[:, ["species", "sex"]]` |
-| Add a column | `df["body_mass_kg"] = df["body_mass_g"] / 1000` | `df.assign(body_mass_kg=lambda d: d["body_mass_g"] / 1000)` |
-| Summarise by group | a loop over species with `.loc[mask, "body_mass_g"].mean()` | `df.groupby("species")["body_mass_g"].mean()` |
+| Add a column | `penguins["body_mass_kg"] = penguins["body_mass_g"] / 1000` | `penguins.assign(body_mass_kg=lambda df: df["body_mass_g"] / 1000)` |
+| Summarise by group | a loop over species with `.loc[mask, "body_mass_g"].mean()` | `penguins.groupby("species")["body_mass_g"].mean()` |
 
 Here is the cleaning step for this workshop, written both ways:
 

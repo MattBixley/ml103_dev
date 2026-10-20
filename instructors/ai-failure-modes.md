@@ -71,7 +71,7 @@ AI output varies from run to run and between tools. Treat each entry as a patter
 
 ## Smart Quotes From Copy and Paste
 
-**What happens.** Web pages and word processors replace straight quotes (`"` and `'`) with curly quotes (`"` and `'`). R rejects curly quotes, and the error message does not explain why. The same code can look correct on screen.
+**What happens.** Web pages and word processors replace straight quotes (`"` and `'`) with curly quotes (`“ ”` and `‘ ’`). R rejects curly quotes, and the error message does not explain why. The same code can look correct on screen.
 
 **Teaching moment.** Ask learners to paste a line with a string into the R console, then read the error. Show them how to replace the curly quotes with straight quotes in the editor, using Find and Replace. Suggest that learners check the code in the editor before they run it.
 

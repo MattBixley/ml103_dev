@@ -19,7 +19,6 @@ from importlib.metadata import version
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from palmerpenguins import load_penguins
 
@@ -140,19 +139,14 @@ plt.show()
 ```{python}
 #| label: slopes
 
-overall_slope = (
-    smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean)
-    .fit()
-    .params["bill_length_mm"]
-)
+overall_fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean).fit()
+overall_slope = overall_fit.params["bill_length_mm"]
 
-species_slopes = pd.Series(
-    {
-        species: smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit().params["bill_length_mm"]
-        for species, group in penguins_clean.groupby("species")
-    },
-    name="slope",
-)
+slopes = {}
+for species, group in penguins_clean.groupby("species"):
+    fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit()
+    slopes[species] = fit.params["bill_length_mm"]
+species_slopes = pd.Series(slopes, name="slope")
 
 species_slopes.round(3).to_frame()
 ```

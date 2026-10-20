@@ -4,7 +4,7 @@ This script covers the live-coding demo for episodes 03 to 08. Use Google Search
 
 AI output varies. Read each "What to point out" item as a likely outcome, and rehearse each prompt before the session to see what your tool returns on the day. Do not promise learners a particular answer.
 
-The demo runs in R. Python learners in the room follow the same prompts from [python/](../python/README.md), which mirror each R episode. Mention once, at episode 04, that their Prompt 2 blocks name the Python version, pandas and seaborn and paste `df.info()` and `df.head()` instead of `glimpse()`, and that the **Check it** numbers are the same.
+The demo runs in R. Python learners in the room follow the same prompts from [python/](../python/README.md), which mirror each R episode. Mention once, at episode 04, that their Prompt 2 blocks name the Python version, pandas and seaborn and paste `penguins.info()` and `penguins.head()` instead of `glimpse()`, and that the **Check it** numbers are the same.
 
 ## Before You Start
 
@@ -26,7 +26,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 03: Anatomy of a Good Prompt
 
-**Weak prompt.** "make a graph". Type it, and show the answer, which will probably ask for more information.
+**Weak prompt.** "make a graph of my data". Type it, and show the answer, which will probably ask for more information.
 
 **What to point out.**
 
@@ -37,7 +37,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 04: Load and Explore Penguins
 
-**Weak prompt.** "analyse penguins in R". Type it, and show the answer.
+**Weak prompt.** "analyse the penguins data in R". Type it, and show the answer.
 
 **What to point out.**
 
@@ -50,7 +50,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 05: Wrangle with dplyr
 
-**Weak prompt.** "clean the data". Type it, and show the answer.
+**Weak prompt.** "clean the penguins data and summarise it". Type it, and show the answer.
 
 **What to point out.**
 
@@ -63,7 +63,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 06: Visualise with ggplot2
 
-**Weak prompt.** "plot penguins". Type it, and show the answer.
+**Weak prompt.** "plot penguins in ggplot". Type it, and show the answer.
 
 **What to point out.**
 
@@ -76,14 +76,14 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 07: Statistics
 
-**Weak prompt.** "is there a difference?". Type it, and show the answer.
+**Weak prompt.** "Is there a relationship between bill length and bill depth in penguins? Give me R code.". Type it, and show the answer.
 
 **What to point out.**
 
 - The answer may give a confident yes or no, with no assumptions and no mention of grouping. See **Wrong Statistical Interpretation**.
 - Ask learners whether the answer mentions species. If it does not, note that the question is open-ended, and that is why the better prompt is needed.
 
-**Better prompt.** Type the better prompt from episode 07, which asks for each line of the output, the assumptions and the conditions that would make the result wrong.
+**Better prompt.** Type the better prompt from episode 07, which asks for the pooled and the per-species fits, whether the two could disagree, and which variables could confound the relationship.
 
 **Simpson's paradox.** Show the pooled scatter plot first, then the per-species plot. Ask the AI what the pooled plot shows. A likely answer describes a negative relationship. Then show the coloured plot, and ask learners which answer they would put in the report. See **Simpson's Paradox**.
 
@@ -91,7 +91,7 @@ If AI Mode returns truncated code, add "give the complete code in one block" and
 
 ## Episode 08: Assemble the Quarto Report
 
-**Weak prompt.** "write a report". Type it, and show the answer.
+**Weak prompt.** "write a report about the penguins data". Type it, and show the answer.
 
 **What to point out.**
 

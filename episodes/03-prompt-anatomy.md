@@ -27,6 +27,7 @@ Each prompt in this workshop has a weak version and a better version. Write your
 Paste the output of `glimpse()`, not the data. `glimpse()` shows the column names, their types and a few values. Those sample values are real data, so check them before you paste. For real research data, paste only the column names and types (see Card 7 in episode 02). Run this in RStudio:
 
 ```r
+library(tidyverse)
 library(palmerpenguins)
 glimpse(penguins)
 ```
@@ -44,7 +45,7 @@ penguins.info()
 print(penguins.head())
 ```
 
-`penguins.info()` reports 344 entries and 8 columns. Types show as `object` for text columns and `float64` for decimal numbers.
+`penguins.info()` reports 344 entries and 8 columns. Types show as `str` for text columns (pandas 2 prints `object`) and `float64` for decimal numbers.
 
 <!-- /tabs -->
 

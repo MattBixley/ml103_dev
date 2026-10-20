@@ -123,13 +123,11 @@ print(Path("figures/bill_length_depth.png").exists(), Path("figures/body_mass.pn
 overall_fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean).fit()
 print(overall_fit.params)  # slope -0.082
 
-species_slopes = pd.Series(
-    {
-        species: smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit().params["bill_length_mm"]
-        for species, group in penguins_clean.groupby("species")
-    },
-    name="slope",
-)
+slopes = {}
+for species, group in penguins_clean.groupby("species"):
+    fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit()
+    slopes[species] = fit.params["bill_length_mm"]
+species_slopes = pd.Series(slopes, name="slope")
 print(species_slopes)  # 0.177, 0.222, 0.208
 
 # Body mass by species: linear model (one-way ANOVA)

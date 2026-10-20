@@ -83,10 +83,10 @@ Your prompt now starts with `(.venv)`.
 Copy [python/requirements.txt](python/requirements.txt) from this repository into your `ml103-penguins` folder, then run:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-The file lists pandas, seaborn, statsmodels, palmerpenguins and jupyter. Confirm the install:
+The file lists pandas, numpy, matplotlib, seaborn, statsmodels, scipy, palmerpenguins and jupyter. Confirm the install:
 
 ```bash
 python -c "from palmerpenguins import load_penguins; print(load_penguins().head())"

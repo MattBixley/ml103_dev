@@ -5,6 +5,8 @@
 ## Project Facts
 
 - RStudio Project: `ml103-penguins.Rproj`. Work from this folder.
+- Python learners: same folder and object names; the script is `analysis.py`,
+  data comes from `load_penguins()`, and packages live in `.venv`.
 - Data: `palmerpenguins::penguins` (columns such as `bill_length_mm`,
   `flipper_length_mm`, `body_mass_g`).
 - `analysis.R`: the working script. It creates these objects:

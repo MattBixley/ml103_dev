@@ -8,12 +8,12 @@ Copy and paste these prompts into your AI assistant. The same prompts appear in 
 Show me how to use penguin_sex_ratio() from the palmerpenguins package to get the proportion of female penguins for each species. Give me a complete example.
 ```
 
-Check it in RStudio with `exists("penguin_sex_ratio")`. R returns `FALSE`.
+Check it in RStudio with `exists("penguin_sex_ratio")`. R returns `FALSE`. In Python, `hasattr(palmerpenguins, "penguin_sex_ratio")` returns `False` after `import palmerpenguins`.
 
 ## Draft an AI-use disclosure statement (episode 01)
 
 ```text
-Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.
+Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R (or Python) code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R (or plain pandas) results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.
 ```
 
 Replace each square-bracketed field with your own details.
@@ -24,7 +24,7 @@ Replace each square-bracketed field with your own details.
 make a graph of my data
 ```
 
-## Better prompt: scatter plot of penguins (episode 03)
+## Better prompt: scatter plot of penguins, R (episode 03)
 
 Before you use this prompt, run `R.version.string` and `packageVersion("tidyverse")` in the Console. Replace the bracketed text with the results and the `glimpse()` output from your own session.
 
@@ -43,6 +43,32 @@ Constraints:
 - Give the plot a title, axis labels with units (mm), and a legend title.
 
 Output: one complete, runnable code block that works in a fresh R session after library(tidyverse) and library(palmerpenguins). Put a comment above each step. Save the plot to figures/ with ggsave(width = 7, height = 5, dpi = 300).
+
+Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.
+```
+
+## Better prompt: scatter plot of penguins, Python (episode 03)
+
+Before you use this prompt, run `python --version` in a terminal, and `import pandas, seaborn; print(pandas.__version__, seaborn.__version__)` in Python. Replace the bracketed text with the results and your own `penguins.info()` and `penguins.head()` output.
+
+```text
+I am using Python [paste the output of python --version] in [Jupyter / VS Code]. I have pandas [version], seaborn [version] and palmerpenguins installed. I am not using any other packages.
+
+My data is loaded with: from palmerpenguins import load_penguins; penguins = load_penguins()
+Here is the output of penguins.info():
+[paste the penguins.info() output here]
+And penguins.head():
+[paste the penguins.head() output here]
+
+Task: make a scatter plot of bill length (bill_length_mm, on the x axis) against flipper length (flipper_length_mm, on the y axis), with one point per penguin, coloured by species. Drop rows that are missing either measurement, and tell me how many rows you dropped.
+
+Constraints:
+- Use pandas for the data step and seaborn for the plot (matplotlib only for saving and labels).
+- Do not use any package other than pandas, seaborn, matplotlib and palmerpenguins.
+- Use a colour-blind-safe palette, and name it.
+- Give the plot a title, axis labels with units (mm), and a legend title.
+
+Output: one complete, runnable code block that works in a fresh Python session. Put a comment above each step. Save the plot to figures/ with dpi=300 at 7 by 5 inches.
 
 Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.
 ```
