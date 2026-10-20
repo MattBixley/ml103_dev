@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+# Queue publishes so an older run cannot overwrite a newer site.
+concurrency:
+  group: publish-site
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
