@@ -133,3 +133,17 @@ function Code(el)
   end
   return nil
 end
+
+-- Quarto only adds a copy button to highlighted code. Prompt and output
+-- blocks are fenced as ```text (or unlabelled), so relabel them "default",
+-- which gets the button without colouring the text.
+local plain_classes = { text = true, txt = true, plain = true, output = true }
+
+function CodeBlock(el)
+  local first = el.classes[1]
+  if first == nil or plain_classes[first] then
+    el.classes = pandoc.List({ "default" })
+    return el
+  end
+  return nil
+end
