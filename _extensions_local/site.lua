@@ -123,3 +123,13 @@ function Pandoc(doc)
   end
   return doc
 end
+
+-- GitHub tables need a pipe inside code escaped as `\|>`. GitHub hides the
+-- backslash; Pandoc keeps code literal, so remove it here.
+function Code(el)
+  if el.text:find("\\|", 1, true) then
+    el.text = el.text:gsub("\\|", "|")
+    return el
+  end
+  return nil
+end
