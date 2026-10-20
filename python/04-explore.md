@@ -105,6 +105,52 @@ Give the complete code in one block, then explain each line in one sentence.
 | `Do not use sns.load_dataset()` | No second copy of the data with different `sex` values |
 | `explain each line` | You read the code before you run it |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+import pandas as pd
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+# 1. Count the penguins of each species
+species_counts = penguins["species"].value_counts()
+print(species_counts)
+
+# 2. Count the missing values in every column
+missing_counts = penguins.isna().sum()
+print(missing_counts)
+```
+
+**Output when run:**
+
+```text
+species
+Adelie       152
+Gentoo       124
+Chinstrap     68
+Name: count, dtype: int64
+species               0
+island                0
+bill_length_mm        2
+bill_depth_mm         2
+flipper_length_mm     2
+body_mass_g           2
+sex                  11
+year                  0
+dtype: int64
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 Replace `3.x` and `2.x` with your versions. Run `python --version` in the
 terminal and `print(pd.__version__)` in Python. pandas 3 prints text columns
 in `info()` as `str`; pandas 2 prints them as `object`. Both are fine.

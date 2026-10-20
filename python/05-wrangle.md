@@ -120,6 +120,67 @@ results.
 | `no missing values left` | Every later mean uses all the rows you kept |
 | `give me plain pandas lines … to check` | Builds the cross-check into the answer |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+penguins_clean = (
+    penguins
+    .dropna(subset=["sex"])
+    .assign(body_mass_kg=lambda d: d["body_mass_g"] / 1000)
+)
+
+species_summary = (
+    penguins_clean
+    .groupby("species", as_index=False)
+    .agg(
+        n=("species", "size"),
+        bill_length_mean=("bill_length_mm", "mean"),
+        bill_length_sd=("bill_length_mm", "std"),
+        flipper_length_mean=("flipper_length_mm", "mean"),
+        flipper_length_sd=("flipper_length_mm", "std"),
+        body_mass_mean=("body_mass_g", "mean"),
+        body_mass_sd=("body_mass_g", "std"),
+    )
+)
+print(species_summary.round(1))
+
+# Checks
+print(len(penguins_clean))
+print(penguins_clean.isna().sum().sum())
+print(penguins_clean["species"].value_counts())
+```
+
+**Output when run:**
+
+```text
+     species    n  bill_length_mean  bill_length_sd  flipper_length_mean  flipper_length_sd  body_mass_mean  \
+0     Adelie  146              38.8             2.7                190.1                6.5          3706.2   
+1  Chinstrap   68              48.8             3.3                195.8                7.1          3733.1   
+2     Gentoo  119              47.6             3.1                217.2                6.6          5092.4   
+
+   body_mass_sd  
+0         458.6  
+1         384.3  
+2         501.5  
+333
+0
+species
+Adelie       146
+Gentoo       119
+Chinstrap     68
+Name: count, dtype: int64
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 ### Check it
 
 Compare the method-chain results with plain pandas:
@@ -247,6 +308,33 @@ Do not change anything else.
 | Python and pandas versions | Fixes match the pandas you have, not the one the AI learned from |
 | Which columns are text and what you expected | The AI can judge whether a fix is correct |
 | `corrected line … do not change anything else` | A small fix you can read, not a rewrite |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+species_means = penguins_clean.groupby("species").mean(numeric_only=True)
+print(species_means)
+```
+
+**Output when run:**
+
+```text
+           bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g         year  body_mass_kg
+species                                                                                            
+Adelie          38.823973      18.347260         190.102740  3706.164384  2008.054795      3.706164
+Chinstrap       48.833824      18.420588         195.823529  3733.088235  2007.970588      3.733088
+Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.067227      5.092437
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
 
 Run `python --version` in the terminal and `print(pd.__version__)` in Python
 and copy the results. Paste no data.

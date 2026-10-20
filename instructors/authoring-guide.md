@@ -66,6 +66,20 @@ Try it in your AI assistant before reading on.
 |---|---|
 | … | … |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:** <code block>
+
+**Output when run:** <text block>
+
+**Notes:** [What worked, what needed fixing]
+
+</details>
+
 ### Check it
 
 <Concrete verification task: compare with base R, count rows, inspect a value…>
@@ -124,3 +138,13 @@ not apply (01, 02, 10), but keep the header block and Key points.
 
 Do not edit files outside your assigned list. If you need something from another
 area, write it in your final report.
+
+## Example AI output sections
+
+Every better prompt that generates code is followed by a collapsed
+"Example AI output (instructor testing)" block. These hold real results from an
+instructor's own run of the prompt. To update one, find the
+`<!-- example-output -->` marker (`grep -rn "example-output" r python episodes`),
+paste the tool, date, code and console output, and add notes. Keep the
+"Reference solution" separate: that is verified code, while the example shows
+what an AI actually returned.

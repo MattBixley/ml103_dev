@@ -91,6 +91,50 @@ before savefig(). Give the complete code in one block.
 | `figsize=(7, 5)` and `dpi=300` | The same 2100 × 1500 pixel file every time you run the script |
 | `figure called p_bill` | The report in episode 08 reuses this name |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set_theme(style="whitegrid")
+species_list = sorted(penguins_clean["species"].unique())
+colours = dict(zip(species_list, sns.color_palette("viridis", len(species_list))))
+
+p_bill, ax = plt.subplots(figsize=(7, 5))
+sns.scatterplot(data=penguins_clean, x="bill_length_mm", y="bill_depth_mm",
+                hue="species", palette=colours, ax=ax)
+for sp in species_list:
+    sns.regplot(data=penguins_clean[penguins_clean["species"] == sp],
+                x="bill_length_mm", y="bill_depth_mm",
+                scatter=False, ci=None, color=colours[sp], ax=ax)
+ax.set(xlabel="Bill length (mm)", ylabel="Bill depth (mm)")
+ax.legend(title="Species")
+
+Path("figures").mkdir(exist_ok=True)
+p_bill.savefig("figures/bill_length_depth.png", dpi=300)
+print("Saved figures/bill_length_depth.png")
+```
+
+**Output when run:**
+
+```text
+Saved figures/bill_length_depth.png
+[plot: figures/bill_length_depth.png]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 Find your versions with `print(sns.__version__, matplotlib.__version__)`
 after `import matplotlib`.
 
@@ -198,6 +242,47 @@ Save it with p_mass.savefig("figures/body_mass.png", dpi=300).
 | `stripplot(jitter=0.2)` | Jitter moves points sideways only, so masses stay true |
 | `hue="species", legend=False` | Current seaborn syntax for coloured boxes, no warning |
 | `one panel per sex` | Shows the sex difference the model in episode 07 ignores |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True)
+for ax, sex in zip(axes, ["female", "male"]):
+    subset = penguins_clean[penguins_clean["sex"] == sex]
+    sns.boxplot(data=subset, x="species", y="body_mass_g", hue="species",
+                palette="viridis", showfliers=False, legend=False, ax=ax)
+    sns.stripplot(data=subset, x="species", y="body_mass_g",
+                  jitter=0.2, color="black", alpha=0.5, ax=ax)
+    ax.set_title(sex)
+    ax.set_xlabel("")
+axes[0].set_ylabel("Body mass (g)")
+
+p_mass.savefig("figures/body_mass.png", dpi=300)
+print(penguins_clean.groupby("sex").size())
+```
+
+**Output when run:**
+
+```text
+sex
+female    165
+male      168
+dtype: int64
+[plot: figures/body_mass.png]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
 
 ### Check it
 

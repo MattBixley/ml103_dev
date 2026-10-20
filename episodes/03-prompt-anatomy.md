@@ -131,6 +131,101 @@ Before the code, list your assumptions. After the code, tell me how to check tha
 | One complete code block | Lets you copy and run the code without editing it piece by piece |
 | "List your assumptions" and "how to check" | Shows you what the AI assumed, and gives you a way to test the result |
 
+<!-- tabs -->
+
+#### R
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+# Load the packages
+library(tidyverse)
+library(palmerpenguins)
+
+# Drop rows missing either measurement and report how many were removed
+penguins_plot_data <- penguins |>
+  filter(!is.na(bill_length_mm), !is.na(flipper_length_mm))
+cat("Rows dropped:", nrow(penguins) - nrow(penguins_plot_data), "\n")
+
+# Scatter plot coloured by species, using the viridis scale (scale_colour_viridis_d)
+p <- penguins_plot_data |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d() +
+  labs(title = "Bill length vs flipper length",
+       x = "Bill length (mm)", y = "Flipper length (mm)", colour = "Species")
+
+# Save the plot
+dir.create("figures", showWarnings = FALSE)
+ggsave("figures/bill_vs_flipper.png", p, width = 7, height = 5, dpi = 300)
+```
+
+**Output when run:**
+
+```text
+Rows dropped: 2
+[plot: figures/bill_vs_flipper.png]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
+#### Python
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+# Load the packages and the data
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+# Drop rows missing either measurement and report how many were removed
+penguins_plot_data = penguins.dropna(subset=["bill_length_mm", "flipper_length_mm"])
+print("Rows dropped:", len(penguins) - len(penguins_plot_data))
+
+# Scatter plot coloured by species, using seaborn's "colorblind" palette
+plt.figure(figsize=(7, 5))
+ax = sns.scatterplot(data=penguins_plot_data, x="bill_length_mm",
+                     y="flipper_length_mm", hue="species", palette="colorblind")
+ax.set(title="Bill length vs flipper length",
+       xlabel="Bill length (mm)", ylabel="Flipper length (mm)")
+ax.legend(title="Species")
+
+# Save the plot
+os.makedirs("figures", exist_ok=True)
+plt.savefig("figures/bill_vs_flipper.png", dpi=300)
+```
+
+**Output when run:**
+
+```text
+Rows dropped: 2
+[plot: figures/bill_vs_flipper.png]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
+<!-- /tabs -->
+
 ### Check it
 
 <!-- tabs -->
