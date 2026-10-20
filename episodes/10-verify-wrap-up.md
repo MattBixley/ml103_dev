@@ -21,21 +21,23 @@ Before you submit or share your analysis, tick each item. If you cannot tick an 
 - [ ] You can explain each part of the statistical output, including the assumptions it makes.
 - [ ] Your report includes the AI-use statement from [episode 01](01-ai-and-ethics.md).
 - [ ] You did not paste any sensitive data into an AI tool.
+- [ ] You allocated your rigour: most of your checking effort went on filters, joins and statistics, and less on plot styling (adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/06-validation.html)).
 
 ## Where next
 
-- [R for Data Science, 2nd edition](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund. It covers the tidyverse in depth.
-- [Quarto](https://quarto.org/) documentation, for building reports and websites from R, Python and other languages.
-- [Introduction to R](https://genomicsaotearoa.github.io/Introduction-to-R/) from Genomics Aotearoa, for base R and ggplot2 if you need the foundations first.
-- [NeSI documentation](https://docs.nesi.org.nz/), for the REANNZ and NeSI systems, policies and agent rules.
-- The Python notes in [python/](../python/README.md), if you want the same workflow with pandas, seaborn and statsmodels.
-- [Python for Data Analysis, 3rd edition](https://wesmckinney.com/book/) by Wes McKinney, for pandas in depth.
+For books, documentation and courses, see [Resources and References](../resources.md).
+
+To keep practising, ask your AI assistant for exercises rather than answers (adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/04-learning-concepts.html)):
+
+```text
+Give me three short exercises on dplyr using the penguins data. Give hints only, no answers unless I say I give up.
+```
+
+Python: replace "dplyr" with "pandas".
 
 ## Give feedback
 
-Tell your instructor what worked and what did not. If you are working through these notes on your own, note which step took the longest, and which prompt gave the worst answer. That feedback improves the next version.
-
-<!-- Gap: no feedback channel (repository issue tracker or instructor contact) is named in the source plan. Add the channel before release. -->
+On a sticky note, write one thing the AI got wrong today and how you caught it. Give it to your instructor, along with what worked and what did not. If you are working through these notes on your own, open an issue at https://github.com/MattBixley/ml103_dev/issues with the same note, plus which step took the longest. That feedback improves the next version (adapted from [GenAI in Workshops: Instructor Training Bonus Module](https://carpentries.github.io/instructor-training-genai/feedback.html)).
 
 > [!TIP]
 > **Agent extension (Track B)**

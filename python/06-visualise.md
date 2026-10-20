@@ -140,6 +140,11 @@ after `import matplotlib`.
 
 ### Check it
 
+**Predict first.** Before you run the AI's code, say or sketch what the plot
+should show (for example, three species clusters, or Gentoo heaviest in the
+body mass plot), then compare
+([Carpentries: coding with LLMs](https://carpentries-incubator.github.io/coding-with-llms-novice/03-analysing-code.html)).
+
 A plot can look right and still be wrong. Check three things:
 
 ```python

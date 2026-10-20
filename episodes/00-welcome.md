@@ -17,6 +17,8 @@ In this workshop, you use a generative AI assistant to write a complete, reprodu
 
 The goal is not to let the AI do the work for you. The goal is to judge what it produces, check it, and say how you used it.
 
+Use the AI as a tutor or navigator, not an autopilot: ask it to explain, and you decide where the code goes. If an answer uses functions you have not met, add "I am new to R" (or Python) to your prompt and ask again for the simplest version (adapted from [GenAI in Workshops: Instructor Training Bonus Module](https://carpentries.github.io/instructor-training-genai/expertise.html)).
+
 Python learners: episodes 04 to 08 have a full Python version in [python/](../python/README.md), with pandas, seaborn and statsmodels. The welcome (00) and the shared episodes (01, 02, 03, 09 and 10) apply to both languages. Where this page says RStudio, use Jupyter or VS Code, and follow the Python steps under [Set up your project](#set-up-your-project).
 
 ## Two tracks, one room

@@ -111,6 +111,7 @@ The written content is licensed under [Creative Commons Attribution 4.0 Internat
 
 - **Palmer Penguins data.** The workshop uses the `palmerpenguins` R package. Cite it as Horst AM, Hill AP, Gorman KB (2020). *palmerpenguins: Palmer Archipelago (Antarctica) penguin data*. R package. doi:[10.5281/zenodo.3960218](https://doi.org/10.5281/zenodo.3960218). The original data comes from Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins. *PLoS ONE* 9(3): e90081. doi:[10.1371/journal.pone.0090081](https://doi.org/10.1371/journal.pone.0090081).
 - **Genomics Aotearoa** for the [Introduction to R](https://genomicsaotearoa.github.io/Introduction-to-R/) course that these notes build on.
+- **The Carpentries** for three CC BY 4.0 lessons that some ideas are adapted from: [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/) (The Carpentries Incubator), [GenAI in Workshops: Instructor Training Bonus Module](https://carpentries.github.io/instructor-training-genai/) (The Carpentries), and [Trustworthy AI: Validity, Fairness, Explainability, and Uncertainty Assessments](https://carpentries-incubator.github.io/fair-explainable-ml/) (The Carpentries Incubator).
 - **REANNZ** for the logo, and for the Acceptable Use Policy and AI agent rules that episode 02 explains.
 
 Copyright © 2026 Matt Bixley.

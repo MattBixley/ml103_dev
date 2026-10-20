@@ -14,6 +14,7 @@ project:
     - slurm/README.md
     - extras/agent-track.md
     - instructors/*.md
+    - resources.md
     - LICENSE.md
   resources:
     - REANNZ_logo.png
@@ -35,6 +36,8 @@ website:
         href: r/04-explore.md
       - text: "Python"
         href: python/README.md
+      - text: "Resources"
+        href: resources.md
       - text: "Instructors"
         href: instructors/README.md
     right:
@@ -117,6 +120,8 @@ website:
             text: "AI Failure Modes"
           - href: instructors/authoring-guide.md
             text: "Authoring guide (contract for all ML103 content)"
+      - href: resources.md
+        text: "Resources and References"
       - href: LICENSE.md
         text: "Licence"
   page-footer:

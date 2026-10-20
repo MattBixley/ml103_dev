@@ -37,6 +37,8 @@ Antarctica. Dr Kristen Gorman and the Palmer Station Long Term Ecological
 Research programme collected the data from 2007 to 2009. We use the copy in
 the `palmerpenguins` Python package (Horst, Hill and Gorman, 2020), which has
 `{python} len(penguins)` rows and `{python} penguins.shape[1]` columns.
+The data are released under a CC0 licence (Horst, Hill and Gorman, 2020;
+Gorman, Williams and Fraser, 2014).
 
 ## Data cleaning
 
