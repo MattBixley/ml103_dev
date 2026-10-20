@@ -148,3 +148,10 @@ instructor's own run of the prompt. To update one, find the
 paste the tool, date, code and console output, and add notes. Keep the
 "Reference solution" separate: that is verified code, while the example shows
 what an AI actually returned.
+
+## Pipes inside tables
+
+In a Markdown table, write the native pipe in code as `` `\|>` ``. GitHub needs the
+backslash so the `|` does not start a new column, and hides it when displaying.
+The website filter (`_extensions_local/site.lua`) removes it too, so both show `|>`.
+Outside tables, write `|>` as normal.
