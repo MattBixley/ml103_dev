@@ -135,6 +135,7 @@ format:
       dark: darkly
     toc: true
     code-copy: true
+    code-overflow: wrap
     filters:
       - path: _extensions_local/site.lua
         at: pre-ast
