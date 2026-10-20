@@ -314,6 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../instructors/README.md"> 
 <span class="menu-text">Instructors</span></a>
   </li>  
@@ -607,6 +611,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources and References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licence</span></a>
   </div>
@@ -635,6 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#prompt-2-a-better-version-1" id="toc-prompt-2-a-better-version-1" class="nav-link" data-scroll-target="#prompt-2-a-better-version-1">Prompt 2: a better version</a></li>
   <li><a href="#check-it-1" id="toc-check-it-1" class="nav-link" data-scroll-target="#check-it-1">Check it</a></li>
   <li><a href="#optional-a-t-test-and-when-it-would-be-wrong" id="toc-optional-a-t-test-and-when-it-would-be-wrong" class="nav-link" data-scroll-target="#optional-a-t-test-and-when-it-would-be-wrong">Optional: a t-test, and when it would be wrong</a></li>
+  <li><a href="#optional-a-review-only-second-opinion" id="toc-optional-a-review-only-second-opinion" class="nav-link" data-scroll-target="#optional-a-review-only-second-opinion">Optional: a review-only second opinion</a></li>
   </ul></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
   </ul>
@@ -961,6 +972,13 @@ Reference solution
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t_result.confidence_interval())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Catch-up file: <a href="https://github.com/MattBixley/ml103_dev/blob/main/python/checkpoints/after-07.py"><code>checkpoints/after-07.py</code></a>.</p>
 </details>
+</section>
+<section id="optional-a-review-only-second-opinion" class="level3">
+<h3 class="anchored" data-anchor-id="optional-a-review-only-second-opinion">Optional: a review-only second opinion</h3>
+<p>Paste your code into a fresh chat (or a different AI assistant) and ask:</p>
+<pre class="text"><code>Review this code only. Do not change it. List any errors, and the
+assumptions this analysis makes.</code></pre>
+<p>A fresh chat has not seen the earlier explanation, so it is less likely to repeat it. Check each point it raises yourself; it can be wrong too (<a href="https://carpentries-incubator.github.io/coding-with-llms-novice/06-validation.html">Carpentries: coding with LLMs</a>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -990,6 +1008,7 @@ not sure of.</code></pre>
 <h2 class="anchored" data-anchor-id="key-points">Key points</h2>
 <ul>
 <li>Pooling groups can reverse a relationship (Simpson’s paradox). Ask the AI about grouping and confounders, then fit both ways.</li>
+<li>An overall summary can hide or reverse what happens in subgroups, so report results by group when groups differ; fairness audits use the same check (<a href="https://carpentries-incubator.github.io/fair-explainable-ml/2-model-eval-and-fairness.html">Carpentries: FAIR explainable ML</a>).</li>
 <li>Use the formula interface, <code>smf.ols()</code>, so the model has an intercept.</li>
 <li>Ask the AI to explain each part of <code>summary()</code> output, including which parts do not apply, then check one claim with plain pandas.</li>
 <li>Ask what would make a test wrong before you report it. scipy’s <code>ttest_ind()</code> assumes equal variances unless you pass <code>equal_var=False</code>.</li>

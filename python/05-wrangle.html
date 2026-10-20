@@ -314,6 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../instructors/README.md"> 
 <span class="menu-text">Instructors</span></a>
   </li>  
@@ -607,6 +611,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources and References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licence</span></a>
   </div>
@@ -887,12 +897,20 @@ Reference solution
 <p>If <code>print()</code> hides some columns behind <code>...</code>, add <code>pd.set_option("display.max_columns", None)</code> near the top of the script.</p>
 <p>Catch-up file: <a href="https://github.com/MattBixley/ml103_dev/blob/main/python/checkpoints/after-05.py"><code>checkpoints/after-05.py</code></a>.</p>
 </details>
+<p><strong>Quick check (1 to 2 min).</strong> Change your summary to group by <code>species</code> and <code>island</code>. Before you run it, predict how many rows you will get, then check. Making a prediction first shows you what you really expect (<a href="https://carpentries.github.io/instructor-training-genai/expertise.html">Carpentries instructor training</a>).</p>
+<details>
+<summary>
+Answer
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.groupby([<span class="st">"species"</span>, <span class="st">"island"</span>]).size())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>5 rows, not 9. Adelie live on all three islands, but Chinstrap are only on Dream and Gentoo only on Biscoe.</p>
+</details>
 </section>
 </section>
 <section id="debug-with-an-ai" class="level2">
 <h2 class="anchored" data-anchor-id="debug-with-an-ai">Debug with an AI</h2>
 <p>Sooner or later, AI code (or your edit of it) fails. Say you want the mean of every measurement for each species, and you run a line that appears in many older tutorials:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python stops with a long traceback that ends:</p>
 <pre class="text"><code>  File ".../pandas/core/arrays/base.py", line 2808, in _groupby_op
     raise TypeError(
@@ -976,8 +994,8 @@ Example AI output (instructor testing)
 </summary>
 <p><strong>Tool:</strong> [AI tool, e.g.&nbsp;Google Search AI Mode] · <strong>Date tested:</strong> [YYYY-MM-DD]</p>
 <p><strong>Code returned:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
 <pre class="text"><code>           bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g         year  body_mass_kg
 species                                                                                            
@@ -991,11 +1009,11 @@ Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.0
 <section id="check-it-1" class="level3">
 <h3 class="anchored" data-anchor-id="check-it-1">Check it</h3>
 <p>Run the corrected code and check it with plain pandas:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>adelie <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="st">"body_mass_g"</span>]</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adelie.mean())  <span class="co"># 3706.164, same as the Adelie body_mass_g mean above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>adelie <span class="op">=</span> penguins_clean.loc[penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> <span class="st">"Adelie"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adelie.mean())  <span class="co"># 3706.164, same as the Adelie body_mass_g mean above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>numeric_only=True</code> also averages <code>year</code>, which gives a meaningless “mean year” of 2008.05 for Adelie. Selecting the columns you want first, as in <code>species_summary</code>, avoids that. The error was pandas protecting you from a silent choice.</p>
 <p>Other errors worth knowing on sight:</p>
 <ul>
@@ -1008,10 +1026,10 @@ Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.0
 <summary>
 Reference solution
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Since pandas 2.0, mean() no longer drops text columns by itself</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)  <span class="co"># Adelie body_mass_g 3706.164</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Since pandas 2.0, mean() no longer drops text columns by itself</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)  <span class="co"># Adelie body_mass_g 3706.164</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

@@ -40,3 +40,12 @@ Complete these steps the day before, and again on the morning if the room or net
 - [ ] **Check the catch-up checkpoints.** In a fresh R session for each file, run `r/checkpoints/after-04.R`, `after-05.R`, `after-06.R`, `after-07.R` and `after-08.qmd`. Do the same for the files in `python/checkpoints/`, each in a fresh Python session with `.venv` active. Each file must run without help. Learners rely on them to catch up.
 - [ ] **Check the Python Slurm scripts.** If learners use Mahuika, run `module spider Python` and confirm that the version in `slurm/run_analysis_py.sl` and `slurm/render_report_py.sl` still exists.
 - [ ] **Print or share the references.** Make the schedule in [timing.md](timing.md) and the failure list in [ai-failure-modes.md](ai-failure-modes.md) available to you on paper or on a second screen.
+
+## Helpers
+
+Helpers support learners at their desks. These habits are adapted from [GenAI in Workshops: Instructor Training Bonus Module](https://carpentries.github.io/instructor-training-genai/feedback.html).
+
+- Ask what the learner tried before they asked the AI.
+- If a learner's AI answer differs from the one on the projector, compare the two aloud. AI output varies, so a different answer is not a wrong answer.
+- Watch for signs of pasted code the learner has not read: functions not yet taught, heavy comments on every line, or a learner who cannot explain a line.
+- Note the common AI mistakes you see, and pass them to the instructor to share with the room.

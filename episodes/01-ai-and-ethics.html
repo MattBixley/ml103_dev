@@ -314,6 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../instructors/README.md"> 
 <span class="menu-text">Instructors</span></a>
   </li>  
@@ -607,6 +611,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources and References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licence</span></a>
   </div>
@@ -666,6 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="how-a-language-model-writes-text" class="level2">
 <h2 class="anchored" data-anchor-id="how-a-language-model-writes-text">How a language model writes text</h2>
 <p>A large language model (LLM) predicts the next token, a short chunk of text such as a word or part of a word, from the text that came before it. It does not look up facts, and it does not run your code. A response reads as fluent because the model learned which words usually follow which, not because it checked them.</p>
+<p>The model also samples its next token, so the same prompt can give different code each time. Compare your answer with a neighbour’s, and check your own answer rather than copying the instructor’s (adapted from <a href="https://carpentries-incubator.github.io/coding-with-llms-novice/02-effective-prompting.html">Learning to Code with AI Chatbots</a>).</p>
 <p>This explains the most common failure. The model writes a plausible R function even when no such function exists. Researchers call this a hallucination. Three typical forms:</p>
 <ul>
 <li><strong>An invented function.</strong> For example, <code>penguin_sex_ratio()</code>, which no package exports.</li>
@@ -703,6 +714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="bias-and-representativeness">Bias and representativeness</h2>
 <p>Fluent output is not the same as correct output. The AI reflects patterns in its training data, so it favours common examples and may not notice when your data differs from them.</p>
 <p>The penguins data describes 344 penguins from three islands near Palmer Station, Antarctica, collected between 2007 and 2009 (Gorman, Williams and Fraser, 2014). Any result describes these penguins. It does not describe all penguins. Ask yourself what the data cannot tell you before you write a conclusion.</p>
+<p><strong>Quick probe (30 seconds).</strong> Ask your AI assistant <code>Write one sentence about a typical researcher.</code> Notice who it assumes the researcher is. The same assumptions can leak into code comments and report text, so read those too (adapted from <a href="https://carpentries-incubator.github.io/fair-explainable-ml/2-model-eval-and-fairness.html">Trustworthy AI</a>).</p>
 </section>
 <section id="data-sovereignty-and-privacy" class="level2">
 <h2 class="anchored" data-anchor-id="data-sovereignty-and-privacy">Data sovereignty and privacy</h2>
@@ -736,6 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When you are learning a skill that you must judge later. Practise first, then use AI to speed up work you already understand.</li>
 <li>When the data is sensitive, as described above.</li>
 <li>When you cannot check the result. If you cannot tell whether the output is correct, you cannot report it.</li>
+<li>When reading feels like learning. An AI explanation can give you an illusion of competence. Type the code, change it, or predict its output yourself (adapted from <a href="https://carpentries-incubator.github.io/coding-with-llms-novice/04-learning-concepts.html">Learning to Code with AI Chatbots</a>).</li>
 </ul>
 <section id="exercise-2-draft-an-ai-use-disclosure-statement" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2-draft-an-ai-use-disclosure-statement">Exercise 2: draft an AI-use disclosure statement</h3>

@@ -314,6 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../instructors/README.md"> 
 <span class="menu-text">Instructors</span></a>
   </li>  
@@ -607,6 +611,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources and References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licence</span></a>
   </div>
@@ -769,6 +779,7 @@ Example AI output (instructor testing)
 </section>
 <section id="check-it" class="level3">
 <h3 class="anchored" data-anchor-id="check-it">Check it</h3>
+<p><strong>Predict first.</strong> Before you run the AI’s code, say or sketch what the plot should show (for example, three species clusters, or Gentoo heaviest in the body mass plot), then compare (<a href="https://carpentries-incubator.github.io/coding-with-llms-novice/03-analysing-code.html">Carpentries: coding with LLMs</a>).</p>
 <p>A plot can look right and still be wrong. Check three things:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">layer_data</span>(p_bill, <span class="dv">1</span>))   <span class="co"># points drawn: should be 333, nrow(penguins_clean)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bill_depth_mm <span class="sc">~</span> bill_length_mm, <span class="at">data =</span> penguins_clean,</span>
