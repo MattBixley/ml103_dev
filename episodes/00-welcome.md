@@ -96,7 +96,7 @@ mkdir ml103-penguins
 cd ml103-penguins
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt    # a copy of python/requirements.txt
+python -m pip install -r requirements.txt  # a copy of python/requirements.txt
 python -c "from palmerpenguins import load_penguins; print(load_penguins().head())"
 ```
 
@@ -119,7 +119,7 @@ You see a table of five rows. The first row has the species `Adelie` and the isl
 #### Python
 
 1. Open a private window and go to https://www.google.com.
-2. Search for `what is ggplot2 in R`.
+2. Search for `what is seaborn in Python`.
 3. Select **AI Mode**, then ask: `Write Python code that loads the penguins data with the palmerpenguins package and prints the first five rows.`
 
 <!-- /tabs -->

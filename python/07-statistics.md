@@ -51,7 +51,7 @@ Try it in your AI assistant before reading on.
   interface (`smf.ols()`) adds the intercept for you.
 - **Correlation on the whole data frame.** `penguins.corr()` stops with
   `ValueError: could not convert string to float: 'Adelie'` on pandas 2 and
-  later. The "fix", `corr(numeric_only=True)`, returns −0.229 for bill length
+  later. The "fix", `corr(numeric_only=True)`, returns −0.235 for bill length
   and depth, which hides the paradox too.
 - **Confident wording.** A small p-value is presented as a finding, with no
   mention of grouping, confounders or assumptions.
@@ -140,13 +140,11 @@ overall_fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean).fit
 print(overall_fit.params)
 
 # Within each species: 0.177, 0.222, 0.208
-species_slopes = pd.Series(
-    {
-        species: smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit().params["bill_length_mm"]
-        for species, group in penguins_clean.groupby("species")
-    },
-    name="slope",
-)
+slopes = {}
+for species, group in penguins_clean.groupby("species"):
+    fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=group).fit()
+    slopes[species] = fit.params["bill_length_mm"]
+species_slopes = pd.Series(slopes, name="slope")
 print(species_slopes)
 ```
 

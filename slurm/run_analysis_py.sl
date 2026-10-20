@@ -15,7 +15,7 @@
 #   module load Python/3.14.4-foss-2026
 #   python3 -m venv .venv
 #   source .venv/bin/activate
-#   pip install -r requirements.txt   # a copy of python/requirements.txt from the workshop repository
+#   python -m pip install -r requirements.txt   # a copy of python/requirements.txt from the workshop repository
 # Do not install packages inside this job.
 
 #SBATCH --job-name=penguins-analysis-py

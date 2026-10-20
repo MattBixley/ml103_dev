@@ -24,8 +24,8 @@ into the next. Read `|>` as "and then".
 |---|---|---|
 | Keep rows | `penguins[!is.na(penguins$sex), ]` | `penguins \|> filter(!is.na(sex))` |
 | Keep columns | `penguins[, c("species", "sex")]` | `penguins \|> select(species, sex)` |
-| Add a column | `df$body_mass_kg <- df$body_mass_g / 1000` | `df \|> mutate(body_mass_kg = body_mass_g / 1000)` |
-| Summarise by group | `tapply(df$body_mass_g, df$species, mean)` | `df \|> group_by(species) \|> summarise(mean = mean(body_mass_g))` |
+| Add a column | `penguins$body_mass_kg <- penguins$body_mass_g / 1000` | `penguins \|> mutate(body_mass_kg = body_mass_g / 1000)` |
+| Summarise by group | `tapply(penguins$body_mass_g, penguins$species, mean)` | `penguins \|> group_by(species) \|> summarise(mean = mean(body_mass_g))` |
 
 Here is the cleaning step for this workshop, written both ways:
 

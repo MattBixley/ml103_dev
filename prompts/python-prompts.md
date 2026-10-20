@@ -261,8 +261,8 @@ Turn it into a Quarto document penguins_report.qmd that renders to HTML with
   table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().
 - Create every object inside the document. No pip install, os.chdir() or
   %reset.
-- Use inline `{python}` expressions for every number in the text, rounded
-  with round().
+- Use inline `{python}` expressions for every number in the text, converted
+  with float() and rounded with round().
 Leave the Limitations and AI-use statement sections as headings with a
 placeholder sentence: I will write those myself.
 ```

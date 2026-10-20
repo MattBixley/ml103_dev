@@ -32,6 +32,6 @@ Do not cut the **Check it** steps in episodes 04, 05, 06 and 08. Learners who sk
 
 **Break rule.** If you are more than 10 minutes behind at the break, shorten the break to 5 minutes. Do not drop a whole episode to make up the time.
 
-**Catch-up rule.** A learner who falls behind copies the checkpoint for the episode they missed from `r/checkpoints/` and carries on. Do not wait for them.
+**Catch-up rule.** A learner who falls behind copies the checkpoint for the episode they missed from `r/checkpoints/` (Python: `python/checkpoints/`) and carries on. Do not wait for them.
 
 **Episode 10 is fixed.** Keep it to 5 minutes, even if the session runs late. Its checklist is short, so learners can finish it later.

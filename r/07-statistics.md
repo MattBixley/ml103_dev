@@ -110,6 +110,11 @@ penguins_clean |>
   summarise(slope = coef(lm(bill_depth_mm ~ bill_length_mm))[2])
 ```
 
+The second block is deliberately denser than anything so far: inside
+`summarise()`, `lm()` fits one model per species, `coef()` returns its
+intercept and slope, and `[2]` keeps the slope. Read it from the inside out.
+If an AI gives you code like this, ask it to explain each layer before you run it.
+
 Across all 333 penguins, the slope is **−0.082** mm of depth per mm of length.
 Within species, the slopes are **0.177** (Adelie), **0.222** (Chinstrap) and
 **0.208** (Gentoo). All three are positive. Look back at `p_bill` from episode 06:

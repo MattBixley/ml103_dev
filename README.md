@@ -91,7 +91,7 @@ ml103_dev/
 ├── episodes/                 Shared episodes, for both languages
 ├── r/                        R steps for episodes 04 to 08
 │   ├── checkpoints/          Catch-up files for each episode
-│   └── solutions/            Reference Quarto report
+│   └── solutions/            Reference analysis.R and Quarto report
 ├── python/                   Python steps for episodes 04 to 08 (full parallel version)
 │   ├── checkpoints/          Catch-up files for each episode
 │   ├── solutions/            Reference analysis.py and Quarto report

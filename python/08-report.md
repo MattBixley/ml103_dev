@@ -62,8 +62,9 @@ Try it in your AI assistant before reading on.
 - **Hard-coded numbers in the text** ("344 penguins") that go out of date
   when the data change. Inline Python expressions, such as
   `` `{python} len(penguins)` ``, keep them correct (Quarto 1.4 or later).
-  With numpy 2, a raw result can appear as `np.float64(-0.082)`; wrap it in
-  `float()` or `round()` first.
+  With numpy 2, a raw result can appear as `np.float64(-0.082)`, and
+  `round(x, 3)` does not change that. Convert it first:
+  `round(float(x), 3)`.
 - **Figures shown twice.** Ending a cell with the figure object (`p_bill`)
   after drawing it shows the plot twice. End figure cells with `plt.show()`.
 - **R-style cell options** (`{python, echo=FALSE}`) mixed with Quarto's `#|`
@@ -94,8 +95,8 @@ Turn it into a Quarto document penguins_report.qmd that renders to HTML with
   table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().
 - Create every object inside the document. No pip install, os.chdir() or
   %reset.
-- Use inline `{python}` expressions for every number in the text, rounded
-  with round().
+- Use inline `{python}` expressions for every number in the text, converted
+  with float() and rounded with round().
 Leave the Limitations and AI-use statement sections as headings with a
 placeholder sentence: I will write those myself.
 ```
@@ -274,7 +275,6 @@ from importlib.metadata import version
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from palmerpenguins import load_penguins
 

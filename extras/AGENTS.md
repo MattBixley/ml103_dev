@@ -24,20 +24,24 @@ Example rules file from ML103: AI-Assisted Coding with R. Copy it into your
 - Use the native pipe `|>`, not `%>%`.
 - ggplot2: use `linewidth =` for lines, not `size =`.
 - Save figures to `figures/` with `ggsave(width = 7, height = 5, dpi = 300)`.
+- Python version instead: Python 3.10 or later, pandas, seaborn and statsmodels,
+  data from `from palmerpenguins import load_penguins`. Use the project's `.venv`.
+  Save figures with `fig.savefig(..., dpi=300)` at 7 x 5 inches.
 - No hard-coded absolute paths. Use paths relative to the project folder.
 
 ## Before Claiming Success
 
 - Always run the code before you say it works. Run `Rscript analysis.R` after
-  changing it, and `quarto render penguins_report.qmd` after changing the report.
+  changing it (Python: `python analysis.py`), and `quarto render penguins_report.qmd`
+  after changing the report.
 - Show me the relevant output: the end of the run, row counts or the render log.
 - If something fails, say so and show the error. Do not hide or skip failures.
 
 ## Ask First
 
-- Never install, update or remove R packages without asking me.
+- Never install, update or remove R or Python packages without asking me.
 - Ask before deleting, moving or renaming any file.
-- Ask before running any command that is not R, Quarto, a read-only `git` command,
+- Ask before running any command that is not R, Python, Quarto, a read-only `git` command,
   `bash -n` or `sbatch --test-only`. Always ask before a real `sbatch`, `scancel` or delete.
 - If a request is unclear, ask a question instead of guessing.
 

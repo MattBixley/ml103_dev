@@ -29,7 +29,7 @@ Complete these steps the day before, and again on the morning if the room or net
   ```bash
   python3 --version
   python3 -m venv .venv && source .venv/bin/activate
-  pip install -r python/requirements.txt
+  python -m pip install -r python/requirements.txt
   quarto check jupyter
   ```
 
