@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -49,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -667,25 +702,25 @@ Warning
 <section id="explore-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>analyse the penguins data in python</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>analyse the penguins data in python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using Python 3.x with pandas 2.x and the palmerpenguins package (pip).
-I loaded the data with:
-
-from palmerpenguins import load_penguins
-penguins = load_penguins()
-
-penguins.info() gives:
-
-&lt;paste your penguins.info() output here&gt;
-
-Using only the column names shown above, write Python code that:
-1. counts the penguins of each species
-2. counts the missing values in every column
-
-Use pandas only. Do not use sns.load_dataset() or any other package.
-Print each result with print().
-Give the complete code in one block, then explain each line in one sentence.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 2.x and the palmerpenguins package (pip).</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>I loaded the data with:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>from palmerpenguins import load_penguins</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>penguins = load_penguins()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>penguins.info() gives:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>&lt;paste your penguins.info() output here&gt;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Using only the column names shown above, write Python code that:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>1. counts the penguins of each species</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>2. counts the missing values in every column</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Use pandas only. Do not use sns.load_dataset() or any other package.</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Print each result with print().</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Give the complete code in one block, then explain each line in one sentence.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="wrangle-with-pandas-and-debug" class="level2">
@@ -694,51 +729,51 @@ Give the complete code in one block, then explain each line in one sentence.</co
 <section id="clean-and-summarise" class="level3">
 <h3 class="anchored" data-anchor-id="clean-and-summarise">Clean and Summarise</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>clean the penguins data and summarise it with pandas</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean the penguins data and summarise it with pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using Python 3.x with pandas 2.x and palmerpenguins. The data frame is
-`penguins`, loaded with load_penguins(). penguins.info() gives:
-&lt;paste your penguins.info() output here&gt;
-
-Write pandas code as method chains (one method per line, inside brackets) that:
-1. creates penguins_clean: remove only the rows where sex is missing, with
-   dropna(subset=["sex"]), then add a column body_mass_kg = body_mass_g / 1000
-   with assign()
-2. creates species_summary: for each species, the number of penguins (n) and
-   the mean and standard deviation of bill_length_mm, flipper_length_mm and
-   body_mass_g. Use groupby("species", as_index=False) and agg() with named
-   aggregations.
-
-Do not use inplace=True, chained assignment or .append(). penguins_clean
-should have no missing values left. After the code, give me plain pandas lines
-(len, value_counts, .loc with a boolean mask) that I can use to check the
-results.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 2.x and palmerpenguins. The data frame is</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>`penguins`, loaded with load_penguins(). penguins.info() gives:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>&lt;paste your penguins.info() output here&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Write pandas code as method chains (one method per line, inside brackets) that:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>1. creates penguins_clean: remove only the rows where sex is missing, with</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>   dropna(subset=["sex"]), then add a column body_mass_kg = body_mass_g / 1000</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>   with assign()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>2. creates species_summary: for each species, the number of penguins (n) and</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>   the mean and standard deviation of bill_length_mm, flipper_length_mm and</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>   body_mass_g. Use groupby("species", as_index=False) and agg() with named</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>   aggregations.</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Do not use inplace=True, chained assignment or .append(). penguins_clean</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>should have no missing values left. After the code, give me plain pandas lines</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>(len, value_counts, .loc with a boolean mask) that I can use to check the</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>results.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="debug-with-an-ai" class="level3">
 <h3 class="anchored" data-anchor-id="debug-with-an-ai">Debug with an AI</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>my python code doesn't work</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my python code doesn't work</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using Python 3.x with pandas 3.x and palmerpenguins.
-This code:
-
-species_means = penguins_clean.groupby("species").mean()
-
-gives this error:
-
-Traceback (most recent call last):
-  File "analysis.py", line 52, in &lt;module&gt;
-    species_means = penguins_clean.groupby("species").mean()
-  ...
-TypeError: dtype 'str' does not support operation 'mean'
-
-Versions: Python 3.x.x, pandas 3.x.x (from print(pd.__version__)).
-
-penguins_clean has 333 rows. species, island and sex are text columns; the
-other columns are numbers. I expected a table with one row per species and
-the mean of each measurement column.
-Explain the cause in one or two sentences and give me the corrected line.
-Do not change anything else.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 3.x and palmerpenguins.</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>This code:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>species_means = penguins_clean.groupby("species").mean()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>gives this error:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  File "analysis.py", line 52, in &lt;module&gt;</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    species_means = penguins_clean.groupby("species").mean()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>TypeError: dtype 'str' does not support operation 'mean'</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>Versions: Python 3.x.x, pandas 3.x.x (from print(pd.__version__)).</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>penguins_clean has 333 rows. species, island and sex are text columns; the</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>other columns are numbers. I expected a table with one row per species and</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>the mean of each measurement column.</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>Explain the cause in one or two sentences and give me the corrected line.</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>Do not change anything else.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="visualise-with-seaborn" class="level2">
@@ -747,39 +782,39 @@ Do not change anything else.</code></pre>
 <section id="bill-length-vs-bill-depth" class="level3">
 <h3 class="anchored" data-anchor-id="bill-length-vs-bill-depth">Bill Length vs Bill Depth</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>plot penguins with seaborn</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot penguins with seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using Python 3.x with pandas, seaborn 0.13 and matplotlib 3.x, and the
-data frame penguins_clean (palmerpenguins columns, no missing values).
-
-Write code that creates a matplotlib figure called p_bill with
-p_bill, ax = plt.subplots(figsize=(7, 5)):
-- sns.scatterplot() of x = bill_length_mm, y = bill_depth_mm, coloured by
-  species (hue)
-- one straight-line fit per species: loop over the species and call
-  sns.regplot(scatter=False, ci=None) on each subset, in the same colour as
-  its points. Do not use lmplot().
-- the viridis palette, as a dictionary from species name to colour
-- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"
-- sns.set_theme(style="whitegrid")
-Then save it with p_bill.savefig("figures/bill_length_depth.png", dpi=300),
-creating the figures folder if it does not exist. Do not call plt.show()
-before savefig(). Give the complete code in one block.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas, seaborn 0.13 and matplotlib 3.x, and the</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data frame penguins_clean (palmerpenguins columns, no missing values).</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Write code that creates a matplotlib figure called p_bill with</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>p_bill, ax = plt.subplots(figsize=(7, 5)):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>- sns.scatterplot() of x = bill_length_mm, y = bill_depth_mm, coloured by</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  species (hue)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>- one straight-line fit per species: loop over the species and call</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  sns.regplot(scatter=False, ci=None) on each subset, in the same colour as</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  its points. Do not use lmplot().</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>- the viridis palette, as a dictionary from species name to colour</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>- sns.set_theme(style="whitegrid")</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Then save it with p_bill.savefig("figures/bill_length_depth.png", dpi=300),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>creating the figures folder if it does not exist. Do not call plt.show()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>before savefig(). Give the complete code in one block.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="body-mass-by-species-and-sex" class="level3">
 <h3 class="anchored" data-anchor-id="body-mass-by-species-and-sex">Body Mass by Species and Sex</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>make a boxplot of penguin weight</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>make a boxplot of penguin weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>Using penguins_clean (palmerpenguins columns), seaborn 0.13 and matplotlib,
-create a figure p_mass with
-p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True),
-one panel per sex (female, male). In each panel: body_mass_g by species as
-sns.boxplot(showfliers=False, hue="species", legend=False) with the viridis
-palette, plus the individual penguins as
-sns.stripplot(jitter=0.2, color="black", alpha=0.5). Panel titles = sex,
-y label "Body mass (g)", no x label.
-Save it with p_mass.savefig("figures/body_mass.png", dpi=300).</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Using penguins_clean (palmerpenguins columns), seaborn 0.13 and matplotlib,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>create a figure p_mass with</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>one panel per sex (female, male). In each panel: body_mass_g by species as</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sns.boxplot(showfliers=False, hue="species", legend=False) with the viridis</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>palette, plus the individual penguins as</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>sns.stripplot(jitter=0.2, color="black", alpha=0.5). Panel titles = sex,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>y label "Body mass (g)", no x label.</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Save it with p_mass.savefig("figures/body_mass.png", dpi=300).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="statistics" class="level2">
@@ -788,49 +823,49 @@ Save it with p_mass.savefig("figures/body_mass.png", dpi=300).</code></pre>
 <section id="bill-length-and-bill-depth" class="level3">
 <h3 class="anchored" data-anchor-id="bill-length-and-bill-depth">Bill Length and Bill Depth</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>Is there a relationship between bill length and bill depth in penguins? Give me Python code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Is there a relationship between bill length and bill depth in penguins? Give me Python code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using Python with pandas and statsmodels, and the data frame
-penguins_clean (palmerpenguins columns). The data contain three species.
-
-I want to know how bill_depth_mm relates to bill_length_mm.
-1. Fit the relationship for all penguins together, then separately within
-   each species, using statsmodels.formula.api.ols.
-2. Tell me whether the two answers could disagree, and why.
-3. List the variables in this dataset that could confound the relationship.
-Do not state a conclusion until I have run the code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I am using Python with pandas and statsmodels, and the data frame</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>penguins_clean (palmerpenguins columns). The data contain three species.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>I want to know how bill_depth_mm relates to bill_length_mm.</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>1. Fit the relationship for all penguins together, then separately within</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   each species, using statsmodels.formula.api.ols.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>2. Tell me whether the two answers could disagree, and why.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>3. List the variables in this dataset that could confound the relationship.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Do not state a conclusion until I have run the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="body-mass-by-species" class="level3">
 <h3 class="anchored" data-anchor-id="body-mass-by-species">Body Mass by Species</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>what does this mean?
-&lt;pasted mass_model.summary() output&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>what does this mean?</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>&lt;pasted mass_model.summary() output&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I fitted smf.ols("body_mass_g ~ species", data=penguins_clean).fit() with
-statsmodels in Python, where species is a text column with the values Adelie,
-Chinstrap and Gentoo. Here is the summary() output:
-
-&lt;paste print(mass_model.summary()) output&gt;
-
-Explain each part of the output (the top block including R-squared and
-F-statistic, each coefficient row and column, and the bottom block with
-Omnibus, Durbin-Watson, Jarque-Bera and Cond. No.) in plain language for a
-biologist. Say which species is the reference level and what the Intercept
-means, and which numbers in the bottom block do not apply to these data.
-List the assumptions of this model and what would make the conclusions wrong.
-Finish with one claim from your explanation that I can check myself with
-plain pandas, and the code to check it.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>I fitted smf.ols("body_mass_g ~ species", data=penguins_clean).fit() with</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>statsmodels in Python, where species is a text column with the values Adelie,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Chinstrap and Gentoo. Here is the summary() output:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>&lt;paste print(mass_model.summary()) output&gt;</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Explain each part of the output (the top block including R-squared and</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>F-statistic, each coefficient row and column, and the bottom block with</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>Omnibus, Durbin-Watson, Jarque-Bera and Cond. No.) in plain language for a</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>biologist. Say which species is the reference level and what the Intercept</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>means, and which numbers in the bottom block do not apply to these data.</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>List the assumptions of this model and what would make the conclusions wrong.</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>Finish with one claim from your explanation that I can check myself with</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plain pandas, and the code to check it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="t-test-check" class="level3">
 <h3 class="anchored" data-anchor-id="t-test-check">t-Test Check</h3>
-<pre class="text"><code>Write Python code for a t-test of whether male and female penguins differ in
-body mass, and tell me when this test would be wrong.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Write Python code for a t-test of whether male and female penguins differ in</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>body mass, and tell me when this test would be wrong.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="review-only-second-opinion" class="level3">
 <h3 class="anchored" data-anchor-id="review-only-second-opinion">Review-Only Second Opinion</h3>
 <p>Paste your code into a fresh chat (or a different AI assistant) first.</p>
-<pre class="text"><code>Review this code only. Do not change it. List any errors, and the
-assumptions this analysis makes.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Review this code only. Do not change it. List any errors, and the</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>assumptions this analysis makes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="assemble-the-quarto-report" class="level2">
@@ -839,33 +874,33 @@ assumptions this analysis makes.</code></pre>
 <section id="build-the-report" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-report">Build the Report</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>write a report about the penguins data</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>write a report about the penguins data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I have a Python script analysis.py (pandas, seaborn, matplotlib, statsmodels,
-palmerpenguins) that creates penguins, penguins_clean, species_summary,
-p_bill, p_mass and
-mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit().
-Here is the script:
-
-&lt;paste analysis.py&gt;
-
-Turn it into a Quarto document penguins_report.qmd that renders to HTML with
-`quarto render penguins_report.qmd` using the Jupyter engine.
-- YAML header: title, author, date: today, jupyter: python3, format: html
-  with embed-resources: true, code-fold: true and toc: true
-- A setup cell that imports the packages and loads the data
-- Sections: Introduction and data source; Data cleaning; Summary tables
-  (by species, island and sex, shown as data frames); Figures; Simple
-  comparison (overall vs per-species slopes, mass_model); Limitations;
-  AI-use statement; Session information (Python and package versions)
-- Use ```{python} cells with Quarto #| options: labels, figure captions and
-  table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().
-- Create every object inside the document. No pip install, os.chdir() or
-  %reset.
-- Use inline `{python}` expressions for every number in the text, converted
-  with float() and rounded with round().
-Leave the Limitations and AI-use statement sections as headings with a
-placeholder sentence: I will write those myself.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>I have a Python script analysis.py (pandas, seaborn, matplotlib, statsmodels,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>palmerpenguins) that creates penguins, penguins_clean, species_summary,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>p_bill, p_mass and</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit().</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Here is the script:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>&lt;paste analysis.py&gt;</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>Turn it into a Quarto document penguins_report.qmd that renders to HTML with</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>`quarto render penguins_report.qmd` using the Jupyter engine.</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>- YAML header: title, author, date: today, jupyter: python3, format: html</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  with embed-resources: true, code-fold: true and toc: true</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>- A setup cell that imports the packages and loads the data</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>- Sections: Introduction and data source; Data cleaning; Summary tables</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  (by species, island and sex, shown as data frames); Figures; Simple</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  comparison (overall vs per-species slopes, mass_model); Limitations;</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  AI-use statement; Session information (Python and package versions)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>- Use ```{python} cells with Quarto #| options: labels, figure captions and</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>- Create every object inside the document. No pip install, os.chdir() or</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  %reset.</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>- Use inline `{python}` expressions for every number in the text, converted</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  with float() and rounded with round().</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>Leave the Limitations and AI-use statement sections as headings with a</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>placeholder sentence: I will write those myself.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

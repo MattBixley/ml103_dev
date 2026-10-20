@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -732,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="clean-and-summarise">Clean and Summarise</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>clean the penguins data and summarise it with pandas</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean the penguins data and summarise it with pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -748,23 +748,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using Python 3.x with pandas 2.x and palmerpenguins. The data frame is
-`penguins`, loaded with load_penguins(). penguins.info() gives:
-&lt;paste your penguins.info() output here&gt;
-
-Write pandas code as method chains (one method per line, inside brackets) that:
-1. creates penguins_clean: remove only the rows where sex is missing, with
-   dropna(subset=["sex"]), then add a column body_mass_kg = body_mass_g / 1000
-   with assign()
-2. creates species_summary: for each species, the number of penguins (n) and
-   the mean and standard deviation of bill_length_mm, flipper_length_mm and
-   body_mass_g. Use groupby("species", as_index=False) and agg() with named
-   aggregations.
-
-Do not use inplace=True, chained assignment or .append(). penguins_clean
-should have no missing values left. After the code, give me plain pandas lines
-(len, value_counts, .loc with a boolean mask) that I can use to check the
-results.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 2.x and palmerpenguins. The data frame is</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>`penguins`, loaded with load_penguins(). penguins.info() gives:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>&lt;paste your penguins.info() output here&gt;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Write pandas code as method chains (one method per line, inside brackets) that:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>1. creates penguins_clean: remove only the rows where sex is missing, with</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>   dropna(subset=["sex"]), then add a column body_mass_kg = body_mass_g / 1000</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>   with assign()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>2. creates species_summary: for each species, the number of penguins (n) and</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   the mean and standard deviation of bill_length_mm, flipper_length_mm and</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>   body_mass_g. Use groupby("species", as_index=False) and agg() with named</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>   aggregations.</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Do not use inplace=True, chained assignment or .append(). penguins_clean</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>should have no missing values left. After the code, give me plain pandas lines</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>(len, value_counts, .loc with a boolean mask) that I can use to check the</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>results.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -840,22 +840,22 @@ Example AI output (instructor testing)
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean[<span class="st">"species"</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>     species    n  bill_length_mean  bill_length_sd  flipper_length_mean  flipper_length_sd  body_mass_mean  \
-0     Adelie  146              38.8             2.7                190.1                6.5          3706.2   
-1  Chinstrap   68              48.8             3.3                195.8                7.1          3733.1   
-2     Gentoo  119              47.6             3.1                217.2                6.6          5092.4   
-
-   body_mass_sd  
-0         458.6  
-1         384.3  
-2         501.5  
-333
-0
-species
-Adelie       146
-Gentoo       119
-Chinstrap     68
-Name: count, dtype: int64</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>     species    n  bill_length_mean  bill_length_sd  flipper_length_mean  flipper_length_sd  body_mass_mean  \</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>0     Adelie  146              38.8             2.7                190.1                6.5          3706.2   </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>1  Chinstrap   68              48.8             3.3                195.8                7.1          3733.1   </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>2     Gentoo  119              47.6             3.1                217.2                6.6          5092.4   </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>   body_mass_sd  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>0         458.6  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>1         384.3  </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>2         501.5  </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>333</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>0</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>species</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Adelie       146</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Gentoo       119</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>Chinstrap     68</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>Name: count, dtype: int64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 </section>
@@ -912,13 +912,13 @@ Answer
 <p>Sooner or later, AI code (or your edit of it) fails. Say you want the mean of every measurement for each species, and you run a line that appears in many older tutorials:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python stops with a long traceback that ends:</p>
-<pre class="text"><code>  File ".../pandas/core/arrays/base.py", line 2808, in _groupby_op
-    raise TypeError(
-TypeError: dtype 'str' does not support operation 'mean'</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  File ".../pandas/core/arrays/base.py", line 2808, in _groupby_op</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    raise TypeError(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>TypeError: dtype 'str' does not support operation 'mean'</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On pandas 2, the last line reads <code>TypeError: agg function failed [how-&gt;mean,dtype-&gt;object]</code> instead.</p>
 <section id="prompt-1-the-quick-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
-<pre class="text"><code>my python code doesn't work</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my python code doesn't work</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong-1" class="level3">
@@ -933,26 +933,26 @@ TypeError: dtype 'str' does not support operation 'mean'</code></pre>
 </section>
 <section id="prompt-2-a-better-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using Python 3.x with pandas 3.x and palmerpenguins.
-This code:
-
-species_means = penguins_clean.groupby("species").mean()
-
-gives this error:
-
-Traceback (most recent call last):
-  File "analysis.py", line 52, in &lt;module&gt;
-    species_means = penguins_clean.groupby("species").mean()
-  ...
-TypeError: dtype 'str' does not support operation 'mean'
-
-Versions: Python 3.x.x, pandas 3.x.x (from print(pd.__version__)).
-
-penguins_clean has 333 rows. species, island and sex are text columns; the
-other columns are numbers. I expected a table with one row per species and
-the mean of each measurement column.
-Explain the cause in one or two sentences and give me the corrected line.
-Do not change anything else.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 3.x and palmerpenguins.</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>This code:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>species_means = penguins_clean.groupby("species").mean()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>gives this error:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  File "analysis.py", line 52, in &lt;module&gt;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    species_means = penguins_clean.groupby("species").mean()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>TypeError: dtype 'str' does not support operation 'mean'</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>Versions: Python 3.x.x, pandas 3.x.x (from print(pd.__version__)).</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>penguins_clean has 333 rows. species, island and sex are text columns; the</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>other columns are numbers. I expected a table with one row per species and</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>the mean of each measurement column.</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>Explain the cause in one or two sentences and give me the corrected line.</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>Do not change anything else.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -997,11 +997,11 @@ Example AI output (instructor testing)
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins_clean.groupby(<span class="st">"species"</span>).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>           bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g         year  body_mass_kg
-species                                                                                            
-Adelie          38.823973      18.347260         190.102740  3706.164384  2008.054795      3.706164
-Chinstrap       48.833824      18.420588         195.823529  3733.088235  2007.970588      3.733088
-Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.067227      5.092437</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>           bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g         year  body_mass_kg</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>species                                                                                            </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Adelie          38.823973      18.347260         190.102740  3706.164384  2008.054795      3.706164</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Chinstrap       48.833824      18.420588         195.823529  3733.088235  2007.970588      3.733088</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Gentoo          47.568067      14.996639         217.235294  5092.436975  2008.067227      5.092437</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 <p>Run <code>python --version</code> in the terminal and <code>print(pd.__version__)</code> in Python and copy the results. Paste no data.</p>
@@ -1042,14 +1042,14 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong> Give the agent the wrangling task with acceptance criteria:</p>
-<pre class="text"><code>Add a "05 Wrangle" section to analysis.py that creates penguins_clean
-(remove only rows where sex is missing; add body_mass_kg) and species_summary
-(n, mean and sd of bill_length_mm, flipper_length_mm, body_mass_g by species,
-groupby with as_index=False and named aggregations). Use method chains; no
-inplace=True and no chained assignment. Run the script with the Python in
-.venv. Acceptance: len(penguins_clean) == 333; no NaN in penguins_clean;
-species_summary body_mass_mean equals the .loc boolean-mask mean for each
-species to 3 decimal places. Show me the check output.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Add a "05 Wrangle" section to analysis.py that creates penguins_clean</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(remove only rows where sex is missing; add body_mass_kg) and species_summary</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>(n, mean and sd of bill_length_mm, flipper_length_mm, body_mass_g by species,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>groupby with as_index=False and named aggregations). Use method chains; no</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>inplace=True and no chained assignment. Run the script with the Python in</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>.venv. Acceptance: len(penguins_clean) == 333; no NaN in penguins_clean;</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>species_summary body_mass_mean equals the .loc boolean-mask mean for each</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>species to 3 decimal places. Show me the check output.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then break the script on purpose (<code>penguins_clean.groupby("species").mean()</code>) and ask the agent to run it, read the traceback and fix only that line. Compare how much context the agent collected for itself with the context you had to paste in Track A.</p>
 </div>
 </div>

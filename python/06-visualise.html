@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -680,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These notes use seaborn’s classic functions (<code>sns.scatterplot()</code>, <code>sns.regplot()</code>, <code>sns.boxplot()</code>, <code>sns.stripplot()</code>) on matplotlib figures, because that is what most AI answers produce. <code>p_bill</code> and <code>p_mass</code> are matplotlib <code>Figure</code> objects.</p>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>plot penguins with seaborn</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plot penguins with seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -698,22 +698,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using Python 3.x with pandas, seaborn 0.13 and matplotlib 3.x, and the
-data frame penguins_clean (palmerpenguins columns, no missing values).
-
-Write code that creates a matplotlib figure called p_bill with
-p_bill, ax = plt.subplots(figsize=(7, 5)):
-- sns.scatterplot() of x = bill_length_mm, y = bill_depth_mm, coloured by
-  species (hue)
-- one straight-line fit per species: loop over the species and call
-  sns.regplot(scatter=False, ci=None) on each subset, in the same colour as
-  its points. Do not use lmplot().
-- the viridis palette, as a dictionary from species name to colour
-- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"
-- sns.set_theme(style="whitegrid")
-Then save it with p_bill.savefig("figures/bill_length_depth.png", dpi=300),
-creating the figures folder if it does not exist. Do not call plt.show()
-before savefig(). Give the complete code in one block.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas, seaborn 0.13 and matplotlib 3.x, and the</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data frame penguins_clean (palmerpenguins columns, no missing values).</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Write code that creates a matplotlib figure called p_bill with</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>p_bill, ax = plt.subplots(figsize=(7, 5)):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>- sns.scatterplot() of x = bill_length_mm, y = bill_depth_mm, coloured by</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  species (hue)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>- one straight-line fit per species: loop over the species and call</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  sns.regplot(scatter=False, ci=None) on each subset, in the same colour as</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  its points. Do not use lmplot().</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>- the viridis palette, as a dictionary from species name to colour</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>- sns.set_theme(style="whitegrid")</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Then save it with p_bill.savefig("figures/bill_length_depth.png", dpi=300),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>creating the figures folder if it does not exist. Do not call plt.show()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>before savefig(). Give the complete code in one block.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -790,8 +790,8 @@ Example AI output (instructor testing)
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>p_bill.savefig(<span class="st">"figures/bill_length_depth.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved figures/bill_length_depth.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>Saved figures/bill_length_depth.png
-[plot: figures/bill_length_depth.png]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Saved figures/bill_length_depth.png</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[plot: figures/bill_length_depth.png]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 <p>Find your versions with <code>print(sns.__version__, matplotlib.__version__)</code> after <code>import matplotlib</code>.</p>
@@ -848,7 +848,7 @@ Reference solution
 <h2 class="anchored" data-anchor-id="body-mass-by-species-and-sex">Body Mass by Species and Sex</h2>
 <section id="prompt-1-the-quick-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
-<pre class="text"><code>make a boxplot of penguin weight</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>make a boxplot of penguin weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong-1" class="level3">
@@ -863,15 +863,15 @@ Reference solution
 </section>
 <section id="prompt-2-a-better-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
-<pre class="text"><code>Using penguins_clean (palmerpenguins columns), seaborn 0.13 and matplotlib,
-create a figure p_mass with
-p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True),
-one panel per sex (female, male). In each panel: body_mass_g by species as
-sns.boxplot(showfliers=False, hue="species", legend=False) with the viridis
-palette, plus the individual penguins as
-sns.stripplot(jitter=0.2, color="black", alpha=0.5). Panel titles = sex,
-y label "Body mass (g)", no x label.
-Save it with p_mass.savefig("figures/body_mass.png", dpi=300).</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Using penguins_clean (palmerpenguins columns), seaborn 0.13 and matplotlib,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>create a figure p_mass with</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>p_mass, axes = plt.subplots(1, 2, figsize=(7, 5), sharey=True),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>one panel per sex (female, male). In each panel: body_mass_g by species as</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>sns.boxplot(showfliers=False, hue="species", legend=False) with the viridis</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>palette, plus the individual penguins as</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sns.stripplot(jitter=0.2, color="black", alpha=0.5). Panel titles = sex,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>y label "Body mass (g)", no x label.</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Save it with p_mass.savefig("figures/body_mass.png", dpi=300).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -930,11 +930,11 @@ Example AI output (instructor testing)
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>p_mass.savefig(<span class="st">"figures/body_mass.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins_clean.groupby(<span class="st">"sex"</span>).size())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>sex
-female    165
-male      168
-dtype: int64
-[plot: figures/body_mass.png]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sex</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>female    165</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>male      168</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>dtype: int64</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>[plot: figures/body_mass.png]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 </section>
@@ -990,12 +990,12 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong></p>
-<pre class="text"><code>Add a "06 Visualise" section to analysis.py that creates p_bill and p_mass
-as described in episode 06 and saves them to figures/ with
-savefig(dpi=300) from figures made with figsize=(7, 5). Run the script with
-the Python in .venv. Acceptance: no warnings in the output; p_bill shows
-333 points; both PNG files exist and are 2100 x 1500 pixels; no lmplot(),
-no ci= on barplot() and no palette= without hue=.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Add a "06 Visualise" section to analysis.py that creates p_bill and p_mass</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>as described in episode 06 and saves them to figures/ with</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>savefig(dpi=300) from figures made with figsize=(7, 5). Run the script with</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>the Python in .venv. Acceptance: no warnings in the output; p_bill shows</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>333 points; both PNG files exist and are 2100 x 1500 pixels; no lmplot(),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>no ci= on barplot() and no palette= without hue=.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If your agent can read images, ask it to open <code>figures/bill_length_depth.png</code> and describe the slope of each species’ line. Compare its description with what you see. Approve each edit and each run.</p>
 </div>
 </div>

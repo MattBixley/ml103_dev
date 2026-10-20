@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="bill-length-vs-bill-depth">Bill Length vs Bill Depth</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>plot penguins in ggplot</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plot penguins in ggplot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -696,20 +696,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using R 4.x with ggplot2 4.x (tidyverse) and the data frame
-penguins_clean (palmerpenguins columns, no missing values).
-
-Write ggplot2 code that creates an object called p_bill:
-- x = bill_length_mm, y = bill_depth_mm, points coloured by species
-- one straight-line fit per species: geom_smooth(method = "lm",
-  formula = y ~ x, se = FALSE), using linewidth not size
-- a colour-blind-safe palette (scale_colour_viridis_d)
-- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"
-- theme_minimal()
-Then print p_bill and save it with
-ggsave("figures/bill_length_depth.png", p_bill, width = 7, height = 5, dpi = 300),
-creating the figures folder if it does not exist.
-Give the complete code in one block.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with ggplot2 4.x (tidyverse) and the data frame</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>penguins_clean (palmerpenguins columns, no missing values).</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Write ggplot2 code that creates an object called p_bill:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>- x = bill_length_mm, y = bill_depth_mm, points coloured by species</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>- one straight-line fit per species: geom_smooth(method = "lm",</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  formula = y ~ x, se = FALSE), using linewidth not size</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>- a colour-blind-safe palette (scale_colour_viridis_d)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>- theme_minimal()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Then print p_bill and save it with</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ggsave("figures/bill_length_depth.png", p_bill, width = 7, height = 5, dpi = 300),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>creating the figures folder if it does not exist.</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Give the complete code in one block.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -772,7 +772,7 @@ Example AI output (instructor testing)
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"figures"</span>)) <span class="fu">dir.create</span>(<span class="st">"figures"</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/bill_length_depth.png"</span>, p_bill, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>[plot: figures/bill_length_depth.png]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[plot: figures/bill_length_depth.png]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> No warnings. Each species’ line slopes upwards. The default viridis palette ends in pale yellow, which is hard to see on white; the reference uses <code>end = 0.85</code>.</p>
 </details>
 <p>Find your ggplot2 version with <code>packageVersion("ggplot2")</code>.</p>
@@ -816,7 +816,7 @@ Reference solution
 <h2 class="anchored" data-anchor-id="body-mass-by-species-and-sex">Body Mass by Species and Sex</h2>
 <section id="prompt-1-the-quick-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
-<pre class="text"><code>make a boxplot of penguin weight</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>make a boxplot of penguin weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong-1" class="level3">
@@ -830,12 +830,12 @@ Reference solution
 </section>
 <section id="prompt-2-a-better-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
-<pre class="text"><code>Using penguins_clean (palmerpenguins columns) and ggplot2, create p_mass:
-body_mass_g by species as a boxplot (outlier.shape = NA) with the individual
-penguins as jittered points (width = 0.2, height = 0), one panel per sex
-(facet_wrap), boxes filled by species with scale_fill_viridis_d, y label
-"Body mass (g)", no x label, no legend, theme_minimal().
-Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi = 300).</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Using penguins_clean (palmerpenguins columns) and ggplot2, create p_mass:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>body_mass_g by species as a boxplot (outlier.shape = NA) with the individual</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>penguins as jittered points (width = 0.2, height = 0), one panel per sex</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(facet_wrap), boxes filled by species with scale_fill_viridis_d, y label</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>"Body mass (g)", no x label, no legend, theme_minimal().</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi = 300).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -886,7 +886,7 @@ Example AI output (instructor testing)
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/body_mass.png"</span>, p_mass, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>[plot: figures/body_mass.png]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[plot: figures/body_mass.png]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> No warnings. Check the jitter has <code>height = 0</code> so masses are not moved.</p>
 </details>
 </section>
@@ -925,11 +925,11 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong></p>
-<pre class="text"><code>Add a "06 Visualise" section to analysis.R that creates p_bill and p_mass
-as described in episode 06 and saves them to figures/ with
-ggsave(width = 7, height = 5, dpi = 300). Run the script with Rscript.
-Acceptance: no warnings in the output; nrow(layer_data(p_bill, 1)) == 333;
-both PNG files exist; no use of size= for lines.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Add a "06 Visualise" section to analysis.R that creates p_bill and p_mass</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>as described in episode 06 and saves them to figures/ with</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ggsave(width = 7, height = 5, dpi = 300). Run the script with Rscript.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Acceptance: no warnings in the output; nrow(layer_data(p_bill, 1)) == 333;</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>both PNG files exist; no use of size= for lines.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If your agent can read images, ask it to open <code>figures/bill_length_depth.png</code> and describe the slope of each species’ line. Compare its description with what you see. Approve each edit and each run.</p>
 </div>
 </div>

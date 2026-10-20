@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -681,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="build-the-report">Build the Report</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>write a report about the penguins data</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>write a report about the penguins data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -699,31 +699,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I have a Python script analysis.py (pandas, seaborn, matplotlib, statsmodels,
-palmerpenguins) that creates penguins, penguins_clean, species_summary,
-p_bill, p_mass and
-mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit().
-Here is the script:
-
-&lt;paste analysis.py&gt;
-
-Turn it into a Quarto document penguins_report.qmd that renders to HTML with
-`quarto render penguins_report.qmd` using the Jupyter engine.
-- YAML header: title, author, date: today, jupyter: python3, format: html
-  with embed-resources: true, code-fold: true and toc: true
-- A setup cell that imports the packages and loads the data
-- Sections: Introduction and data source; Data cleaning; Summary tables
-  (by species, island and sex, shown as data frames); Figures; Simple
-  comparison (overall vs per-species slopes, mass_model); Limitations;
-  AI-use statement; Session information (Python and package versions)
-- Use ```{python} cells with Quarto #| options: labels, figure captions and
-  table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().
-- Create every object inside the document. No pip install, os.chdir() or
-  %reset.
-- Use inline `{python}` expressions for every number in the text, converted
-  with float() and rounded with round().
-Leave the Limitations and AI-use statement sections as headings with a
-placeholder sentence: I will write those myself.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I have a Python script analysis.py (pandas, seaborn, matplotlib, statsmodels,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>palmerpenguins) that creates penguins, penguins_clean, species_summary,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p_bill, p_mass and</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit().</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Here is the script:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>&lt;paste analysis.py&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Turn it into a Quarto document penguins_report.qmd that renders to HTML with</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>`quarto render penguins_report.qmd` using the Jupyter engine.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>- YAML header: title, author, date: today, jupyter: python3, format: html</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  with embed-resources: true, code-fold: true and toc: true</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>- A setup cell that imports the packages and loads the data</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>- Sections: Introduction and data source; Data cleaning; Summary tables</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  (by species, island and sex, shown as data frames); Figures; Simple</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  comparison (overall vs per-species slopes, mass_model); Limitations;</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  AI-use statement; Session information (Python and package versions)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>- Use ```{python} cells with Quarto #| options: labels, figure captions and</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>- Create every object inside the document. No pip install, os.chdir() or</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  %reset.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>- Use inline `{python}` expressions for every number in the text, converted</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  with float() and rounded with round().</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>Leave the Limitations and AI-use statement sections as headings with a</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>placeholder sentence: I will write those myself.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -817,14 +817,14 @@ Example AI output (instructor testing)
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>I will write this section myself.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>Starting python3 kernel...Done
-
-Executing 'penguins_report.quarto_ipynb'
-  Cell 1/1: 'setup'...Done
-
-...
-
-Output created: penguins_report.html</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Starting python3 kernel...Done</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Executing 'penguins_report.quarto_ipynb'</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  Cell 1/1: 'setup'...Done</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Output created: penguins_report.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 </section>
@@ -840,16 +840,16 @@ Output created: penguins_report.html</code></pre>
 <li><label><input type="checkbox">Known biases or gaps</label></li>
 </ul>
 <p><strong>AI-use statement.</strong> Use the statement you drafted in episode 01:</p>
-<pre class="text"><code>Generative AI tools were used in this analysis. [Tool name and version, and
-date accessed] was used to [task, for example: draft Python code for data
-cleaning, summary tables, figures and the linear model]. All AI-generated code
-was run, read and checked against [method, for example: plain pandas results
-and row counts] by the author, who takes responsibility for the final content.
-Prompts used are recorded in [file or appendix]. No sensitive or identifiable
-data was entered into any AI tool.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Generative AI tools were used in this analysis. [Tool name and version, and</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>date accessed] was used to [task, for example: draft Python code for data</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cleaning, summary tables, figures and the linear model]. All AI-generated code</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>was run, read and checked against [method, for example: plain pandas results</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>and row counts] by the author, who takes responsibility for the final content.</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Prompts used are recorded in [file or appendix]. No sensitive or identifiable</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data was entered into any AI tool.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you used an agent (Track B), add one sentence:</p>
-<pre class="text"><code>An AI agent ([tool name and version]) read files, edited code and ran commands
-in the project folder; the author approved each action.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>An AI agent ([tool name and version]) read files, edited code and ran commands</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>in the project folder; the author approved each action.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Edit it so it is true for you: name the actual tool, version and date, and list what you actually used it for.</p>
 </section>
 <section id="render-it" class="level3">
@@ -952,14 +952,14 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong></p>
-<pre class="text"><code>Create penguins_report.qmd from analysis.py with the YAML header and section
-list in episode 08. Render it with `quarto render penguins_report.qmd`, read
-any errors, fix them and render again. Acceptance: the render finishes with
-no errors and no Python warnings; no penguins_report_files/ folder; every
-number in the text comes from an inline {python} expression and none shows
-as np.float64(...); the Limitations and AI-use statement sections contain
-only a placeholder. Then review the rendered report against analysis.py and
-list any number that differs.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Create penguins_report.qmd from analysis.py with the YAML header and section</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>list in episode 08. Render it with `quarto render penguins_report.qmd`, read</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>any errors, fix them and render again. Acceptance: the render finishes with</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>no errors and no Python warnings; no penguins_report_files/ folder; every</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>number in the text comes from an inline {python} expression and none shows</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>as np.float64(...); the Limitations and AI-use statement sections contain</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>only a placeholder. Then review the rendered report against analysis.py and</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>list any number that differs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Write the Limitations and AI-use statement yourself, and approve each edit and each render. Add the agent sentence from episode 01 to your AI-use statement: “An AI agent ([tool name and version]) read files, edited code and ran commands in the project folder; the author approved each action.”</p>
 </div>
 </div>

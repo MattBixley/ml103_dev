@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -697,7 +697,7 @@ Warning
 <h2 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>analyse the penguins data in python</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>analyse the penguins data in python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -712,23 +712,23 @@ Warning
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using Python 3.x with pandas 2.x and the palmerpenguins package (pip).
-I loaded the data with:
-
-from palmerpenguins import load_penguins
-penguins = load_penguins()
-
-penguins.info() gives:
-
-&lt;paste your penguins.info() output here&gt;
-
-Using only the column names shown above, write Python code that:
-1. counts the penguins of each species
-2. counts the missing values in every column
-
-Use pandas only. Do not use sns.load_dataset() or any other package.
-Print each result with print().
-Give the complete code in one block, then explain each line in one sentence.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>I am using Python 3.x with pandas 2.x and the palmerpenguins package (pip).</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>I loaded the data with:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>from palmerpenguins import load_penguins</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>penguins = load_penguins()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>penguins.info() gives:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>&lt;paste your penguins.info() output here&gt;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Using only the column names shown above, write Python code that:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>1. counts the penguins of each species</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>2. counts the missing values in every column</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>Use pandas only. Do not use sns.load_dataset() or any other package.</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Print each result with print().</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>Give the complete code in one block, then explain each line in one sentence.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -791,20 +791,20 @@ Example AI output (instructor testing)
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>missing_counts <span class="op">=</span> penguins.isna().<span class="bu">sum</span>()</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(missing_counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>species
-Adelie       152
-Gentoo       124
-Chinstrap     68
-Name: count, dtype: int64
-species               0
-island                0
-bill_length_mm        2
-bill_depth_mm         2
-flipper_length_mm     2
-body_mass_g           2
-sex                  11
-year                  0
-dtype: int64</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>species</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Adelie       152</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Gentoo       124</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Chinstrap     68</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Name: count, dtype: int64</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>species               0</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>island                0</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>bill_length_mm        2</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>bill_depth_mm         2</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>flipper_length_mm     2</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>body_mass_g           2</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>sex                  11</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>year                  0</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>dtype: int64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 <p>Replace <code>3.x</code> and <code>2.x</code> with your versions. Run <code>python --version</code> in the terminal and <code>print(pd.__version__)</code> in Python. pandas 3 prints text columns in <code>info()</code> as <code>str</code>; pandas 2 prints them as <code>object</code>. Both are fine.</p>
@@ -862,13 +862,13 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong> Give the agent the task with acceptance criteria instead of pasting output:</p>
-<pre class="text"><code>Create analysis.py in this project. It must load the data with
-`from palmerpenguins import load_penguins` and `penguins = load_penguins()`,
-count penguins per species and count missing values per column, printing
-each result. Run it with the Python in .venv and show me the output.
-Acceptance: 344 rows; species counts match penguins["species"].value_counts();
-no sns.load_dataset() and no other data source; no packages beyond pandas
-and palmerpenguins.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Create analysis.py in this project. It must load the data with</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>`from palmerpenguins import load_penguins` and `penguins = load_penguins()`,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>count penguins per species and count missing values per column, printing</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>each result. Run it with the Python in .venv and show me the output.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Acceptance: 344 rows; species counts match penguins["species"].value_counts();</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>no sns.load_dataset() and no other data source; no packages beyond pandas</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>and palmerpenguins.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Approve each file edit and each run. Then ask the agent where <code>load_penguins()</code> reads its data from (<code>print(palmerpenguins.__file__)</code> is a start), and why that matters on a compute node without internet access.</p>
 </div>
 </div>

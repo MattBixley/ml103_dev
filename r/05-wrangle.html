@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -730,7 +730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="clean-and-summarise">Clean and Summarise</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>clean the penguins data and summarise it</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean the penguins data and summarise it</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -745,21 +745,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using R 4.x with the tidyverse and palmerpenguins. The data frame is
-`penguins` with these columns:
-&lt;paste your glimpse(penguins) output here&gt;
-
-Write tidyverse code with the native pipe |&gt; that:
-1. creates penguins_clean: remove only the rows where sex is NA, then add a
-   column body_mass_kg = body_mass_g / 1000
-2. creates species_summary: for each species, the number of penguins (n) and
-   the mean and standard deviation of bill_length_mm, flipper_length_mm and
-   body_mass_g. Use .groups = "drop".
-
-Use filter(), mutate(), group_by() and summarise(). Do not use drop_na(),
-na.omit() or na.rm = TRUE: penguins_clean should have no missing values left.
-After the code, give me base R lines (nrow, table, tapply) that I can use to
-check the results.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with the tidyverse and palmerpenguins. The data frame is</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>`penguins` with these columns:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>&lt;paste your glimpse(penguins) output here&gt;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Write tidyverse code with the native pipe |&gt; that:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>1. creates penguins_clean: remove only the rows where sex is NA, then add a</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>   column body_mass_kg = body_mass_g / 1000</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>2. creates species_summary: for each species, the number of penguins (n) and</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>   the mean and standard deviation of bill_length_mm, flipper_length_mm and</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   body_mass_g. Use .groups = "drop".</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>Use filter(), mutate(), group_by() and summarise(). Do not use drop_na(),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>na.omit() or na.rm = TRUE: penguins_clean should have no missing values left.</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>After the code, give me base R lines (nrow, table, tapply) that I can use to</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>check the results.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -829,20 +829,20 @@ Example AI output (instructor testing)
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins_clean<span class="sc">$</span>species)</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(penguins_clean<span class="sc">$</span>body_mass_g, penguins_clean<span class="sc">$</span>species, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code># A tibble: 3 × 8
-  species       n mean_bill_length sd_bill_length mean_flipper_length
-  &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
-1 Adelie      146             38.8           2.66                190.
-2 Chinstrap    68             48.8           3.34                196.
-3 Gentoo      119             47.6           3.11                217.
-# ℹ 3 more variables: sd_flipper_length &lt;dbl&gt;, mean_body_mass &lt;dbl&gt;,
-#   sd_body_mass &lt;dbl&gt;
-[1] 333
-
-   Adelie Chinstrap    Gentoo
-      146        68       119
-   Adelie Chinstrap    Gentoo
- 3706.164  3733.088  5092.437</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a># A tibble: 3 × 8</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  species       n mean_bill_length sd_bill_length mean_flipper_length</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>1 Adelie      146             38.8           2.66                190.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>2 Chinstrap    68             48.8           3.34                196.</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>3 Gentoo      119             47.6           3.11                217.</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a># ℹ 3 more variables: sd_flipper_length &lt;dbl&gt;, mean_body_mass &lt;dbl&gt;,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>#   sd_body_mass &lt;dbl&gt;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>[1] 333</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>   Adelie Chinstrap    Gentoo</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      146        68       119</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>   Adelie Chinstrap    Gentoo</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> 3706.164  3733.088  5092.437</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> 333 rows and the species means match the <code>tapply()</code> check. The AI chose its own column names (<code>mean_body_mass</code>, not <code>body_mass_mean</code>); rename them if later code expects the reference names.</p>
 </details>
 </section>
@@ -895,12 +895,12 @@ Answer
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>males <span class="ot">&lt;-</span> penguins_clean <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">sex =</span> <span class="st">"male"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>R stops with:</p>
-<pre class="text"><code>Error in filter(penguins_clean, sex = "male") : We detected a named input.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `sex == "male"`?</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Error in filter(penguins_clean, sex = "male") : We detected a named input.</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ℹ This usually means that you've used `=` instead of `==`.</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ℹ Did you mean `sex == "male"`?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="prompt-1-the-quick-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
-<pre class="text"><code>my R code doesn't work</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my R code doesn't work</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong-1" class="level3">
@@ -915,26 +915,26 @@ Answer
 </section>
 <section id="prompt-2-a-better-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using R 4.x with dplyr (from the tidyverse) and palmerpenguins.
-This code:
-
-males &lt;- penguins_clean |&gt;
-  filter(sex = "male")
-
-gives this error:
-
-Error in filter(penguins_clean, sex = "male") : We detected a named input.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `sex == "male"`?
-
-Relevant lines from sessionInfo():
-R version 4.x.x ...
-other attached packages: dplyr_1.x.x ...
-
-penguins_clean has 333 rows and a factor column sex with levels female and
-male. I expected a data frame of the male penguins only.
-Explain the cause in one or two sentences and give me the corrected line.
-Do not change anything else.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with dplyr (from the tidyverse) and palmerpenguins.</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>This code:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>males &lt;- penguins_clean |&gt;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  filter(sex = "male")</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>gives this error:</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Error in filter(penguins_clean, sex = "male") : We detected a named input.</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ℹ This usually means that you've used `=` instead of `==`.</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ℹ Did you mean `sex == "male"`?</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>Relevant lines from sessionInfo():</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>R version 4.x.x ...</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>other attached packages: dplyr_1.x.x ...</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>penguins_clean has 333 rows and a factor column sex with levels female and</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>male. I expected a data frame of the male penguins only.</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>Explain the cause in one or two sentences and give me the corrected line.</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>Do not change anything else.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -981,7 +981,7 @@ Example AI output (instructor testing)
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(males)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>[1] 168</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>[1] 168</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> The fix changed only <code>=</code> to <code>==</code>, as asked. 168 male penguins, matching <code>table(penguins_clean$sex)</code>.</p>
 </details>
 <p>Run <code>sessionInfo()</code> in the Console and copy the R version and the “other attached packages” lines. Paste no data.</p>
@@ -1021,13 +1021,13 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong> Give the agent the wrangling task with acceptance criteria:</p>
-<pre class="text"><code>Add a "05 Wrangle" section to analysis.R that creates penguins_clean
-(remove only rows where sex is NA; add body_mass_kg) and species_summary
-(n, mean and sd of bill_length_mm, flipper_length_mm, body_mass_g by species,
-.groups = "drop"). Use |&gt; and no na.rm. Run the script with Rscript.
-Acceptance: nrow(penguins_clean) == 333; no NA in penguins_clean;
-species_summary$body_mass_mean equals tapply(...) to 3 decimal places.
-Show me the check output.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Add a "05 Wrangle" section to analysis.R that creates penguins_clean</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(remove only rows where sex is NA; add body_mass_kg) and species_summary</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>(n, mean and sd of bill_length_mm, flipper_length_mm, body_mass_g by species,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>.groups = "drop"). Use |&gt; and no na.rm. Run the script with Rscript.</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>Acceptance: nrow(penguins_clean) == 333; no NA in penguins_clean;</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>species_summary$body_mass_mean equals tapply(...) to 3 decimal places.</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>Show me the check output.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then break the script on purpose (<code>filter(sex = "male")</code>) and ask the agent to run it, read the error and fix only that line. Compare how much context the agent collected for itself with the context you had to paste in Track A.</p>
 </div>
 </div>

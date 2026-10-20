@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -687,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="bill-length-and-bill-depth">Bill Length and Bill Depth</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>Is there a relationship between bill length and bill depth in penguins? Give me Python code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Is there a relationship between bill length and bill depth in penguins? Give me Python code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -702,15 +702,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I am using Python with pandas and statsmodels, and the data frame
-penguins_clean (palmerpenguins columns). The data contain three species.
-
-I want to know how bill_depth_mm relates to bill_length_mm.
-1. Fit the relationship for all penguins together, then separately within
-   each species, using statsmodels.formula.api.ols.
-2. Tell me whether the two answers could disagree, and why.
-3. List the variables in this dataset that could confound the relationship.
-Do not state a conclusion until I have run the code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>I am using Python with pandas and statsmodels, and the data frame</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins_clean (palmerpenguins columns). The data contain three species.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>I want to know how bill_depth_mm relates to bill_length_mm.</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>1. Fit the relationship for all penguins together, then separately within</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   each species, using statsmodels.formula.api.ols.</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>2. Tell me whether the two answers could disagree, and why.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>3. List the variables in this dataset that could confound the relationship.</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Do not state a conclusion until I have run the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -767,10 +767,10 @@ Example AI output (instructor testing)
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    fit <span class="op">=</span> smf.ols(<span class="st">"bill_depth_mm ~ bill_length_mm"</span>, data<span class="op">=</span>df).fit()</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sp, <span class="bu">round</span>(fit.params[<span class="st">"bill_length_mm"</span>], <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>All penguins: -0.082
-Adelie 0.177
-Chinstrap 0.222
-Gentoo 0.208</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>All penguins: -0.082</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Adelie 0.177</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Chinstrap 0.222</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Gentoo 0.208</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 </section>
@@ -809,8 +809,8 @@ Reference solution
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sm.stats.anova_lm(mass_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="prompt-1-the-quick-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version-1">Prompt 1: the quick version</h3>
-<pre class="text"><code>what does this mean?
-&lt;pasted mass_model.summary() output&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>what does this mean?</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>&lt;pasted mass_model.summary() output&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong-1" class="level3">
@@ -825,20 +825,20 @@ Reference solution
 </section>
 <section id="prompt-2-a-better-version-1" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version-1">Prompt 2: a better version</h3>
-<pre class="text"><code>I fitted smf.ols("body_mass_g ~ species", data=penguins_clean).fit() with
-statsmodels in Python, where species is a text column with the values Adelie,
-Chinstrap and Gentoo. Here is the summary() output:
-
-&lt;paste print(mass_model.summary()) output&gt;
-
-Explain each part of the output (the top block including R-squared and
-F-statistic, each coefficient row and column, and the bottom block with
-Omnibus, Durbin-Watson, Jarque-Bera and Cond. No.) in plain language for a
-biologist. Say which species is the reference level and what the Intercept
-means, and which numbers in the bottom block do not apply to these data.
-List the assumptions of this model and what would make the conclusions wrong.
-Finish with one claim from your explanation that I can check myself with
-plain pandas, and the code to check it.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>I fitted smf.ols("body_mass_g ~ species", data=penguins_clean).fit() with</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>statsmodels in Python, where species is a text column with the values Adelie,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Chinstrap and Gentoo. Here is the summary() output:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>&lt;paste print(mass_model.summary()) output&gt;</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Explain each part of the output (the top block including R-squared and</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>F-statistic, each coefficient row and column, and the bottom block with</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Omnibus, Durbin-Watson, Jarque-Bera and Cond. No.) in plain language for a</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>biologist. Say which species is the reference level and what the Intercept</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>means, and which numbers in the bottom block do not apply to these data.</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>List the assumptions of this model and what would make the conclusions wrong.</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>Finish with one claim from your explanation that I can check myself with</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plain pandas, and the code to check it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -895,16 +895,16 @@ Example AI output (instructor testing)
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(means.<span class="bu">round</span>(<span class="dv">1</span>))</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(means[<span class="st">"Gentoo"</span>] <span class="op">-</span> means[<span class="st">"Adelie"</span>], <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>Intercept               3706.2
-species[T.Chinstrap]      26.9
-species[T.Gentoo]       1386.3
-dtype: float64
-species
-Adelie       3706.2
-Chinstrap    3733.1
-Gentoo       5092.4
-Name: body_mass_g, dtype: float64
-1386.3</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Intercept               3706.2</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>species[T.Chinstrap]      26.9</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>species[T.Gentoo]       1386.3</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dtype: float64</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>species</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Adelie       3706.2</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Chinstrap    3733.1</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Gentoo       5092.4</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Name: body_mass_g, dtype: float64</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>1386.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> [What worked, what needed fixing, anything worth showing learners]</p>
 </details>
 </section>
@@ -976,8 +976,8 @@ Reference solution
 <section id="optional-a-review-only-second-opinion" class="level3">
 <h3 class="anchored" data-anchor-id="optional-a-review-only-second-opinion">Optional: a review-only second opinion</h3>
 <p>Paste your code into a fresh chat (or a different AI assistant) and ask:</p>
-<pre class="text"><code>Review this code only. Do not change it. List any errors, and the
-assumptions this analysis makes.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Review this code only. Do not change it. List any errors, and the</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>assumptions this analysis makes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A fresh chat has not seen the earlier explanation, so it is less likely to repeat it. Check each point it raises yourself; it can be wrong too (<a href="https://carpentries-incubator.github.io/coding-with-llms-novice/06-validation.html">Carpentries: coding with LLMs</a>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -990,15 +990,15 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong></p>
-<pre class="text"><code>Add a "07 Statistics" section to analysis.py: the overall and per-species
-slopes of bill_depth_mm on bill_length_mm with smf.ols(),
-mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit()
-with summary() and sm.stats.anova_lm(), and a within-Adelie Welch t-test
-(equal_var=False) of body_mass_g by sex. Run the script. Acceptance: the
-overall slope is negative and all three species slopes are positive; the
-Intercept equals the Adelie mean from a .loc boolean mask. Then write three
-sentences I could put in a Limitations section, and list any claim you are
-not sure of.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Add a "07 Statistics" section to analysis.py: the overall and per-species</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>slopes of bill_depth_mm on bill_length_mm with smf.ols(),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>with summary() and sm.stats.anova_lm(), and a within-Adelie Welch t-test</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>(equal_var=False) of body_mass_g by sex. Run the script. Acceptance: the</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>overall slope is negative and all three species slopes are positive; the</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>Intercept equals the Adelie mean from a .loc boolean mask. Then write three</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>sentences I could put in a Limitations section, and list any claim you are</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>not sure of.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Agents explain output as confidently as web AIs. Verify one claim from its explanation yourself before you accept the edit.</p>
 </div>
 </div>

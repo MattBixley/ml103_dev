@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -49,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -633,90 +668,90 @@ ul.task-list li input[type="checkbox"] {
 <p>Copy and paste these prompts into your AI assistant. The same prompts appear in <a href="../episodes/01-ai-and-ethics.html">episode 01</a> and <a href="../episodes/03-prompt-anatomy.html">episode 03</a>, with notes on why they work.</p>
 <section id="test-a-made-up-function-episode-01" class="level2">
 <h2 class="anchored" data-anchor-id="test-a-made-up-function-episode-01">Test a made-up function (episode 01)</h2>
-<pre class="text"><code>Show me how to use penguin_sex_ratio() from the palmerpenguins package to get the proportion of female penguins for each species. Give me a complete example.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Show me how to use penguin_sex_ratio() from the palmerpenguins package to get the proportion of female penguins for each species. Give me a complete example.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check it in RStudio with <code>exists("penguin_sex_ratio")</code>. R returns <code>FALSE</code>. In Python, <code>hasattr(palmerpenguins, "penguin_sex_ratio")</code> returns <code>False</code> after <code>import palmerpenguins</code>.</p>
 </section>
 <section id="draft-an-ai-use-disclosure-statement-episode-01" class="level2">
 <h2 class="anchored" data-anchor-id="draft-an-ai-use-disclosure-statement-episode-01">Draft an AI-use disclosure statement (episode 01)</h2>
-<pre class="text"><code>Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R (or Python) code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R (or plain pandas) results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Generative AI tools were used in this analysis. [Tool name and version, and date accessed] was used to [task, for example: draft R (or Python) code for data cleaning and suggest plot layouts]. All AI-generated code was run, read and checked against [method, for example: base R (or plain pandas) results and row counts] by the author, who takes responsibility for the final content. Prompts used are recorded in [file or appendix]. No sensitive or identifiable data was entered into any AI tool.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Replace each square-bracketed field with your own details.</p>
 </section>
 <section id="weak-prompt-make-a-graph-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="weak-prompt-make-a-graph-episode-03">Weak prompt: make a graph (episode 03)</h2>
-<pre class="text"><code>make a graph of my data</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>make a graph of my data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="better-prompt-scatter-plot-of-penguins-r-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="better-prompt-scatter-plot-of-penguins-r-episode-03">Better prompt: scatter plot of penguins, R (episode 03)</h2>
 <p>Before you use this prompt, run <code>R.version.string</code> and <code>packageVersion("tidyverse")</code> in the Console. Replace the bracketed text with the results and the <code>glimpse()</code> output from your own session.</p>
-<pre class="text"><code>I am using R, and my R version is [paste the output of R.version.string]. I am working in RStudio. I have tidyverse version [paste the output of packageVersion("tidyverse")] and palmerpenguins installed. I am not using any other packages.
-
-My data is palmerpenguins::penguins. Here is the output of glimpse(penguins):
-[paste the glimpse() output here]
-
-Task: make a scatter plot of bill length (bill_length_mm, on the x axis) against flipper length (flipper_length_mm, on the y axis), with one point per penguin, coloured by species. Drop rows that are missing either measurement, and tell me how many rows you dropped.
-
-Constraints:
-- Use ggplot2 from the tidyverse, and use the native pipe |&gt; to build the code.
-- Do not use base R plotting or any package other than tidyverse and palmerpenguins.
-- Use a colour-blind-safe colour scale, and name the function you used.
-- Give the plot a title, axis labels with units (mm), and a legend title.
-
-Output: one complete, runnable code block that works in a fresh R session after library(tidyverse) and library(palmerpenguins). Put a comment above each step. Save the plot to figures/ with ggsave(width = 7, height = 5, dpi = 300).
-
-Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>I am using R, and my R version is [paste the output of R.version.string]. I am working in RStudio. I have tidyverse version [paste the output of packageVersion("tidyverse")] and palmerpenguins installed. I am not using any other packages.</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>My data is palmerpenguins::penguins. Here is the output of glimpse(penguins):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[paste the glimpse() output here]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Task: make a scatter plot of bill length (bill_length_mm, on the x axis) against flipper length (flipper_length_mm, on the y axis), with one point per penguin, coloured by species. Drop rows that are missing either measurement, and tell me how many rows you dropped.</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Constraints:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>- Use ggplot2 from the tidyverse, and use the native pipe |&gt; to build the code.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>- Do not use base R plotting or any package other than tidyverse and palmerpenguins.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>- Use a colour-blind-safe colour scale, and name the function you used.</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>- Give the plot a title, axis labels with units (mm), and a legend title.</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Output: one complete, runnable code block that works in a fresh R session after library(tidyverse) and library(palmerpenguins). Put a comment above each step. Save the plot to figures/ with ggsave(width = 7, height = 5, dpi = 300).</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="better-prompt-scatter-plot-of-penguins-python-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="better-prompt-scatter-plot-of-penguins-python-episode-03">Better prompt: scatter plot of penguins, Python (episode 03)</h2>
 <p>Before you use this prompt, run <code>python --version</code> in a terminal, and <code>import pandas, seaborn; print(pandas.__version__, seaborn.__version__)</code> in Python. Replace the bracketed text with the results and your own <code>penguins.info()</code> and <code>penguins.head()</code> output.</p>
-<pre class="text"><code>I am using Python [paste the output of python --version] in [Jupyter / VS Code]. I have pandas [version], seaborn [version] and palmerpenguins installed. I am not using any other packages.
-
-My data is loaded with: from palmerpenguins import load_penguins; penguins = load_penguins()
-Here is the output of penguins.info():
-[paste the penguins.info() output here]
-And penguins.head():
-[paste the penguins.head() output here]
-
-Task: make a scatter plot of bill length (bill_length_mm, on the x axis) against flipper length (flipper_length_mm, on the y axis), with one point per penguin, coloured by species. Drop rows that are missing either measurement, and tell me how many rows you dropped.
-
-Constraints:
-- Use pandas for the data step and seaborn for the plot (matplotlib only for saving and labels).
-- Do not use any package other than pandas, seaborn, matplotlib and palmerpenguins.
-- Use a colour-blind-safe palette, and name it.
-- Give the plot a title, axis labels with units (mm), and a legend title.
-
-Output: one complete, runnable code block that works in a fresh Python session. Put a comment above each step. Save the plot to figures/ with dpi=300 at 7 by 5 inches.
-
-Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>I am using Python [paste the output of python --version] in [Jupyter / VS Code]. I have pandas [version], seaborn [version] and palmerpenguins installed. I am not using any other packages.</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>My data is loaded with: from palmerpenguins import load_penguins; penguins = load_penguins()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Here is the output of penguins.info():</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>[paste the penguins.info() output here]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>And penguins.head():</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>[paste the penguins.head() output here]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Task: make a scatter plot of bill length (bill_length_mm, on the x axis) against flipper length (flipper_length_mm, on the y axis), with one point per penguin, coloured by species. Drop rows that are missing either measurement, and tell me how many rows you dropped.</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Constraints:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>- Use pandas for the data step and seaborn for the plot (matplotlib only for saving and labels).</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>- Do not use any package other than pandas, seaborn, matplotlib and palmerpenguins.</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>- Use a colour-blind-safe palette, and name it.</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>- Give the plot a title, axis labels with units (mm), and a legend title.</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>Output: one complete, runnable code block that works in a fresh Python session. Put a comment above each step. Save the plot to figures/ with dpi=300 at 7 by 5 inches.</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>Before the code, list your assumptions. After the code, tell me how to check that the plot is correct.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="follow-up-reduce-overlap-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="follow-up-reduce-overlap-episode-03">Follow-up: reduce overlap (episode 03)</h2>
-<pre class="text"><code>The points overlap heavily in the middle. Add a small amount of jitter, or use transparency, so that each point is visible. Keep everything else the same and give me the complete code block again.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>The points overlap heavily in the middle. Add a small amount of jitter, or use transparency, so that each point is visible. Keep everything else the same and give me the complete code block again.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="follow-ups-that-help-you-learn-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="follow-ups-that-help-you-learn-episode-03">Follow-ups that help you learn (episode 03)</h2>
 <p>Adapted from <a href="https://carpentries-incubator.github.io/coding-with-llms-novice/02-effective-prompting.html">Learning to Code with AI Chatbots</a> (CC BY 4.0).</p>
-<pre class="text"><code>Explain this code line by line for someone new to R.</code></pre>
-<pre class="text"><code>Mention anything you are uncertain about.</code></pre>
-<pre class="text"><code>Here is what I expected: [expected result]. Here is what happened: [actual result or error]. What am I missing?</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Explain this code line by line for someone new to R.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Mention anything you are uncertain about.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Here is what I expected: [expected result]. Here is what happened: [actual result or error]. What am I missing?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="reusable-prompt-template-episode-03" class="level2">
 <h2 class="anchored" data-anchor-id="reusable-prompt-template-episode-03">Reusable prompt template (episode 03)</h2>
 <p>Copy this template for any task. Replace each bracketed field, then delete any constraint you do not need.</p>
-<pre class="text"><code>I am using R, and my R version is [paste the output of R.version.string]. I am working in RStudio. I have [package name and version, from packageVersion("package name")] installed. I am not using any other packages.
-
-My data is [data set name]. Here is the output of glimpse([data set name]):
-[paste the glimpse() output here]
-
-Task: [one specific task, with the variables named exactly as they appear in the glimpse() output].
-
-Constraints:
-- Use [style, for example: tidyverse functions and the native pipe |&gt;].
-- Do not use [packages or functions you want to avoid].
-- [Any other constraint, such as the colour scale, the labels or the file type].
-
-Output: one complete, runnable code block that works in a fresh R session after the library() calls. Put a comment above each step.
-
-Before the code, list your assumptions. After the code, tell me how to check that the result is correct.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>I am using R, and my R version is [paste the output of R.version.string]. I am working in RStudio. I have [package name and version, from packageVersion("package name")] installed. I am not using any other packages.</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>My data is [data set name]. Here is the output of glimpse([data set name]):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>[paste the glimpse() output here]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Task: [one specific task, with the variables named exactly as they appear in the glimpse() output].</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Constraints:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>- Use [style, for example: tidyverse functions and the native pipe |&gt;].</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>- Do not use [packages or functions you want to avoid].</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>- [Any other constraint, such as the colour scale, the labels or the file type].</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>Output: one complete, runnable code block that works in a fresh R session after the library() calls. Put a comment above each step.</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>Before the code, list your assumptions. After the code, tell me how to check that the result is correct.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

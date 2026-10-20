@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -49,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -667,20 +702,20 @@ Warning
 <section id="explore-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>analyse the penguins data in R</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>analyse the penguins data in R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using R 4.x in RStudio with the tidyverse and the palmerpenguins package.
-I ran library(tidyverse), library(palmerpenguins) and glimpse(penguins).
-This is the output:
-
-&lt;paste your glimpse(penguins) output here&gt;
-
-Using only the column names shown above, write R code that:
-1. counts the penguins of each species
-2. counts the missing values in every column
-
-Use tidyverse functions and the native pipe |&gt;. Do not use other packages.
-Give the complete code in one block, then explain each line in one sentence.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x in RStudio with the tidyverse and the palmerpenguins package.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>I ran library(tidyverse), library(palmerpenguins) and glimpse(penguins).</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>This is the output:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>&lt;paste your glimpse(penguins) output here&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Using only the column names shown above, write R code that:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>1. counts the penguins of each species</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>2. counts the missing values in every column</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Use tidyverse functions and the native pipe |&gt;. Do not use other packages.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Give the complete code in one block, then explain each line in one sentence.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="wrangle-with-dplyr-and-debug" class="level2">
@@ -689,49 +724,49 @@ Give the complete code in one block, then explain each line in one sentence.</co
 <section id="clean-and-summarise" class="level3">
 <h3 class="anchored" data-anchor-id="clean-and-summarise">Clean and Summarise</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>clean the penguins data and summarise it</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clean the penguins data and summarise it</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using R 4.x with the tidyverse and palmerpenguins. The data frame is
-`penguins` with these columns:
-&lt;paste your glimpse(penguins) output here&gt;
-
-Write tidyverse code with the native pipe |&gt; that:
-1. creates penguins_clean: remove only the rows where sex is NA, then add a
-   column body_mass_kg = body_mass_g / 1000
-2. creates species_summary: for each species, the number of penguins (n) and
-   the mean and standard deviation of bill_length_mm, flipper_length_mm and
-   body_mass_g. Use .groups = "drop".
-
-Use filter(), mutate(), group_by() and summarise(). Do not use drop_na(),
-na.omit() or na.rm = TRUE: penguins_clean should have no missing values left.
-After the code, give me base R lines (nrow, table, tapply) that I can use to
-check the results.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with the tidyverse and palmerpenguins. The data frame is</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>`penguins` with these columns:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>&lt;paste your glimpse(penguins) output here&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Write tidyverse code with the native pipe |&gt; that:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>1. creates penguins_clean: remove only the rows where sex is NA, then add a</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>   column body_mass_kg = body_mass_g / 1000</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>2. creates species_summary: for each species, the number of penguins (n) and</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>   the mean and standard deviation of bill_length_mm, flipper_length_mm and</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>   body_mass_g. Use .groups = "drop".</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Use filter(), mutate(), group_by() and summarise(). Do not use drop_na(),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>na.omit() or na.rm = TRUE: penguins_clean should have no missing values left.</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>After the code, give me base R lines (nrow, table, tapply) that I can use to</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>check the results.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="debug-with-an-ai" class="level3">
 <h3 class="anchored" data-anchor-id="debug-with-an-ai">Debug with an AI</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>my R code doesn't work</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my R code doesn't work</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using R 4.x with dplyr (from the tidyverse) and palmerpenguins.
-This code:
-
-males &lt;- penguins_clean |&gt;
-  filter(sex = "male")
-
-gives this error:
-
-Error in filter(penguins_clean, sex = "male") : We detected a named input.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `sex == "male"`?
-
-Relevant lines from sessionInfo():
-R version 4.x.x ...
-other attached packages: dplyr_1.x.x ...
-
-penguins_clean has 333 rows and a factor column sex with levels female and
-male. I expected a data frame of the male penguins only.
-Explain the cause in one or two sentences and give me the corrected line.
-Do not change anything else.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with dplyr (from the tidyverse) and palmerpenguins.</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>This code:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>males &lt;- penguins_clean |&gt;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  filter(sex = "male")</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>gives this error:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Error in filter(penguins_clean, sex = "male") : We detected a named input.</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ℹ This usually means that you've used `=` instead of `==`.</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ℹ Did you mean `sex == "male"`?</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>Relevant lines from sessionInfo():</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>R version 4.x.x ...</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>other attached packages: dplyr_1.x.x ...</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>penguins_clean has 333 rows and a factor column sex with levels female and</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>male. I expected a data frame of the male penguins only.</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>Explain the cause in one or two sentences and give me the corrected line.</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>Do not change anything else.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="visualise-with-ggplot2" class="level2">
@@ -740,34 +775,34 @@ Do not change anything else.</code></pre>
 <section id="bill-length-vs-bill-depth" class="level3">
 <h3 class="anchored" data-anchor-id="bill-length-vs-bill-depth">Bill Length vs Bill Depth</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>plot penguins in ggplot</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot penguins in ggplot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using R 4.x with ggplot2 4.x (tidyverse) and the data frame
-penguins_clean (palmerpenguins columns, no missing values).
-
-Write ggplot2 code that creates an object called p_bill:
-- x = bill_length_mm, y = bill_depth_mm, points coloured by species
-- one straight-line fit per species: geom_smooth(method = "lm",
-  formula = y ~ x, se = FALSE), using linewidth not size
-- a colour-blind-safe palette (scale_colour_viridis_d)
-- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"
-- theme_minimal()
-Then print p_bill and save it with
-ggsave("figures/bill_length_depth.png", p_bill, width = 7, height = 5, dpi = 300),
-creating the figures folder if it does not exist.
-Give the complete code in one block.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>I am using R 4.x with ggplot2 4.x (tidyverse) and the data frame</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>penguins_clean (palmerpenguins columns, no missing values).</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Write ggplot2 code that creates an object called p_bill:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>- x = bill_length_mm, y = bill_depth_mm, points coloured by species</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>- one straight-line fit per species: geom_smooth(method = "lm",</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  formula = y ~ x, se = FALSE), using linewidth not size</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>- a colour-blind-safe palette (scale_colour_viridis_d)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>- axis labels with units: "Bill length (mm)", "Bill depth (mm)"; legend title "Species"</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>- theme_minimal()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Then print p_bill and save it with</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ggsave("figures/bill_length_depth.png", p_bill, width = 7, height = 5, dpi = 300),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>creating the figures folder if it does not exist.</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Give the complete code in one block.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="body-mass-by-species-and-sex" class="level3">
 <h3 class="anchored" data-anchor-id="body-mass-by-species-and-sex">Body Mass by Species and Sex</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>make a boxplot of penguin weight</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>make a boxplot of penguin weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>Using penguins_clean (palmerpenguins columns) and ggplot2, create p_mass:
-body_mass_g by species as a boxplot (outlier.shape = NA) with the individual
-penguins as jittered points (width = 0.2, height = 0), one panel per sex
-(facet_wrap), boxes filled by species with scale_fill_viridis_d, y label
-"Body mass (g)", no x label, no legend, theme_minimal().
-Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi = 300).</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Using penguins_clean (palmerpenguins columns) and ggplot2, create p_mass:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>body_mass_g by species as a boxplot (outlier.shape = NA) with the individual</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>penguins as jittered points (width = 0.2, height = 0), one panel per sex</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>(facet_wrap), boxes filled by species with scale_fill_viridis_d, y label</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>"Body mass (g)", no x label, no legend, theme_minimal().</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi = 300).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="statistics" class="level2">
@@ -776,46 +811,46 @@ Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi 
 <section id="bill-length-and-bill-depth" class="level3">
 <h3 class="anchored" data-anchor-id="bill-length-and-bill-depth">Bill Length and Bill Depth</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>Is there a relationship between bill length and bill depth in penguins? Give me R code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Is there a relationship between bill length and bill depth in penguins? Give me R code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I am using R with the tidyverse and the data frame penguins_clean
-(palmerpenguins columns). The data contain three species.
-
-I want to know how bill_depth_mm relates to bill_length_mm.
-1. Fit the relationship for all penguins together, then separately within
-   each species, using lm() and the native pipe |&gt;.
-2. Tell me whether the two answers could disagree, and why.
-3. List the variables in this dataset that could confound the relationship.
-Do not state a conclusion until I have run the code.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I am using R with the tidyverse and the data frame penguins_clean</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(palmerpenguins columns). The data contain three species.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>I want to know how bill_depth_mm relates to bill_length_mm.</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>1. Fit the relationship for all penguins together, then separately within</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   each species, using lm() and the native pipe |&gt;.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>2. Tell me whether the two answers could disagree, and why.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>3. List the variables in this dataset that could confound the relationship.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Do not state a conclusion until I have run the code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="body-mass-by-species" class="level3">
 <h3 class="anchored" data-anchor-id="body-mass-by-species">Body Mass by Species</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>what does this mean?
-&lt;pasted summary(mass_model) output&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>what does this mean?</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>&lt;pasted summary(mass_model) output&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I fitted lm(body_mass_g ~ species, data = penguins_clean) in R, where species
-is a factor with levels Adelie, Chinstrap and Gentoo. Here is summary() output:
-
-&lt;paste summary(mass_model) output&gt;
-
-Explain each part of the output (Call, Residuals, each Coefficients row and
-column, Residual standard error, R-squared, F-statistic) in plain language for
-a biologist. Say which species is the reference level and what the intercept
-means. List the assumptions of this model and what would make the conclusions
-wrong. Finish with one claim from your explanation that I can check myself in
-base R, and the code to check it.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>I fitted lm(body_mass_g ~ species, data = penguins_clean) in R, where species</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>is a factor with levels Adelie, Chinstrap and Gentoo. Here is summary() output:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>&lt;paste summary(mass_model) output&gt;</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Explain each part of the output (Call, Residuals, each Coefficients row and</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>column, Residual standard error, R-squared, F-statistic) in plain language for</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>a biologist. Say which species is the reference level and what the intercept</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>means. List the assumptions of this model and what would make the conclusions</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>wrong. Finish with one claim from your explanation that I can check myself in</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>base R, and the code to check it.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="t-test-check" class="level3">
 <h3 class="anchored" data-anchor-id="t-test-check">t-Test Check</h3>
-<pre class="text"><code>Write R code for a t-test of whether male and female penguins differ in body
-mass, and tell me when this test would be wrong.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Write R code for a t-test of whether male and female penguins differ in body</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mass, and tell me when this test would be wrong.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="review-only-second-opinion" class="level3">
 <h3 class="anchored" data-anchor-id="review-only-second-opinion">Review-Only Second Opinion</h3>
 <p>Paste your code into a fresh chat (or a different AI assistant) first.</p>
-<pre class="text"><code>Review this code only. Do not change it. List any errors, and the
-assumptions this analysis makes.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Review this code only. Do not change it. List any errors, and the</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>assumptions this analysis makes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="assemble-the-quarto-report" class="level2">
@@ -824,31 +859,31 @@ assumptions this analysis makes.</code></pre>
 <section id="build-the-report" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-report">Build the Report</h3>
 <p><strong>Quick version</strong></p>
-<pre class="text"><code>write a report about the penguins data</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>write a report about the penguins data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Better version</strong></p>
-<pre class="text"><code>I have an R script analysis.R (tidyverse, palmerpenguins, native pipe |&gt;) that
-creates penguins_clean, species_summary, p_bill, p_mass and
-mass_model &lt;- lm(body_mass_g ~ species, data = penguins_clean).
-Here is the script:
-
-&lt;paste analysis.R&gt;
-
-Turn it into a Quarto document penguins_report.qmd that renders to HTML with
-`quarto render penguins_report.qmd`.
-- YAML header: title, author, date: today, format: html with
-  embed-resources: true, code-fold: true and toc: true
-- A setup chunk that loads the packages (message: false)
-- Sections: Introduction and data source; Data cleaning; Summary tables
-  (by species, island and sex, using knitr::kable); Figures; Simple comparison
-  (overall vs per-species slopes, mass_model); Limitations; AI-use statement;
-  Session information (sessionInfo())
-- Use Quarto #| chunk options with labels, figure captions and fig-width: 7,
-  fig-height: 5
-- Create every object inside the document. No install.packages(), setwd() or
-  rm(list = ls()).
-- Use inline R code for every number in the text.
-Leave the Limitations and AI-use statement sections as headings with a
-placeholder sentence: I will write those myself.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>I have an R script analysis.R (tidyverse, palmerpenguins, native pipe |&gt;) that</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>creates penguins_clean, species_summary, p_bill, p_mass and</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>mass_model &lt;- lm(body_mass_g ~ species, data = penguins_clean).</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>Here is the script:</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>&lt;paste analysis.R&gt;</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>Turn it into a Quarto document penguins_report.qmd that renders to HTML with</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>`quarto render penguins_report.qmd`.</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>- YAML header: title, author, date: today, format: html with</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  embed-resources: true, code-fold: true and toc: true</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>- A setup chunk that loads the packages (message: false)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>- Sections: Introduction and data source; Data cleaning; Summary tables</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  (by species, island and sex, using knitr::kable); Figures; Simple comparison</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  (overall vs per-species slopes, mass_model); Limitations; AI-use statement;</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  Session information (sessionInfo())</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>- Use Quarto #| chunk options with labels, figure captions and fig-width: 7,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  fig-height: 5</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>- Create every object inside the document. No install.packages(), setwd() or</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  rm(list = ls()).</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>- Use inline R code for every number in the text.</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>Leave the Limitations and AI-use statement sections as headings with a</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>placeholder sentence: I will write those myself.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

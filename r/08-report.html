@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -680,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="build-the-report">Build the Report</h2>
 <section id="prompt-1-the-quick-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-1-the-quick-version">Prompt 1: the quick version</h3>
-<pre class="text"><code>write a report about the penguins data</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>write a report about the penguins data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try it in your AI assistant before reading on.</p>
 </section>
 <section id="what-typically-goes-wrong" class="level3">
@@ -696,29 +696,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prompt-2-a-better-version" class="level3">
 <h3 class="anchored" data-anchor-id="prompt-2-a-better-version">Prompt 2: a better version</h3>
-<pre class="text"><code>I have an R script analysis.R (tidyverse, palmerpenguins, native pipe |&gt;) that
-creates penguins_clean, species_summary, p_bill, p_mass and
-mass_model &lt;- lm(body_mass_g ~ species, data = penguins_clean).
-Here is the script:
-
-&lt;paste analysis.R&gt;
-
-Turn it into a Quarto document penguins_report.qmd that renders to HTML with
-`quarto render penguins_report.qmd`.
-- YAML header: title, author, date: today, format: html with
-  embed-resources: true, code-fold: true and toc: true
-- A setup chunk that loads the packages (message: false)
-- Sections: Introduction and data source; Data cleaning; Summary tables
-  (by species, island and sex, using knitr::kable); Figures; Simple comparison
-  (overall vs per-species slopes, mass_model); Limitations; AI-use statement;
-  Session information (sessionInfo())
-- Use Quarto #| chunk options with labels, figure captions and fig-width: 7,
-  fig-height: 5
-- Create every object inside the document. No install.packages(), setwd() or
-  rm(list = ls()).
-- Use inline R code for every number in the text.
-Leave the Limitations and AI-use statement sections as headings with a
-placeholder sentence: I will write those myself.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>I have an R script analysis.R (tidyverse, palmerpenguins, native pipe |&gt;) that</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>creates penguins_clean, species_summary, p_bill, p_mass and</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mass_model &lt;- lm(body_mass_g ~ species, data = penguins_clean).</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Here is the script:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>&lt;paste analysis.R&gt;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Turn it into a Quarto document penguins_report.qmd that renders to HTML with</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>`quarto render penguins_report.qmd`.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>- YAML header: title, author, date: today, format: html with</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  embed-resources: true, code-fold: true and toc: true</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>- A setup chunk that loads the packages (message: false)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>- Sections: Introduction and data source; Data cleaning; Summary tables</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  (by species, island and sex, using knitr::kable); Figures; Simple comparison</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  (overall vs per-species slopes, mass_model); Limitations; AI-use statement;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  Session information (sessionInfo())</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>- Use Quarto #| chunk options with labels, figure captions and fig-width: 7,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  fig-height: 5</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>- Create every object inside the document. No install.packages(), setwd() or</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  rm(list = ls()).</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>- Use inline R code for every number in the text.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>Leave the Limitations and AI-use statement sections as headings with a</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>placeholder sentence: I will write those myself.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -821,16 +821,16 @@ Example AI output (instructor testing)
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output when run:</strong></p>
-<pre class="text"><code>metadata
-  document-css: false
-  link-citations: true
-  date-format: long
-  lang: en
-  title: Palmer penguins report
-  author: Your Name
-  date: today
-
-Output created: penguins_report.html</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>metadata</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  document-css: false</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  link-citations: true</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  date-format: long</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  lang: en</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  title: Palmer penguins report</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  author: Your Name</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  date: today</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Output created: penguins_report.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Notes:</strong> Rendered first time with no errors and no <code>penguins_report_files/</code> folder. Shortened here: the full answer also had Summary tables, Figures and Simple comparison sections.</p>
 </details>
 </section>
@@ -846,16 +846,16 @@ Output created: penguins_report.html</code></pre>
 <li><label><input type="checkbox">Known biases or gaps</label></li>
 </ul>
 <p><strong>AI-use statement.</strong> Use the statement you drafted in episode 01:</p>
-<pre class="text"><code>Generative AI tools were used in this analysis. [Tool name and version, and
-date accessed] was used to [task, for example: draft R code for data cleaning,
-summary tables, figures and the linear model]. All AI-generated code was run,
-read and checked against [method, for example: base R results and row counts]
-by the author, who takes responsibility for the final content. Prompts used
-are recorded in [file or appendix]. No sensitive or identifiable data was
-entered into any AI tool.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Generative AI tools were used in this analysis. [Tool name and version, and</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>date accessed] was used to [task, for example: draft R code for data cleaning,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>summary tables, figures and the linear model]. All AI-generated code was run,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>read and checked against [method, for example: base R results and row counts]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>by the author, who takes responsibility for the final content. Prompts used</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>are recorded in [file or appendix]. No sensitive or identifiable data was</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>entered into any AI tool.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you used an agent (Track B), add one sentence:</p>
-<pre class="text"><code>An AI agent ([tool name and version]) read files, edited code and ran commands
-in the project folder; the author approved each action.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>An AI agent ([tool name and version]) read files, edited code and ran commands</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>in the project folder; the author approved each action.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Edit it so it is true for you: name the actual tool, version and date, and list what you actually used it for.</p>
 </section>
 <section id="render-it" class="level3">
@@ -944,13 +944,13 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Agent extension (Track B)</strong></p>
-<pre class="text"><code>Create penguins_report.qmd from analysis.R with the YAML header and section
-list in episode 08. Render it with `quarto render penguins_report.qmd`, read
-any errors, fix them and render again. Acceptance: the render finishes with
-no errors or warnings; no penguins_report_files/ folder; every number in the
-text comes from inline R code; the Limitations and AI-use statement sections
-contain only a placeholder. Then review the rendered report against
-analysis.R and list any number that differs.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Create penguins_report.qmd from analysis.R with the YAML header and section</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>list in episode 08. Render it with `quarto render penguins_report.qmd`, read</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>any errors, fix them and render again. Acceptance: the render finishes with</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>no errors or warnings; no penguins_report_files/ folder; every number in the</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>text comes from inline R code; the Limitations and AI-use statement sections</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>contain only a placeholder. Then review the rendered report against</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>analysis.R and list any number that differs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Write the Limitations and AI-use statement yourself, and approve each edit and each render. Add the agent sentence from episode 01 to your AI-use statement: “An AI agent ([tool name and version]) read files, edited code and ran commands in the project folder; the author approved each action.”</p>
 </div>
 </div>

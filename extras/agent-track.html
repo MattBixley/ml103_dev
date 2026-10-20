@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -49,9 +84,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-922a259cba7c1ff87fa83187e075ac28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c08d3273e37e7f5e3c9409009cd7f4c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a73ff9addbf92c1d16ae9639034a74ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ebb2f88ff82f7a66e9b1e4215819a99f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -702,21 +737,21 @@ Warning
 <section id="plan-first-then-edit" class="level2">
 <h2 class="anchored" data-anchor-id="plan-first-then-edit">4. Plan First, Then Edit</h2>
 <p>For anything bigger than a one-line fix, ask for a plan before any edits. Claude Code has a <strong>plan mode</strong> for this (press Shift+Tab to cycle modes). In plan mode the agent reads files and proposes steps but changes nothing.</p>
-<pre class="text"><code>Plan only, do not edit yet. I want analysis.R to save p_bill and p_mass to
-figures/ as PNG files. List the files you would change, the code you would add,
-and how you will check it worked.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Plan only, do not edit yet. I want analysis.R to save p_bill and p_mass to</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>figures/ as PNG files. List the files you would change, the code you would add,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>and how you will check it worked.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For Python, swap in <code>analysis.py</code>. Read the plan. Correct it if it is wrong (“use <code>ggsave()</code>, not <code>png()</code>”, or “use <code>fig.savefig()</code>, not <code>plt.show()</code>”) and only then let it make the edits. Fixing a plan costs far less than unpicking a wrong edit.</p>
 </section>
 <section id="give-acceptance-criteria" class="level2">
 <h2 class="anchored" data-anchor-id="give-acceptance-criteria">5. Give Acceptance Criteria</h2>
 <p>An agent stops when it believes it has finished. Tell it what “finished” means in terms it can check:</p>
-<pre class="text"><code>Add a summary table of body mass by species and sex to penguins_report.qmd.
-
-Done means:
-- the table uses penguins_clean, not penguins
-- it shows n, mean and sd, rounded to 1 decimal place
-- `quarto render penguins_report.qmd` finishes with no errors or warnings
-- you show me the rendered table's first rows from the HTML or the R output</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Add a summary table of body mass by species and sex to penguins_report.qmd.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Done means:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>- the table uses penguins_clean, not penguins</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>- it shows n, mean and sd, rounded to 1 decimal place</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>- `quarto render penguins_report.qmd` finishes with no errors or warnings</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>- you show me the rendered table's first rows from the HTML or the R output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For the Python report, the same criteria apply with “the R output” replaced by “the Python output”; also require that <code>quarto check jupyter</code> finds <code>.venv</code>.</p>
 <p>Each criterion is something you can confirm yourself in under a minute.</p>
 </section>
@@ -744,8 +779,8 @@ Done means:
 <section id="use-git-commits-as-checkpoints" class="level2">
 <h2 class="anchored" data-anchor-id="use-git-commits-as-checkpoints">8. Use Git Commits as Checkpoints</h2>
 <p>Commit before you hand the agent a task, and again when you accept the result. If the agent makes a mess, you can return to the last good state with <code>git restore &lt;file&gt;</code> or <code>git checkout -- &lt;file&gt;</code>.</p>
-<pre class="text"><code>Before you start, show me `git status`. If there are uncommitted changes, stop and
-ask me what to do.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Before you start, show me `git status`. If there are uncommitted changes, stop and</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ask me what to do.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Write the commit messages yourself, or read the agent’s suggested message before you accept it. Record AI help in the message if your group expects that (for example, “Summary table drafted with Claude Code, checked by hand”).</p>
 </section>
 <section id="on-reannz-systems" class="level2">
