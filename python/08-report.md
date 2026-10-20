@@ -112,6 +112,69 @@ placeholder sentence: I will write those myself.
 | `inline {python} expressions for every number` | Numbers in the text match the data |
 | `I will write those myself` | The judgement sections stay yours |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+````markdown
+---
+title: "Body size of Palmer penguins"
+author: "Your Name"
+date: today
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+jupyter: python3
+---
+
+```{python}
+#| label: setup
+import pandas as pd
+import statsmodels.formula.api as smf
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+penguins_clean = penguins.dropna(subset=["sex"])
+mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit()
+```
+
+## Data cleaning
+
+We removed `{python} len(penguins) - len(penguins_clean)` rows with missing sex,
+leaving `{python} len(penguins_clean)` penguins.
+
+## Limitations
+
+I will write this section myself.
+
+## AI-use statement
+
+I will write this section myself.
+````
+
+**Output when run:**
+
+```text
+Starting python3 kernel...Done
+
+Executing 'penguins_report.quarto_ipynb'
+  Cell 1/1: 'setup'...Done
+
+...
+
+Output created: penguins_report.html
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 ### Write the Limitations and AI-use statement yourself
 
 **Limitations.** Use what you found in episode 07. At minimum: the data are

@@ -72,6 +72,39 @@ Give the complete code in one block.
 | `ggsave(… width = 7, height = 5, dpi = 300)` | The same file every time you run the script |
 | `object called p_bill` | The report in episode 08 reuses this name |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+p_bill <- ggplot(penguins_clean,
+                 aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, linewidth = 1) +
+  scale_colour_viridis_d() +
+  labs(x = "Bill length (mm)", y = "Bill depth (mm)", colour = "Species") +
+  theme_minimal()
+
+print(p_bill)
+
+if (!dir.exists("figures")) dir.create("figures")
+ggsave("figures/bill_length_depth.png", p_bill, width = 7, height = 5, dpi = 300)
+```
+
+**Output when run:**
+
+```text
+[plot: figures/bill_length_depth.png]
+```
+
+**Notes:** No warnings. Each species' line slopes upwards. The default viridis palette ends in pale yellow, which is hard to see on white; the reference uses `end = 0.85`.
+
+</details>
+
 Find your ggplot2 version with `packageVersion("ggplot2")`.
 
 ### Check it
@@ -153,6 +186,39 @@ Save it with ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi 
 | `outlier.shape = NA` | Each penguin drawn once |
 | `height = 0` | Jitter moves points sideways only, so masses stay true |
 | `one panel per sex` | Shows the sex difference the model in episode 07 ignores |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+p_mass <- ggplot(penguins_clean, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.2, height = 0, alpha = 0.5) +
+  facet_wrap(~ sex) +
+  scale_fill_viridis_d() +
+  labs(x = NULL, y = "Body mass (g)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p_mass
+
+ggsave("figures/body_mass.png", p_mass, width = 7, height = 5, dpi = 300)
+```
+
+**Output when run:**
+
+```text
+[plot: figures/body_mass.png]
+```
+
+**Notes:** No warnings. Check the jitter has `height = 0` so masses are not moved.
+
+</details>
 
 ### Check it
 

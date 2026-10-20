@@ -123,6 +123,42 @@ Do not invent module versions, partitions or paths. List any assumptions you mad
 | Table of line, problem, fix | Gives you a checklist you can verify one row at a time |
 | "List any assumptions" | Shows you which parts of the answer the AI guessed |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```bash
+#!/bin/bash -e
+#SBATCH --job-name=penguins            # name shown in squeue
+#SBATCH --account=nesi99999            # your project code
+#SBATCH --cpus-per-task=1              # analysis.R is single-threaded
+#SBATCH --mem=2G                       # needs under 1 GB
+#SBATCH --time=00:15:00                # job takes about 2 minutes
+#SBATCH --output=logs/%x_%j.out        # run `mkdir -p logs` first
+#SBATCH --error=logs/%x_%j.err
+
+module purge
+module load R/VERSION                  # replace VERSION using: module spider R
+cd "$SLURM_SUBMIT_DIR"
+srun Rscript analysis.R
+```
+
+**Output when run:**
+
+```text
+$ bash -n review-fixed.sl && echo "syntax OK"
+syntax OK
+[paste sbatch --test-only output from the cluster here]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 ### Check it
 
 Compare the AI's table with the answer key below. For each row the AI got wrong or
@@ -226,6 +262,43 @@ Use `#!/bin/bash -e`. Comment each #SBATCH line. List anything you assumed.
 | `$SLURM_SUBMIT_DIR`, log paths, `logs/` reminder | Fixes the working directory and makes failures visible |
 | "Do not install anything in the job" | Keeps package installs in your interactive session |
 | "List anything you assumed" | Shows what to check before you submit |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```bash
+#!/bin/bash -e
+#SBATCH --job-name=penguins-analysis   # name shown in squeue
+#SBATCH --account=nesi99999            # replace with your project code
+#SBATCH --time=00:15:00                # 15 minutes
+#SBATCH --mem=2G                       # 2 GB memory
+#SBATCH --cpus-per-task=1              # single-threaded R
+#SBATCH --output=logs/%x_%j.out        # stdout
+#SBATCH --error=logs/%x_%j.err         # stderr
+
+module purge
+module load R/<version>                # check with: module spider R
+cd "$SLURM_SUBMIT_DIR"
+srun Rscript analysis.R
+```
+
+**Output when run:**
+
+```text
+$ bash -n run_analysis.sl && echo "syntax OK"
+run_analysis.sl: line 11: syntax error near unexpected token `newline'
+run_analysis.sl: line 11: `module load R/<version>                # check with: module spider R'
+[paste sbatch --test-only output from the cluster here]
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners. Job 1 shown; job 2 (Quarto) omitted. The `<version>` placeholder is read by bash as a redirect, so `bash -n` fails until it is replaced with the real module name.]
+
+</details>
 
 ### Check it
 

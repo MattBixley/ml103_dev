@@ -102,6 +102,63 @@ check the results.
 | `.groups = "drop"` | No grouping surprises in the next step |
 | `give me base R lines … to check` | Builds the cross-check into the answer |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+penguins_clean <- penguins |>
+  filter(!is.na(sex)) |>
+  mutate(body_mass_kg = body_mass_g / 1000)
+
+species_summary <- penguins_clean |>
+  group_by(species) |>
+  summarise(
+    n = n(),
+    mean_bill_length = mean(bill_length_mm),
+    sd_bill_length = sd(bill_length_mm),
+    mean_flipper_length = mean(flipper_length_mm),
+    sd_flipper_length = sd(flipper_length_mm),
+    mean_body_mass = mean(body_mass_g),
+    sd_body_mass = sd(body_mass_g),
+    .groups = "drop"
+  )
+
+species_summary
+
+# Base R checks
+nrow(penguins_clean)
+table(penguins_clean$species)
+tapply(penguins_clean$body_mass_g, penguins_clean$species, mean)
+```
+
+**Output when run:**
+
+```text
+# A tibble: 3 × 8
+  species       n mean_bill_length sd_bill_length mean_flipper_length
+  <fct>     <int>            <dbl>          <dbl>               <dbl>
+1 Adelie      146             38.8           2.66                190.
+2 Chinstrap    68             48.8           3.34                196.
+3 Gentoo      119             47.6           3.11                217.
+# ℹ 3 more variables: sd_flipper_length <dbl>, mean_body_mass <dbl>,
+#   sd_body_mass <dbl>
+[1] 333
+
+   Adelie Chinstrap    Gentoo
+      146        68       119
+   Adelie Chinstrap    Gentoo
+ 3706.164  3733.088  5092.437
+```
+
+**Notes:** 333 rows and the species means match the `tapply()` check. The AI chose its own column names (`mean_body_mass`, not `body_mass_mean`); rename them if later code expects the reference names.
+
+</details>
+
 ### Check it
 
 Compare the dplyr results with base R:
@@ -217,6 +274,31 @@ Do not change anything else.
 | `sessionInfo()` lines | Fixes match your R and package versions |
 | What the data look like and what you expected | The AI can judge whether a fix is correct |
 | `corrected line … do not change anything else` | A small fix you can read, not a rewrite |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+males <- penguins_clean |>
+  filter(sex == "male")
+
+nrow(males)
+```
+
+**Output when run:**
+
+```text
+[1] 168
+```
+
+**Notes:** The fix changed only `=` to `==`, as asked. 168 male penguins, matching `table(penguins_clean$sex)`.
+
+</details>
 
 Run `sessionInfo()` in the Console and copy the R version and the
 "other attached packages" lines. Paste no data.

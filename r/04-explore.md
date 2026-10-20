@@ -83,6 +83,44 @@ Give the complete code in one block, then explain each line in one sentence.
 | `native pipe \|>` and `no other packages` | Consistent style that runs on your setup |
 | `explain each line` | You read the code before you run it |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+# 1. Count the penguins of each species
+penguins |>
+  count(species)
+
+# 2. Count the missing values in every column
+penguins |>
+  summarise(across(everything(), ~ sum(is.na(.x))))
+```
+
+**Output when run:**
+
+```text
+# A tibble: 3 × 2
+  species       n
+  <fct>     <int>
+1 Adelie      152
+2 Chinstrap    68
+3 Gentoo      124
+# A tibble: 1 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+    <int>  <int>          <int>         <int>             <int>       <int>
+1       0      0              2             2                 2           2
+# ℹ 2 more variables: sex <int>, year <int>
+```
+
+**Notes:** Counts match the base R check (152, 68, 124; 2 NAs per measurement column, 11 in `sex`). The AI used `~ sum(is.na(.x))` rather than `\(x)`; both work.
+
+</details>
+
 Replace `4.x` with your version (run `R.version.string`).
 
 ### Check it

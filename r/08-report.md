@@ -90,6 +90,84 @@ placeholder sentence: I will write those myself.
 | `inline R code for every number` | Numbers in the text match the data |
 | `I will write those myself` | The judgement sections stay yours |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+````markdown
+---
+title: "Palmer penguins report"
+author: "Your Name"
+date: today
+format:
+  html:
+    embed-resources: true
+    code-fold: true
+    toc: true
+---
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Introduction and data source
+
+The data come from the palmerpenguins package (`r nrow(penguins)` penguins).
+
+## Data cleaning
+
+```{r}
+#| label: clean
+penguins_clean <- penguins |>
+  filter(!is.na(sex)) |>
+  mutate(body_mass_kg = body_mass_g / 1000)
+```
+
+We removed `r nrow(penguins) - nrow(penguins_clean)` rows with missing sex,
+leaving `r nrow(penguins_clean)` penguins.
+
+## Limitations
+
+*I will write this section myself.*
+
+## AI-use statement
+
+*I will write this section myself.*
+
+## Session information
+
+```{r}
+#| label: session-info
+sessionInfo()
+```
+````
+
+**Output when run:**
+
+```text
+metadata
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: Palmer penguins report
+  author: Your Name
+  date: today
+
+Output created: penguins_report.html
+```
+
+**Notes:** Rendered first time with no errors and no `penguins_report_files/` folder. Shortened here: the full answer also had Summary tables, Figures and Simple comparison sections.
+
+</details>
+
 ### Write the Limitations and AI-use statement yourself
 
 **Limitations.** Use what you found in episode 07. At minimum: the data are

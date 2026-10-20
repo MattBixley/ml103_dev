@@ -79,6 +79,40 @@ Do not state a conclusion until I have run the code.
 | `List … confounders` | Makes the AI reason about the design, not just the code |
 | `Do not state a conclusion until I have run the code` | You see the numbers before any interpretation |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+import statsmodels.formula.api as smf
+
+# 1. All penguins together
+overall = smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins_clean).fit()
+print("All penguins:", round(overall.params["bill_length_mm"], 3))
+
+# 2. Within each species
+for sp, df in penguins_clean.groupby("species"):
+    fit = smf.ols("bill_depth_mm ~ bill_length_mm", data=df).fit()
+    print(sp, round(fit.params["bill_length_mm"], 3))
+```
+
+**Output when run:**
+
+```text
+All penguins: -0.082
+Adelie 0.177
+Chinstrap 0.222
+Gentoo 0.208
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
+
 ### Check it
 
 Run both fits, then check the slopes with a second method, `np.polyfit()`,
@@ -181,6 +215,46 @@ plain pandas, and the code to check it.
 | `which numbers … do not apply` | Stops the AI interpreting Durbin-Watson for unordered data |
 | `assumptions … what would make the conclusions wrong` | Surfaces the caveats your Limitations section needs |
 | `one claim … I can check myself` | Turns the explanation into something you verify |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```python
+import statsmodels.formula.api as smf
+
+mass_model = smf.ols("body_mass_g ~ species", data=penguins_clean).fit()
+
+# Claim: the Intercept is the mean Adelie mass, and each coefficient
+# is that species' mean minus the Adelie mean.
+means = penguins_clean.groupby("species")["body_mass_g"].mean()
+print(mass_model.params.round(1))
+print(means.round(1))
+print(round(means["Gentoo"] - means["Adelie"], 1))
+```
+
+**Output when run:**
+
+```text
+Intercept               3706.2
+species[T.Chinstrap]      26.9
+species[T.Gentoo]       1386.3
+dtype: float64
+species
+Adelie       3706.2
+Chinstrap    3733.1
+Gentoo       5092.4
+Name: body_mass_g, dtype: float64
+1386.3
+```
+
+**Notes:** [What worked, what needed fixing, anything worth showing learners]
+
+</details>
 
 ### Check it
 

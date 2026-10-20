@@ -59,6 +59,45 @@ Do not state a conclusion until I have run the code.
 | `List … confounders` | Makes the AI reason about the design, not just the code |
 | `Do not state a conclusion until I have run the code` | You see the numbers before any interpretation |
 
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+# 1a. All penguins together
+fit_all <- lm(bill_depth_mm ~ bill_length_mm, data = penguins_clean)
+coef(fit_all)
+
+# 1b. Separately within each species
+penguins_clean |>
+  group_by(species) |>
+  summarise(
+    intercept = coef(lm(bill_depth_mm ~ bill_length_mm))[1],
+    slope = coef(lm(bill_depth_mm ~ bill_length_mm))[2]
+  )
+```
+
+**Output when run:**
+
+```text
+   (Intercept) bill_length_mm
+   20.78664867    -0.08232675
+# A tibble: 3 × 3
+  species   intercept slope
+  <fct>         <dbl> <dbl>
+1 Adelie        11.5  0.177
+2 Chinstrap      7.57 0.222
+3 Gentoo         5.12 0.208
+```
+
+**Notes:** Overall slope −0.082; within-species slopes 0.177, 0.222 and 0.208, matching the Check it values. Read the AI's explanation of why they disagree before accepting it.
+
+</details>
+
 ### Check it
 
 Run both fits and compare the slopes:
@@ -143,6 +182,35 @@ base R, and the code to check it.
 | `which species is the reference level` | Prevents misreading the coefficients |
 | `assumptions … what would make the conclusions wrong` | Surfaces the caveats your Limitations section needs |
 | `one claim … I can check myself` | Turns the explanation into something you verify |
+
+<!-- example-output: replace with your own test results -->
+<details>
+<summary>Example AI output (instructor testing)</summary>
+
+**Tool:** [AI tool, e.g. Google Search AI Mode] · **Date tested:** [YYYY-MM-DD]
+
+**Code returned:**
+
+```r
+# Claim to check: the intercept is the mean body mass of Adelie penguins,
+# and each other coefficient is that species' mean minus the Adelie mean.
+means <- tapply(penguins_clean$body_mass_g, penguins_clean$species, mean)
+means
+means - means["Adelie"]
+```
+
+**Output when run:**
+
+```text
+   Adelie Chinstrap    Gentoo
+ 3706.164  3733.088  5092.437
+    Adelie  Chinstrap     Gentoo
+   0.00000   26.92385 1386.27259
+```
+
+**Notes:** The Chinstrap and Gentoo differences (26.92, 1386.27) match the coefficients in `summary(mass_model)`, so the AI's claim about the reference level holds.
+
+</details>
 
 ### Check it
 
