@@ -362,6 +362,12 @@ The points overlap heavily in the middle. Add a small amount of jitter, or use t
 
 Asking for "the complete code block again" stops the AI from giving you a fragment that you must merge by hand.
 
+Three more follow-ups that help you learn, not just get code (adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/02-effective-prompting.html)):
+
+- `Explain this code line by line for someone new to R.` (or Python)
+- `Mention anything you are uncertain about.`
+- When stuck, do not just say "fix it". Say: `Here is what I expected and here is what happened. What am I missing?`
+
 ## Key points
 
 - Give the AI your R or Python version, packages, the `glimpse()` (or `penguins.info()` and `penguins.head()`) output and a specific task.

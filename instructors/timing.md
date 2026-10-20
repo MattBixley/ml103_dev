@@ -17,6 +17,16 @@ The workshop runs for 180 minutes, including one 10-minute break. The table coun
 | 02:40 to 02:55 | [09 AI for Slurm scripts](../episodes/09-slurm-scripts.md) | 15 | Review task first. Write task only if time allows |
 | 02:55 to 03:00 | [10 Verify and wrap up](../episodes/10-verify-wrap-up.md) | 5 | Hand out the human checklist and the next-steps list |
 
+### Absorbing the short additions
+
+The Carpentries-derived additions add about 4 learner minutes in total, and the total stays at 180 minutes:
+
+- **00** (+1 min, tutor not autopilot): absorbed by a quicker AI tool check.
+- **01** (+1 min, varying output and the 30-second bias probe): absorbed by trimming the Exercise 2 partner discussion.
+- **03** (+1 min, three follow-up prompts): absorbed by showing the follow-ups on screen rather than running each one.
+- **05** (+1 to 2 min, quick check): optional when you run late.
+- **10**: "Where next" is now a pointer to [resources.md](../resources.md), which frees time for the sticky-note feedback.
+
 ## Where to Cut When You Run Late
 
 Cut in this order. Each cut saves time without removing the verification step, which the workshop depends on.

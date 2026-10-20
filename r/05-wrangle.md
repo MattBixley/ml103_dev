@@ -203,6 +203,23 @@ Catch-up file: [`checkpoints/after-05.R`](checkpoints/after-05.R).
 
 </details>
 
+**Quick check (1 to 2 min).** Change your summary to group by `species` and
+`island`. Before you run it, predict how many rows you will get, then check.
+Making a prediction first shows you what you really expect
+([Carpentries instructor training](https://carpentries.github.io/instructor-training-genai/expertise.html)).
+
+<details>
+<summary>Answer</summary>
+
+```r
+penguins_clean |> count(species, island)
+```
+
+5 rows, not 9. Adelie live on all three islands, but Chinstrap are only on
+Dream and Gentoo only on Biscoe.
+
+</details>
+
 ## Debug with an AI
 
 Sooner or later, AI code (or your edit of it) fails. Say you want only the

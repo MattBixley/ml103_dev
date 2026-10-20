@@ -22,6 +22,8 @@ For each episode:
 3. **Type the better prompt** (Prompt 2) into a new AI Mode session, and say which part of the prompt you changed.
 4. **Paste the code** into the project file, run it, and do the **Check it** step aloud.
 
+Think aloud while you read the AI's answer: say what you expected, where you hesitate, and what you would check (adapted from [GenAI in Workshops: Instructor Training Bonus Module](https://carpentries.github.io/instructor-training-genai/wrong.html)).
+
 If AI Mode returns truncated code, add "give the complete code in one block" and ask again.
 
 ## Episode 03: Anatomy of a Good Prompt

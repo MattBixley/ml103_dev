@@ -176,6 +176,19 @@ Gentoo only on Biscoe); the body mass model ignores sex; which rows you removed
 and why; which assumptions you did not check. If you left out an analysis
 because you could not explain it, say so here.
 
+Also ask: could more data change this conclusion, or is it variation that more
+data would not remove
+([Carpentries: FAIR explainable ML](https://carpentries-incubator.github.io/fair-explainable-ml/6-uncertainty-overview.html))?
+
+**Describe the data.** Datasheets and model cards
+([Carpentries: FAIR explainable ML](https://carpentries-incubator.github.io/fair-explainable-ml/8-releasing-a-model.html))
+ask the same four things your report should answer:
+
+- [ ] Where the data came from (citation and licence)
+- [ ] Who or what it covers, and what it leaves out
+- [ ] Which rows you removed, and why
+- [ ] Known biases or gaps
+
 **AI-use statement.** Use the statement you drafted in episode 01:
 
 ```text

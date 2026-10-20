@@ -16,6 +16,8 @@
 
 A large language model (LLM) predicts the next token, a short chunk of text such as a word or part of a word, from the text that came before it. It does not look up facts, and it does not run your code. A response reads as fluent because the model learned which words usually follow which, not because it checked them.
 
+The model also samples its next token, so the same prompt can give different code each time. Compare your answer with a neighbour's, and check your own answer rather than copying the instructor's (adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/02-effective-prompting.html)).
+
 This explains the most common failure. The model writes a plausible R function even when no such function exists. Researchers call this a hallucination. Three typical forms:
 
 - **An invented function.** For example, `penguin_sex_ratio()`, which no package exports.
@@ -69,6 +71,8 @@ Fluent output is not the same as correct output. The AI reflects patterns in its
 
 The penguins data describes 344 penguins from three islands near Palmer Station, Antarctica, collected between 2007 and 2009 (Gorman, Williams and Fraser, 2014). Any result describes these penguins. It does not describe all penguins. Ask yourself what the data cannot tell you before you write a conclusion.
 
+**Quick probe (30 seconds).** Ask your AI assistant `Write one sentence about a typical researcher.` Notice who it assumes the researcher is. The same assumptions can leak into code comments and report text, so read those too (adapted from [Trustworthy AI](https://carpentries-incubator.github.io/fair-explainable-ml/2-model-eval-and-fairness.html)).
+
 ## Data sovereignty and privacy
 
 Anything you paste into a web AI tool leaves New Zealand. The model runs at an offshore provider. Do not paste the following into a web AI tool:
@@ -102,6 +106,7 @@ Large models use substantial computing power for each response. Use AI where it 
 - When you are learning a skill that you must judge later. Practise first, then use AI to speed up work you already understand.
 - When the data is sensitive, as described above.
 - When you cannot check the result. If you cannot tell whether the output is correct, you cannot report it.
+- When reading feels like learning. An AI explanation can give you an illusion of competence. Type the code, change it, or predict its output yourself (adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/04-learning-concepts.html)).
 
 ### Exercise 2: draft an AI-use disclosure statement
 

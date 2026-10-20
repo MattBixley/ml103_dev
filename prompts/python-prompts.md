@@ -225,6 +225,15 @@ Write Python code for a t-test of whether male and female penguins differ in
 body mass, and tell me when this test would be wrong.
 ```
 
+### Review-Only Second Opinion
+
+Paste your code into a fresh chat (or a different AI assistant) first.
+
+```text
+Review this code only. Do not change it. List any errors, and the
+assumptions this analysis makes.
+```
+
 ## 08. Assemble the Quarto Report
 
 Episode: [`python/08-report.md`](../python/08-report.md)

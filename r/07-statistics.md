@@ -286,6 +286,19 @@ Catch-up file: [`checkpoints/after-07.R`](checkpoints/after-07.R).
 
 </details>
 
+### Optional: a review-only second opinion
+
+Paste your code into a fresh chat (or a different AI assistant) and ask:
+
+```text
+Review this code only. Do not change it. List any errors, and the
+assumptions this analysis makes.
+```
+
+A fresh chat has not seen the earlier explanation, so it is less likely to
+repeat it. Check each point it raises yourself; it can be wrong too
+([Carpentries: coding with LLMs](https://carpentries-incubator.github.io/coding-with-llms-novice/06-validation.html)).
+
 > [!TIP]
 > **Agent extension (Track B)**
 > ```text
@@ -305,6 +318,9 @@ Catch-up file: [`checkpoints/after-07.R`](checkpoints/after-07.R).
 
 - Pooling groups can reverse a relationship (Simpson's paradox). Ask the AI
   about grouping and confounders, then fit both ways.
+- An overall summary can hide or reverse what happens in subgroups, so report
+  results by group when groups differ; fairness audits use the same check
+  ([Carpentries: FAIR explainable ML](https://carpentries-incubator.github.io/fair-explainable-ml/2-model-eval-and-fairness.html)).
 - Ask the AI to explain each part of `summary()` output, then check one claim
   with base R.
 - Ask what would make a test wrong before you report it.

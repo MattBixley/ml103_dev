@@ -25,6 +25,8 @@ Antarctica. Dr Kristen Gorman and the Palmer Station Long Term Ecological
 Research programme collected the data from 2007 to 2009. We use the copy in
 the `palmerpenguins` R package (Horst, Hill and Gorman, 2020), which has
 `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+The data are released under a CC0 licence (Horst, Hill and Gorman, 2020;
+Gorman, Williams and Fraser, 2014).
 
 ## Data cleaning
 

@@ -79,6 +79,22 @@ Before the code, list your assumptions. After the code, tell me how to check tha
 The points overlap heavily in the middle. Add a small amount of jitter, or use transparency, so that each point is visible. Keep everything else the same and give me the complete code block again.
 ```
 
+## Follow-ups that help you learn (episode 03)
+
+Adapted from [Learning to Code with AI Chatbots](https://carpentries-incubator.github.io/coding-with-llms-novice/02-effective-prompting.html) (CC BY 4.0).
+
+```text
+Explain this code line by line for someone new to R.
+```
+
+```text
+Mention anything you are uncertain about.
+```
+
+```text
+Here is what I expected: [expected result]. Here is what happened: [actual result or error]. What am I missing?
+```
+
 ## Reusable prompt template (episode 03)
 
 Copy this template for any task. Replace each bracketed field, then delete any constraint you do not need.
