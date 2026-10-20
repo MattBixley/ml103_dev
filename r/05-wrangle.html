@@ -686,22 +686,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Keep rows</td>
 <td><code>penguins[!is.na(penguins$sex), ]</code></td>
-<td><code>penguins \|&gt; filter(!is.na(sex))</code></td>
+<td><code>penguins |&gt; filter(!is.na(sex))</code></td>
 </tr>
 <tr class="even">
 <td>Keep columns</td>
 <td><code>penguins[, c("species", "sex")]</code></td>
-<td><code>penguins \|&gt; select(species, sex)</code></td>
+<td><code>penguins |&gt; select(species, sex)</code></td>
 </tr>
 <tr class="odd">
 <td>Add a column</td>
 <td><code>df$body_mass_kg &lt;- df$body_mass_g / 1000</code></td>
-<td><code>df \|&gt; mutate(body_mass_kg = body_mass_g / 1000)</code></td>
+<td><code>df |&gt; mutate(body_mass_kg = body_mass_g / 1000)</code></td>
 </tr>
 <tr class="even">
 <td>Summarise by group</td>
 <td><code>tapply(df$body_mass_g, df$species, mean)</code></td>
-<td><code>df \|&gt; group_by(species) \|&gt; summarise(mean = mean(body_mass_g))</code></td>
+<td><code>df |&gt; group_by(species) |&gt; summarise(mean = mean(body_mass_g))</code></td>
 </tr>
 </tbody>
 </table>
@@ -771,7 +771,7 @@ check the results.</code></pre>
 <td>Later episodes and the report depend on these names</td>
 </tr>
 <tr class="odd">
-<td>Named verbs and <code>\|&gt;</code></td>
+<td>Named verbs and <code>|&gt;</code></td>
 <td>One consistent, current tidyverse style</td>
 </tr>
 <tr class="even">

@@ -634,6 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#python-equivalents-later-port" id="toc-python-equivalents-later-port" class="nav-link" data-scroll-target="#python-equivalents-later-port">Python equivalents (later port)</a></li>
   <li><a href="#files-are-owned-by-one-writer" id="toc-files-are-owned-by-one-writer" class="nav-link" data-scroll-target="#files-are-owned-by-one-writer">Files are owned by one writer</a></li>
   <li><a href="#example-ai-output-sections" id="toc-example-ai-output-sections" class="nav-link" data-scroll-target="#example-ai-output-sections">Example AI output sections</a></li>
+  <li><a href="#pipes-inside-tables" id="toc-pipes-inside-tables" class="nav-link" data-scroll-target="#pipes-inside-tables">Pipes inside tables</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/MattBixley/ml103_dev/blob/main/instructors/authoring-guide.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MattBixley/ml103_dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -796,6 +797,10 @@ Tip
 <section id="example-ai-output-sections" class="level2">
 <h2 class="anchored" data-anchor-id="example-ai-output-sections">Example AI output sections</h2>
 <p>Every better prompt that generates code is followed by a collapsed “Example AI output (instructor testing)” block. These hold real results from an instructor’s own run of the prompt. To update one, find the <code>&lt;!-- example-output --&gt;</code> marker (<code>grep -rn "example-output" r python episodes</code>), paste the tool, date, code and console output, and add notes. Keep the “Reference solution” separate: that is verified code, while the example shows what an AI actually returned.</p>
+</section>
+<section id="pipes-inside-tables" class="level2">
+<h2 class="anchored" data-anchor-id="pipes-inside-tables">Pipes inside tables</h2>
+<p>In a Markdown table, write the native pipe in code as <code>`|&gt;`</code>. GitHub needs the backslash so the <code>|</code> does not start a new column, and hides it when displaying. The website filter (<code>_extensions_local/site.lua</code>) removes it too, so both show <code>|&gt;</code>. Outside tables, write <code>|&gt;</code> as normal.</p>
 
 
 </section>
