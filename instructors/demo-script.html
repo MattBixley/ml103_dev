@@ -623,7 +623,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>This script covers the live-coding demo for episodes 03 to 08. Use Google Search AI Mode on a projected screen, signed out, as the Track A tool. The demo follows the same weak-then-better pattern as the learner episodes, so learners see the method before they try it.</p>
 <p>AI output varies. Read each “What to point out” item as a likely outcome, and rehearse each prompt before the session to see what your tool returns on the day. Do not promise learners a particular answer.</p>
-<p>The demo runs in R. Python learners in the room follow the same prompts from <a href="../python/README.html">python/</a>, which mirror each R episode. Mention once, at episode 04, that their Prompt 2 blocks name the Python version, pandas and seaborn and paste <code>df.info()</code> and <code>df.head()</code> instead of <code>glimpse()</code>, and that the <strong>Check it</strong> numbers are the same.</p>
+<p>The demo runs in R. Python learners in the room follow the same prompts from <a href="../python/README.html">python/</a>, which mirror each R episode. Mention once, at episode 04, that their Prompt 2 blocks name the Python version, pandas and seaborn and paste <code>penguins.info()</code> and <code>penguins.head()</code> instead of <code>glimpse()</code>, and that the <strong>Check it</strong> numbers are the same.</p>
 <section id="before-you-start" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-start">Before You Start</h2>
 <ul>
@@ -646,7 +646,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="episode-03-anatomy-of-a-good-prompt" class="level2">
 <h2 class="anchored" data-anchor-id="episode-03-anatomy-of-a-good-prompt">Episode 03: Anatomy of a Good Prompt</h2>
-<p><strong>Weak prompt.</strong> “make a graph”. Type it, and show the answer, which will probably ask for more information.</p>
+<p><strong>Weak prompt.</strong> “make a graph of my data”. Type it, and show the answer, which will probably ask for more information.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer often asks for the data, the variables and the package. Name each missing piece aloud. That is the lesson of this episode.</li>
@@ -656,7 +656,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="episode-04-load-and-explore-penguins" class="level2">
 <h2 class="anchored" data-anchor-id="episode-04-load-and-explore-penguins">Episode 04: Load and Explore Penguins</h2>
-<p><strong>Weak prompt.</strong> “analyse penguins in R”. Type it, and show the answer.</p>
+<p><strong>Weak prompt.</strong> “analyse the penguins data in R”. Type it, and show the answer.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer may use the <code>datasets::penguins</code> short names (<code>bill_len</code>, <code>flipper_len</code>) instead of <code>palmerpenguins</code>. Run the code and show the error if it appears. This is the <strong>Two Penguins Datasets</strong> failure in <a href="ai-failure-modes.html#two-penguins-datasets">ai-failure-modes.md</a>.</li>
@@ -667,7 +667,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="episode-05-wrangle-with-dplyr" class="level2">
 <h2 class="anchored" data-anchor-id="episode-05-wrangle-with-dplyr">Episode 05: Wrangle with dplyr</h2>
-<p><strong>Weak prompt.</strong> “clean the data”. Type it, and show the answer.</p>
+<p><strong>Weak prompt.</strong> “clean the penguins data and summarise it”. Type it, and show the answer.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer may remove rows without saying how many, or may choose its own rule for missing values. Count the rows before and after with <code>nrow()</code>, as learners will do in the episode. See <strong>Silently Dropped NA Values</strong>.</li>
@@ -678,7 +678,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="episode-06-visualise-with-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="episode-06-visualise-with-ggplot2">Episode 06: Visualise with ggplot2</h2>
-<p><strong>Weak prompt.</strong> “plot penguins”. Type it, and show the answer.</p>
+<p><strong>Weak prompt.</strong> “plot penguins in ggplot”. Type it, and show the answer.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer may pick the variables for you, or may use <code>size =</code> for a line. See <strong>Superseded Arguments</strong>.</li>
@@ -689,19 +689,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="episode-07-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="episode-07-statistics">Episode 07: Statistics</h2>
-<p><strong>Weak prompt.</strong> “is there a difference?”. Type it, and show the answer.</p>
+<p><strong>Weak prompt.</strong> “Is there a relationship between bill length and bill depth in penguins? Give me R code.”. Type it, and show the answer.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer may give a confident yes or no, with no assumptions and no mention of grouping. See <strong>Wrong Statistical Interpretation</strong>.</li>
 <li>Ask learners whether the answer mentions species. If it does not, note that the question is open-ended, and that is why the better prompt is needed.</li>
 </ul>
-<p><strong>Better prompt.</strong> Type the better prompt from episode 07, which asks for each line of the output, the assumptions and the conditions that would make the result wrong.</p>
+<p><strong>Better prompt.</strong> Type the better prompt from episode 07, which asks for the pooled and the per-species fits, whether the two could disagree, and which variables could confound the relationship.</p>
 <p><strong>Simpson’s paradox.</strong> Show the pooled scatter plot first, then the per-species plot. Ask the AI what the pooled plot shows. A likely answer describes a negative relationship. Then show the coloured plot, and ask learners which answer they would put in the report. See <strong>Simpson’s Paradox</strong>.</p>
 <p><strong>Close.</strong> Ask learners to name one claim from the answer that they checked themselves.</p>
 </section>
 <section id="episode-08-assemble-the-quarto-report" class="level2">
 <h2 class="anchored" data-anchor-id="episode-08-assemble-the-quarto-report">Episode 08: Assemble the Quarto Report</h2>
-<p><strong>Weak prompt.</strong> “write a report”. Type it, and show the answer.</p>
+<p><strong>Weak prompt.</strong> “write a report about the penguins data”. Type it, and show the answer.</p>
 <p><strong>What to point out.</strong></p>
 <ul>
 <li>The answer may use a YAML header that does not match Quarto. Show the header and point to the <code>format:</code> key. See <strong>Outdated Quarto and R Markdown YAML</strong>.</li>

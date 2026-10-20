@@ -682,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Objects that do not exist at render time.</strong> Cells use <code>penguins_clean</code> or <code>p_bill</code> without creating them, because they existed in your session. The render fails with <code>NameError: name 'penguins_clean' is not defined</code>.</li>
 <li><strong>The wrong Python.</strong> The render stops with <code>ModuleNotFoundError: No module named 'palmerpenguins'</code> because Quarto found a Python without your packages. See the note on <code>quarto check jupyter</code> above.</li>
 <li><strong>Things that should never be in a report:</strong> <code>!pip install</code> or <code>%pip install</code>, <code>os.chdir("C:/Users/...")</code> or <code>%reset -f</code>.</li>
-<li><strong>Hard-coded numbers in the text</strong> (“344 penguins”) that go out of date when the data change. Inline Python expressions, such as <code>`{python} len(penguins)`</code>, keep them correct (Quarto 1.4 or later). With numpy 2, a raw result can appear as <code>np.float64(-0.082)</code>; wrap it in <code>float()</code> or <code>round()</code> first.</li>
+<li><strong>Hard-coded numbers in the text</strong> (“344 penguins”) that go out of date when the data change. Inline Python expressions, such as <code>`{python} len(penguins)`</code>, keep them correct (Quarto 1.4 or later). With numpy 2, a raw result can appear as <code>np.float64(-0.082)</code>, and <code>round(x, 3)</code> does not change that. Convert it first: <code>round(float(x), 3)</code>.</li>
 <li><strong>Figures shown twice.</strong> Ending a cell with the figure object (<code>p_bill</code>) after drawing it shows the plot twice. End figure cells with <code>plt.show()</code>.</li>
 <li><strong>R-style cell options</strong> (<code>{python, echo=FALSE}</code>) mixed with Quarto’s <code>#|</code> options. Mixing them makes the file harder to read. Use <code>#|</code> options, such as <code>#| echo: false</code>, at the top of each cell.</li>
 </ul>
@@ -710,8 +710,8 @@ Turn it into a Quarto document penguins_report.qmd that renders to HTML with
   table captions. Keep figsize=(7, 5) and end each figure cell with plt.show().
 - Create every object inside the document. No pip install, os.chdir() or
   %reset.
-- Use inline `{python}` expressions for every number in the text, rounded
-  with round().
+- Use inline `{python}` expressions for every number in the text, converted
+  with float() and rounded with round().
 Leave the Limitations and AI-use statement sections as headings with a
 placeholder sentence: I will write those myself.</code></pre>
 <table class="caption-top table">
@@ -889,28 +889,27 @@ Reference solution
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction and data source</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>... the <span class="in">`palmerpenguins`</span> Python package, which has <span class="in">`{python} len(penguins)`</span> rows ...</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data cleaning</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: clean</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> (</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    penguins</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    .dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>])</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    .assign(body_mass_kg<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"body_mass_g"</span>] <span class="op">/</span> <span class="dv">1000</span>)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction and data source</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>... the <span class="in">`palmerpenguins`</span> Python package, which has <span class="in">`{python} len(penguins)`</span> rows ...</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data cleaning</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: clean</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> (</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    penguins</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    .dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>])</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    .assign(body_mass_kg<span class="op">=</span><span class="kw">lambda</span> df: df[<span class="st">"body_mass_g"</span>] <span class="op">/</span> <span class="dv">1000</span>)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The report ends with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session information</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>

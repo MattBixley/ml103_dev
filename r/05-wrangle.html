@@ -695,13 +695,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Add a column</td>
-<td><code>df$body_mass_kg &lt;- df$body_mass_g / 1000</code></td>
-<td><code>df |&gt; mutate(body_mass_kg = body_mass_g / 1000)</code></td>
+<td><code>penguins$body_mass_kg &lt;- penguins$body_mass_g / 1000</code></td>
+<td><code>penguins |&gt; mutate(body_mass_kg = body_mass_g / 1000)</code></td>
 </tr>
 <tr class="even">
 <td>Summarise by group</td>
-<td><code>tapply(df$body_mass_g, df$species, mean)</code></td>
-<td><code>df |&gt; group_by(species) |&gt; summarise(mean = mean(body_mass_g))</code></td>
+<td><code>tapply(penguins$body_mass_g, penguins$species, mean)</code></td>
+<td><code>penguins |&gt; group_by(species) |&gt; summarise(mean = mean(body_mass_g))</code></td>
 </tr>
 </tbody>
 </table>

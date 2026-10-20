@@ -695,13 +695,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Add a column</td>
-<td><code>df["body_mass_kg"] = df["body_mass_g"] / 1000</code></td>
-<td><code>df.assign(body_mass_kg=lambda d: d["body_mass_g"] / 1000)</code></td>
+<td><code>penguins["body_mass_kg"] = penguins["body_mass_g"] / 1000</code></td>
+<td><code>penguins.assign(body_mass_kg=lambda df: df["body_mass_g"] / 1000)</code></td>
 </tr>
 <tr class="even">
 <td>Summarise by group</td>
 <td>a loop over species with <code>.loc[mask, "body_mass_g"].mean()</code></td>
-<td><code>df.groupby("species")["body_mass_g"].mean()</code></td>
+<td><code>penguins.groupby("species")["body_mass_g"].mean()</code></td>
 </tr>
 </tbody>
 </table>

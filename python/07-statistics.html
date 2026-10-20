@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>One regression for all penguins.</strong> The usual answer is <code>smf.ols("bill_depth_mm ~ bill_length_mm", data=penguins).fit()</code>, <code>scipy.stats.linregress()</code> or a correlation, with a conclusion like “longer bills are slightly shallower (negative correlation)”.</li>
 <li><strong>The conclusion is backwards for every species.</strong> The penguins data contain three species, and species is a confounder: Gentoo penguins have long but shallow bills. Pooling them reverses the relationship. This is <strong>Simpson’s paradox</strong>.</li>
 <li><strong>A model with no intercept.</strong> <code>sm.OLS(y, X)</code> without <code>sm.add_constant(X)</code> forces the line through zero. On penguins it gives a slope of +0.383, a different answer again, with no warning. The formula interface (<code>smf.ols()</code>) adds the intercept for you.</li>
-<li><strong>Correlation on the whole data frame.</strong> <code>penguins.corr()</code> stops with <code>ValueError: could not convert string to float: 'Adelie'</code> on pandas 2 and later. The “fix”, <code>corr(numeric_only=True)</code>, returns −0.229 for bill length and depth, which hides the paradox too.</li>
+<li><strong>Correlation on the whole data frame.</strong> <code>penguins.corr()</code> stops with <code>ValueError: could not convert string to float: 'Adelie'</code> on pandas 2 and later. The “fix”, <code>corr(numeric_only=True)</code>, returns −0.235 for bill length and depth, which hides the paradox too.</li>
 <li><strong>Confident wording.</strong> A small p-value is presented as a finding, with no mention of grouping, confounders or assumptions.</li>
 </ul>
 </section>
@@ -781,14 +781,12 @@ Reference solution
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(overall_fit.params)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Within each species: 0.177, 0.222, 0.208</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>species_slopes <span class="op">=</span> pd.Series(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        species: smf.ols(<span class="st">"bill_depth_mm ~ bill_length_mm"</span>, data<span class="op">=</span>group).fit().params[<span class="st">"bill_length_mm"</span>]</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> species, group <span class="kw">in</span> penguins_clean.groupby(<span class="st">"species"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"slope"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_slopes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>slopes <span class="op">=</span> {}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> species, group <span class="kw">in</span> penguins_clean.groupby(<span class="st">"species"</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    fit <span class="op">=</span> smf.ols(<span class="st">"bill_depth_mm ~ bill_length_mm"</span>, data<span class="op">=</span>group).fit()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    slopes[species] <span class="op">=</span> fit.params[<span class="st">"bill_length_mm"</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>species_slopes <span class="op">=</span> pd.Series(slopes, name<span class="op">=</span><span class="st">"slope"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_slopes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
 </section>

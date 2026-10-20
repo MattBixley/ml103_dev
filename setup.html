@@ -714,8 +714,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install-the-packages" class="level3">
 <h3 class="anchored" data-anchor-id="install-the-packages">2. Install the packages</h3>
 <p>Copy <a href="https://github.com/MattBixley/ml103_dev/blob/main/python/requirements.txt">python/requirements.txt</a> from this repository into your <code>ml103-penguins</code> folder, then run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The file lists pandas, seaborn, statsmodels, palmerpenguins and jupyter. Confirm the install:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The file lists pandas, numpy, matplotlib, seaborn, statsmodels, scipy, palmerpenguins and jupyter. Confirm the install:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from palmerpenguins import load_penguins; print(load_penguins().head())"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You see a table of five rows. The first row has the species <code>Adelie</code> and the island <code>Torgersen</code>.</p>
 </section>
